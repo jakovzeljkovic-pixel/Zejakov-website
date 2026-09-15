@@ -50,9 +50,21 @@ nav{display:grid;gap:14px}
 <p class="word">ZEJAKOV MEDIA</p>
 <p class="tag"><span>Hver bolig har en historie.</span> <span>Jeg sørger for at den blir fortalt.</span></p>
 <nav aria-label="Lenker">
-  <a class="btn" href="https://zejakov.com/"><span>Nettside<small>zejakov.com</small></span><i aria-hidden="true">→</i></a>
-  <a class="btn" href="https://www.instagram.com/zejakovfilms/"><span>Instagram<small>@zejakovfilms</small></span><i aria-hidden="true">→</i></a>
+  <a class="btn" href="https://zejakov.com/?src=film-qr" data-ev="links_site"><span>Nettside<small>zejakov.com</small></span><i aria-hidden="true">→</i></a>
+  <a class="btn" href="https://www.instagram.com/zejakovfilms/" data-ev="links_instagram"><span>Instagram<small>@zejakovfilms</small></span><i aria-hidden="true">→</i></a>
 </nav>
 </main>
+<script>
+/* Count which button people pick after scanning the QR on a film. No cookies, nothing personal. */
+document.addEventListener("click", function(e){
+  var a = e.target.closest && e.target.closest("a[data-ev]"); if (!a) return;
+  var K = "sb_publishable_9mOfhegjB94YtoHDoxgS0A_it9oMYm2";
+  try {
+    fetch("https://hruzsxgdlayusgqjzukn.supabase.co/rest/v1/site_events", { method:"POST", keepalive:true,
+      headers:{ apikey:K, Authorization:"Bearer " + K, "Content-Type":"application/json" },
+      body: JSON.stringify({ event:a.getAttribute("data-ev"), page:"links", source:"film-qr", lang:"nb" }) }).catch(function(){});
+  } catch(err){}
+});
+</script>
 </body>
 </html>
