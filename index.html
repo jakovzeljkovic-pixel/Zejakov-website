@@ -7,7 +7,7 @@
 <title>ZEJAKOV MEDIA | Medieproduksjon for eiendom, Oslo</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400..900&family=Fraunces:opsz,wght@9..144,100..900&family=Jost:wght@200..500&family=Montserrat:wght@200..500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500..700&family=Inter:wght@300..600&family=Montserrat:wght@200..500&display=swap">
 
 <style>
 :root{
@@ -25,14 +25,14 @@
   --wm-weight:300;
   --wm-track:.20em;
   --wm-scale:.94;
-  --hd-font:"Bodoni Moda";
+  --hd-font:"Inter Tight";
   --hd-scale:1;
-  --hd-weight:500;
+  --hd-weight:600;
   --hd-opsz:21;
-  --tx-font:"Fraunces";
+  --tx-font:"Inter";
   --tx-weight:400;
-  --tx-scale:0.98;
-  --ui-font:"Jost";
+  --tx-scale:0.95;
+  --ui-font:"Inter";
   --mast-bg:rgba(20,17,15,.9);
 }
 *{box-sizing:border-box}
@@ -564,13 +564,13 @@ html:not(.design) #fsopen{display:none!important}
 .gets li{display:flex;justify-content:space-between;align-items:baseline;gap:18px;padding:19px 0;border-bottom:1px solid var(--line-2)}
 .gets b{font-family:var(--hd-font),Georgia,serif;font-weight:var(--hd-weight);
   font-variation-settings:"opsz" 48,"wght" 460;font-size:clamp(1.18rem,2vw,1.55rem);line-height:1.2;letter-spacing:-.012em}
-.gets span{font-family:var(--ui-font),sans-serif;font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;
+.gets span{flex:none;max-width:48%;font-family:var(--ui-font),sans-serif;font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;
   color:var(--muted);text-align:right}
 .svcclose{margin-top:30px;font-size:clamp(1rem,1.4vw,1.1rem);max-width:38ch}
 
 /* small screens: the five links open as a full-screen index instead of a cramped row */
 .menubtn{display:none;text-transform:uppercase}
-@media (max-width:760px){
+@media (max-width:980px){
   .menubtn{display:inline-flex;align-items:center}
   .menu-open .mast{backdrop-filter:none;-webkit-backdrop-filter:none;background:transparent}
   .menu-open .mast::after{opacity:0}
@@ -593,6 +593,103 @@ html:not(.design) #fsopen{display:none!important}
   .menu-open .mast .brandname{display:none}
   .menu-open .mt{color:var(--cream);border-color:var(--line)}
 }
+
+/* ================= studio pass =================
+   Grotesk type, pill controls, rounded frames and a gallery-arc hero.
+   Overrides the earlier passes; the palette is unchanged. */
+:root{--r:16px}
+body{letter-spacing:-.006em}
+h1,h2,h3,.stmtbig,.matchbig,.gets b{font-family:var(--hd-font),"Inter",system-ui,sans-serif;
+  font-weight:var(--hd-weight);font-variation-settings:normal}
+h2,.stmtbig,.matchbig{letter-spacing:-.04em}
+h3{letter-spacing:-.02em}
+.gets b{font-weight:500;letter-spacing:-.025em}
+.eyebrow{font-size:.7rem;letter-spacing:.14em;font-weight:500}
+.pagehead h2{letter-spacing:-.045em;line-height:1}
+
+/* pills */
+.btn{border-radius:999px;padding:13px 24px;font-size:.88rem;font-weight:500;letter-spacing:-.005em;
+  text-transform:none;gap:8px}
+.btn.solid,.btn:not(.ghost){background:var(--cream);border-color:var(--cream);color:var(--field)}
+.btn:not(.ghost):hover,.btn:not(.ghost):focus-visible{background:transparent;color:var(--cream)}
+.btn.ghost{background:rgba(255,255,255,.04);border-color:var(--line);color:var(--cream)}
+.btn.ghost:hover,.btn.ghost:focus-visible{border-color:var(--cream);background:rgba(255,255,255,.08)}
+.nav{background:rgba(255,255,255,.045);border:1px solid var(--line);border-radius:999px;padding:5px;gap:2px;
+  text-transform:none;letter-spacing:0;font-size:.82rem;font-weight:450}
+.nav a{padding:7px 15px;border-radius:999px;border-bottom:0;transition:background .3s,color .3s}
+.nav a.on{background:rgba(255,255,255,.1);color:var(--cream);border-bottom:0}
+.mast.onhero .nav{color:rgba(242,239,234,.72);text-shadow:none;background:rgba(255,255,255,.06);border-color:rgba(242,239,234,.14)}
+.mast.onhero .nav a.on{color:#F2EFEA;background:rgba(242,239,234,.14)}
+.mt{border-radius:999px;min-width:36px;padding:8px 12px;font-size:.66rem;letter-spacing:.08em}
+.mtools{align-items:center}
+.navcta{padding:9px 18px;font-size:.8rem}
+.mast.onhero .navcta{background:#F2EFEA;border-color:#F2EFEA;color:#0D0B0A}
+.zvarrow{border-radius:999px}
+.balab,.badrag{border-radius:999px}
+
+.matchbig{border-left:0;padding-left:0;font-weight:600;max-width:17ch}
+.matchcounter{padding-left:0}
+
+/* rounded frames */
+.frame .fimg,.bawrap,.svcimg,.portrait{border-radius:var(--r)}
+.bawrap{border:0}
+
+/* hero: a fan of frames around the name, dark in every style */
+.hero.arc-hero{position:relative;display:block;min-height:max(640px,100svh);background:#0D0B0A;color:#F2EFEA;
+  overflow:hidden;margin-top:-71px;padding-top:71px;
+  --cy:70%;--R:min(34vw,52svh);--W:clamp(84px,9vw,150px)}
+.arc-hero .glow{position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(55% 45% at 50% 70%, rgba(201,160,99,.17), rgba(13,11,10,0) 72%),
+             radial-gradient(90% 60% at 50% 100%, rgba(0,0,0,.6), rgba(0,0,0,0) 60%)}
+.arc-hero .grain{position:absolute;inset:0;z-index:1;pointer-events:none;opacity:.06;mix-blend-mode:overlay;
+  background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>") repeat;background-size:180px 180px}
+.arc{position:absolute;inset:0;z-index:2;transform-origin:50% var(--cy)}
+.card{position:absolute;left:50%;top:var(--cy);width:var(--W);aspect-ratio:3/4;
+  margin-left:calc(var(--W) / -2);margin-top:calc(var(--W) * -2 / 3);
+  border-radius:calc(var(--W) * .12);overflow:hidden;background:#1B1714;
+  box-shadow:0 34px 70px -34px rgba(0,0,0,.9),0 0 0 1px rgba(242,239,234,.06);
+  transform:rotate(var(--a)) translateY(calc(-1 * var(--R)));
+  transition:transform 1.6s var(--ease-cine) calc(.1s + var(--i) * 75ms),opacity .9s var(--ease-soft) calc(.1s + var(--i) * 75ms)}
+.card img{width:100%;height:100%;object-fit:cover;display:block}
+.hero.pre .card{transform:rotate(0deg) translateY(calc(-.12 * var(--R))) scale(.7);opacity:0;transition:none}
+.arc-hero.done .card{transition:transform .9s var(--ease-cine),opacity .6s var(--ease-soft)}
+.herocenter{position:absolute;left:0;right:0;top:var(--cy);z-index:3;transform:translateY(-38%);
+  text-align:center;padding:0 20px}
+.arc-hero h1{font-family:var(--hd-font),"Inter",system-ui,sans-serif;font-weight:600;
+  font-size:clamp(2.5rem,6vw,5.4rem);line-height:.98;letter-spacing:-.046em;color:#F2EFEA;max-width:none;margin:0 auto}
+.arc-hero .ln{display:block;overflow:hidden;padding-bottom:.12em;margin-bottom:-.12em}
+.arc-hero .ln>span{display:inline-block;transition:transform 1.25s var(--ease-cine) .6s}
+.hero.pre .ln>span{transform:translate3d(0,112%,0);transition:none}
+.arc-hero .btnrow{justify-content:center;margin-top:28px}
+.arc-hero .hi{transition:opacity 1s var(--ease-soft) .95s,transform 1.1s var(--ease-cine) .95s}
+.hero.pre .hi{opacity:0;transform:translate3d(0,14px,0);transition:none}
+.arc-hero .btn.solid{background:#F2EFEA;border-color:#F2EFEA;color:#0D0B0A}
+.arc-hero .btn.solid:hover{background:transparent;color:#F2EFEA}
+.arc-hero .btn.ghost{color:#F2EFEA;border-color:rgba(242,239,234,.22);background:rgba(242,239,234,.05)}
+.arc-hero .btn.ghost:hover{border-color:#F2EFEA}
+@supports (animation-timeline: scroll()){
+  .arc{animation:arcturn linear both;animation-timeline:scroll(root);animation-range:0 85svh}
+  @keyframes arcturn{to{transform:rotate(-10deg) scale(.95);opacity:.3}}
+}
+
+@media (max-width:980px){
+  .navcta{display:none}
+  .mast .nav{border:0;border-radius:0;background:var(--field);padding:0 max(24px,6vw);gap:4px}
+  .mast .nav a{border-radius:0;padding:0;background:none;font-family:var(--hd-font),"Inter",sans-serif;
+    font-weight:600;font-variation-settings:normal;letter-spacing:-.04em}
+  .mast .nav a.on{background:none;color:var(--brass)}
+  .mast.onhero .nav{background:var(--field);border:0}
+}
+@media (max-width:980px) and (orientation:portrait){
+  .hero.arc-hero{--cy:62%;--R:50vw;--W:clamp(84px,13vw,120px);min-height:max(640px,88svh)}
+  .arc-hero h1{font-size:clamp(2.6rem,8vw,4.2rem)}
+}
+@media (max-width:640px){
+  .hero.arc-hero{--cy:64%;--R:80vw;--W:clamp(70px,20vw,90px);min-height:max(580px,86svh)}
+  .arc-hero h1{font-size:clamp(2.5rem,12.5vw,3.3rem)}
+  .herocenter{transform:translateY(-30%)}
+}
+@media (prefers-reduced-motion:reduce){ .arc{animation:none} }
 
 /* calmer statistics under the offer */
 .proof .statl{max-width:22ch}
@@ -634,7 +731,7 @@ html:not(.design) #fsopen{display:none!important}
 </style>
 
 
-<meta name="description" content="Boliger på film. Foto, film og drone på én dag, i Oslo og omegn.">
+<meta name="description" content="Boliger på film. ZEJAKOV MEDIA, Oslo.">
 <link rel="canonical" href="https://zejakov.com/">
 <meta name="theme-color" content="#14110F">
 <link rel="icon" href="/favicon.ico" sizes="48x48">
@@ -644,7 +741,7 @@ html:not(.design) #fsopen{display:none!important}
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="ZEJAKOV MEDIA">
 <meta property="og:title" content="ZEJAKOV MEDIA">
-<meta property="og:description" content="Boliger på film. Foto, film og drone på én dag, i Oslo og omegn.">
+<meta property="og:description" content="Boliger på film. ZEJAKOV MEDIA, Oslo.">
 <meta property="og:url" content="https://zejakov.com/">
 <meta property="og:image" content="https://zejakov.com/img/og-1200x630.jpg">
 <meta property="og:image:width" content="1200">
@@ -653,8 +750,7 @@ html:not(.design) #fsopen{display:none!important}
 <meta property="og:locale" content="nb_NO">
 <meta property="og:locale:alternate" content="en_GB">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="preload" as="image" href="img/hero-1-1920.0c15a51d49.webp" imagesrcset="img/hero-1-828.0c15a51d49.webp 828w, img/hero-1-1280.0c15a51d49.webp 1280w, img/hero-1-1920.0c15a51d49.webp 1920w, img/hero-1-2200.0c15a51d49.webp 2200w" imagesizes="(orientation: portrait) 150vh, 100vw" fetchpriority="high">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "ProfessionalService", "name": "ZEJAKOV MEDIA", "legalName": "ZEJAKOV ZELJKOVIC", "url": "https://zejakov.com/", "logo": "https://zejakov.com/icon-512.png", "image": "https://zejakov.com/img/og-1200x630.jpg", "description": "Boliger på film. Foto, film og drone på én dag, i Oslo og omegn.", "telephone": "+4797344658", "email": "post@zejakov.com", "address": {"@type": "PostalAddress", "addressLocality": "Oslo", "addressCountry": "NO"}, "areaServed": {"@type": "City", "name": "Oslo"}, "sameAs": ["https://www.instagram.com/zejakovmedia/"]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "ProfessionalService", "name": "ZEJAKOV MEDIA", "legalName": "ZEJAKOV ZELJKOVIC", "url": "https://zejakov.com/", "logo": "https://zejakov.com/icon-512.png", "image": "https://zejakov.com/img/og-1200x630.jpg", "description": "Boliger på film. ZEJAKOV MEDIA, Oslo.", "telephone": "+4797344658", "email": "post@zejakov.com", "address": {"@type": "PostalAddress", "addressLocality": "Oslo", "addressCountry": "NO"}, "areaServed": {"@type": "City", "name": "Oslo"}, "sameAs": ["https://www.instagram.com/zejakovmedia/"]}</script>
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -685,6 +781,7 @@ html:not(.design) #fsopen{display:none!important}
       <a href="#kontakt" data-t="nav.contact">Kontakt</a>
     </nav>
     <div class="mtools">
+      <button class="btn solid navcta" data-go="kontakt" data-t="hero.cta1">Book befaring</button>
       <button id="menubtn" class="mt menubtn" type="button" aria-controls="nav" aria-expanded="false" data-t="nav.menu">Meny</button>
       <button id="lang" class="mt" data-ta="aria.lang" aria-label="Language">EN</button>
       <button id="mode" class="mt" data-ta="aria.mode" aria-label="Lys eller mørk">☾</button>
@@ -694,27 +791,25 @@ html:not(.design) #fsopen{display:none!important}
 
 <!-- ============ HJEM ============ -->
 <main class="page live" id="p-hjem">
-  <header class="hero cine">
-    <div id="reel" data-ta="aria.reel" aria-label="Eiendomsfilm spilles"></div>
-    <div class="scrim"></div>
+  <header class="hero arc-hero">
+    <div class="glow" aria-hidden="true"></div>
     <div class="grain" aria-hidden="true"></div>
-    <div class="fade" aria-hidden="true"></div>
-    <div class="bars" aria-hidden="true"><i></i><i></i></div>
-    <div class="herobody">
-      <div class="wrap herogrid">
-        <div class="herocopy">
-          <h1><span class="ln"><span data-t="hero.h1">Boliger på film.</span></span></h1>
-          <p class="herosub hi" data-t="hero.sub">Foto, film og drone på én dag. Oslo og omegn.</p>
-          <div class="btnrow hi" style="--d:.12s">
-            <button class="btn" data-go="kontakt" data-t="hero.cta1">Book befaring</button>
-            <button class="btn ghost" data-go="arbeid" data-t="hero.cta2">Se arbeidet</button>
-          </div>
-        </div>
-        <div class="slate hi" style="--d:.24s">
-          <span data-t="hero.slate">Heyerdahls vei 8 B, Oslo</span>
-          <span class="slatecount"><b id="shotn">01</b><i></i><span id="shott">04</span></span>
-          <button class="vbtn" id="pp" aria-label="Pause">❚❚</button>
-        </div>
+    <div class="arc" id="arc" aria-hidden="true">
+      <div class="card" style="--a:-72deg;--i:7"><img src="img/arc-1-360.31db3e7f7c.webp" srcset="img/arc-1-240.31db3e7f7c.webp 240w, img/arc-1-360.31db3e7f7c.webp 360w, img/arc-1-540.31db3e7f7c.webp 540w" sizes="(max-width: 640px) 90px, 150px" width="360" height="480" alt="" decoding="async"></div>
+      <div class="card" style="--a:-54deg;--i:5"><img src="img/arc-2-360.98e845ff08.webp" srcset="img/arc-2-240.98e845ff08.webp 240w, img/arc-2-360.98e845ff08.webp 360w, img/arc-2-540.98e845ff08.webp 540w" sizes="(max-width: 640px) 90px, 150px" width="360" height="480" alt="" decoding="async"></div>
+      <div class="card" style="--a:-36deg;--i:3"><img src="img/arc-3-360.39ebef6fa8.webp" srcset="img/arc-3-240.39ebef6fa8.webp 240w, img/arc-3-360.39ebef6fa8.webp 360w, img/arc-3-540.39ebef6fa8.webp 540w" sizes="(max-width: 640px) 90px, 150px" width="360" height="480" alt="" decoding="async"></div>
+      <div class="card" style="--a:-18deg;--i:1"><img src="img/arc-4-360.048b09728b.webp" srcset="img/arc-4-240.048b09728b.webp 240w, img/arc-4-360.048b09728b.webp 360w, img/arc-4-540.048b09728b.webp 540w" sizes="(max-width: 640px) 90px, 150px" width="360" height="480" alt="" decoding="async"></div>
+      <div class="card" style="--a:0deg;--i:0"><img src="img/arc-5-360.96a3e21d2e.webp" srcset="img/arc-5-240.96a3e21d2e.webp 240w, img/arc-5-360.96a3e21d2e.webp 360w, img/arc-5-540.96a3e21d2e.webp 540w" sizes="(max-width: 640px) 90px, 150px" width="360" height="480" alt="" decoding="async"></div>
+      <div class="card" style="--a:18deg;--i:2"><img src="img/arc-6-360.deafb18ce2.webp" srcset="img/arc-6-240.deafb18ce2.webp 240w, img/arc-6-360.deafb18ce2.webp 360w, img/arc-6-540.deafb18ce2.webp 540w" sizes="(max-width: 640px) 90px, 150px" width="360" height="480" alt="" decoding="async"></div>
+      <div class="card" style="--a:36deg;--i:4"><img src="img/arc-7-360.ccecc4d47f.webp" srcset="img/arc-7-240.ccecc4d47f.webp 240w, img/arc-7-360.ccecc4d47f.webp 360w, img/arc-7-540.ccecc4d47f.webp 540w" sizes="(max-width: 640px) 90px, 150px" width="360" height="480" alt="" decoding="async"></div>
+      <div class="card" style="--a:54deg;--i:6"><img src="img/arc-8-360.3aec5bbb8c.webp" srcset="img/arc-8-240.3aec5bbb8c.webp 240w, img/arc-8-360.3aec5bbb8c.webp 360w, img/arc-8-540.3aec5bbb8c.webp 540w" sizes="(max-width: 640px) 90px, 150px" width="360" height="480" alt="" decoding="async"></div>
+      <div class="card" style="--a:72deg;--i:8"><img src="img/arc-9-360.a950f8d513.webp" srcset="img/arc-9-240.a950f8d513.webp 240w, img/arc-9-360.a950f8d513.webp 360w, img/arc-9-540.a950f8d513.webp 540w" sizes="(max-width: 640px) 90px, 150px" width="360" height="480" alt="" decoding="async"></div>
+    </div>
+    <div class="herocenter">
+      <h1><span class="ln"><span data-t="hero.h1">Boliger på film.</span></span></h1>
+      <div class="btnrow hi">
+        <button class="btn solid" data-go="kontakt" data-t="hero.cta1">Book befaring</button>
+        <button class="btn ghost" data-go="arbeid" data-t="hero.cta2">Se arbeidet</button>
       </div>
     </div>
   </header>
@@ -764,34 +859,11 @@ html:not(.design) #fsopen{display:none!important}
     </div>
   </section>
 
-  <section class="section offer">
-    <div class="wrap offergrid">
-      <div>
-        <p class="eyebrow rv" data-t="of.eyebrow">Én dag</p>
-        <h2 class="rv" style="--d:.08s" data-t="of.h2">Alt tas samme dag.</h2>
-      </div>
-      <div>
-        <p class="rv" style="--d:.16s" data-t="of.p">Bilder, film og drone i ett besøk. Du får det annonsen og sosiale medier trenger, og slipper å tenke mer på det.</p>
-        <div class="btnrow rv" style="--d:.24s"><button class="btn ghost" data-go="tjenester" data-t="of.more">Slik fungerer det</button></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="proof">
-    <div class="wrap"><div class="proofgrid">
-      <div class="stat rv" style="--d:0.00s"><div class="statn"><span data-t="stat1.n">4K</span><small data-t="stat1.u"></small></div><p class="statl" data-t="stat1.l">Film i 4K, til annonsen og sosiale medier.</p></div>
-      <div class="stat rv" style="--d:0.08s"><div class="statn"><span data-t="stat2.n">2 til 3</span><small data-t="stat2.u">min</small></div><p class="statl" data-t="stat2.l">Hovedfilmen, og en kort versjon til sosiale medier.</p></div>
-      <div class="stat rv" style="--d:0.16s"><div class="statn"><span data-t="stat3.n">5</span><small data-t="stat3.u">klipp</small></div><p class="statl" data-t="stat3.l">Korte klipp som følger med hver film.</p></div>
-      <div class="stat rv" style="--d:0.24s"><div class="statn"><span data-t="stat4.n">100</span><small data-t="stat4.u">%</small></div><p class="statl" data-t="stat4.l">Filmet og klippet av meg. Ingen underleverandør.</p></div>
-    </div></div>
-  </section>
-
   <section class="section match">
     <div class="wrap">
       <div class="matchhead">
         <p class="eyebrow rv" data-t="match.eyebrow">Samarbeidet</p>
         <h2 class="rv" style="--d:.08s" data-t="match.h2">Bildene og filmen er et verktøy. Målet er ditt.</h2>
-        <p class="rv" style="--d:.16s" data-t="match.p">Jeg lager dem for å nå de riktige kjøperne, og alt jeg leverer peker mot det du vil oppnå.</p>
       </div>
       <p class="matchbig rv" data-t="match.big">Vi passer godt sammen hvis du er ambisiøs og har vinnermentalitet.</p>
       <p class="matchcounter rv" style="--d:.12s" data-t="match.counter">Er du fornøyd med at boligen bare blir lagt ut, er jeg feil mann.</p>
@@ -832,10 +904,10 @@ html:not(.design) #fsopen{display:none!important}
       <div class="tl">
         <div class="tlstep rv"><div class="tlwhen" data-t="proc.d1">01</div><h3 data-t="proc.t1">Samtale</h3>
           <p data-t="proc.p1">Du forteller om boligen og visningen, og vi finner en dag.</p></div>
-        <div class="tlstep rv" style="--d:.1s"><div class="tlwhen" data-t="proc.d2">02</div><h3 data-t="proc.t2">Én dag på stedet</h3>
+        <div class="tlstep rv" style="--d:.1s"><div class="tlwhen" data-t="proc.d2">02</div><h3 data-t="proc.t2">Opptak</h3>
           <p data-t="proc.p2">Bilder, film og drone i samme besøk.</p></div>
         <div class="tlstep rv" style="--d:.2s"><div class="tlwhen" data-t="proc.d3">03</div><h3 data-t="proc.t3">Levering</h3>
-          <p data-t="proc.p3">Alt redigert, i liggende og stående format. Frist avtaler vi når jeg har sett boligen.</p></div>
+          <p data-t="proc.p3">Alt redigert, i liggende og stående format.</p></div>
       </div>
       <div class="btnrow rv" style="margin-top:clamp(34px,4vw,52px)"><button class="btn" data-go="kontakt" data-t="hero.cta1">Book befaring</button></div>
     </div>
@@ -856,8 +928,8 @@ html:not(.design) #fsopen{display:none!important}
 <main class="page" id="p-tjenester">
   <div class="wrap pagehead">
     <p class="eyebrow" data-t="svc.eyebrow">Tjenester</p>
-    <h2 data-t="svc.h2">Jeg tar alt på én dag.</h2>
-    <p data-t="svc.p">Bilder, film og drone i samme besøk. Du slipper å finne fotograf, filmfotograf og dronepilot hver for seg.</p>
+    <h2 data-t="svc.h2">Alt i ett besøk.</h2>
+    <p data-t="svc.p">Bilder, film og drone. Du slipper å finne fotograf, filmfotograf og dronepilot hver for seg.</p>
   </div>
   <div class="wrap svcone">
     <figure class="svcimg rv"><img src="img/case-4-1080.2c80210965.webp" srcset="img/case-4-640.2c80210965.webp 640w, img/case-4-1080.2c80210965.webp 1080w" sizes="(max-width: 860px) 100vw, 560px" width="1080" height="810" data-ta="svc.img" alt="Heyerdahls vei 8 B sett fra luften" loading="lazy" decoding="async"></figure>
@@ -865,11 +937,10 @@ html:not(.design) #fsopen{display:none!important}
       <p class="eyebrow rv" data-t="svc.gets">Du får</p>
       <ul class="gets">
         <li class="rv" style="--d:0.00s"><b data-t="svc.g1">Bilder til annonsen</b><span data-t="svc.g1s">Redigert for hånd</span></li>
-        <li class="rv" style="--d:0.07s"><b data-t="svc.g2">Film til sosiale medier</b><span data-t="svc.g2s">2 til 3 minutter, og en kort versjon</span></li>
-        <li class="rv" style="--d:0.14s"><b data-t="svc.g3">Stående og liggende klipp</b><span data-t="svc.g3s">Til Finn, Instagram og TikTok</span></li>
-        <li class="rv" style="--d:0.21s"><b data-t="svc.g4">Drone</b><span data-t="svc.g4s">Bilder og film fra luften</span></li>
+        <li class="rv" style="--d:0.07s"><b data-t="svc.g2">Film</b><span data-t="svc.g2s">Opptil 5 minutter</span></li>
+        <li class="rv" style="--d:0.14s"><b data-t="svc.g3">Stående og liggende klipp</b><span data-t="svc.g3s">Til annonsen og sosiale medier</span></li>
+        <li class="rv" style="--d:0.21s"><b data-t="svc.g4">Drone</b><span data-t="svc.g4s">Fra luften</span></li>
       </ul>
-      <p class="svcclose rv" data-t="svc.close">Poenget er at flere ser boligen, og at flere kommer på visning.</p>
       <div class="btnrow rv"><button class="btn" data-go="kontakt" data-t="svc.cta">Book befaring</button></div>
     </div>
   </div>
@@ -902,7 +973,7 @@ html:not(.design) #fsopen{display:none!important}
   <div class="wrap pagehead">
     <p class="eyebrow" data-t="ct.eyebrow">Kontakt</p>
     <h2 data-t="ct.h2">Fortell meg om boligen.</h2>
-    <p data-t="ct.p">Send adressen og datoen for visningen, så kommer jeg tilbake med pris og en dag som passer.</p>
+    <p data-t="ct.p">Send adressen og hva du vil oppnå. Jeg gjør hver jobb selv, så datoen settes etter når jeg er ledig.</p>
   </div>
   <div class="wrap ctgrid" style="padding-bottom:clamp(50px,8vw,96px)">
     <div class="ctlist">
@@ -910,19 +981,16 @@ html:not(.design) #fsopen{display:none!important}
       <div class="ctitem"><span data-t="ct.phone">Telefon</span><a href="tel:+4797344658">973 44 658</a></div>
       <div class="ctitem"><span>Instagram</span><a href="https://www.instagram.com/zejakovmedia/" target="_blank" rel="noopener noreferrer">@zejakovmedia</a></div>
       <div class="ctitem"><span data-t="ct.area">Dekningsområde</span><p data-t="ct.areav">Oslo, Bærum, Asker og Nordre Follo</p></div>
-      <div class="ctitem"><span data-t="ct.resp">Svartid</span><p data-t="ct.respv">Jeg svarer så fort jeg er ute av opptak.</p></div>
+      <div class="ctitem"><span data-t="ct.resp">Svartid</span><p data-t="ct.respv">Jeg svarer når jeg er ute av opptak.</p></div>
     </div>
     <form class="form" id="form" novalidate>
       <div class="fld"><label for="f-navn" data-t="f.name">Navn</label><input id="f-navn" name="navn" autocomplete="name"></div>
       <div class="fld"><label for="f-epost" data-t="f.email">E-post</label><input id="f-epost" name="epost" type="email" autocomplete="email"></div>
+      <div class="fld"><label for="f-tlf" data-t="f.phone">Telefon</label><input id="f-tlf" name="telefon" type="tel" autocomplete="tel"></div>
       <div class="fld"><label for="f-adr" data-t="f.addr">Adresse på boligen</label><input id="f-adr" name="adresse"></div>
-      <div class="fld"><label for="f-type" data-t="f.need">Hva trenger du</label>
-        <select id="f-type" name="type">
-          <option data-t="f.o1">Foto, film og drone</option><option data-t="f.o2">Kun film</option><option data-t="f.o3">Kun foto</option><option data-t="f.o5">Vet ikke ennå</option>
-        </select></div>
       <div class="fld"><label for="f-melding" data-t="f.msg">Melding</label><textarea id="f-melding" name="melding"></textarea></div>
       <button class="btn" type="submit" style="justify-self:start" data-t="f.send">Send forespørsel</button>
-      <p class="formnote" id="fnote" data-t="f.note">Jeg svarer så fort jeg er ute av opptak.</p>
+      <p class="formnote" id="fnote" data-t="f.note">Jeg svarer når jeg er ute av opptak.</p>
     </form>
   </div>
 </main>
@@ -965,13 +1033,13 @@ html:not(.design) #fsopen{display:none!important}
 document.getElementById("fsopen").addEventListener("click", function(){
   if (document.getElementById("extrafonts")) return;
   var l = document.createElement("link"); l.id = "extrafonts"; l.rel = "stylesheet";
-  l.href = "https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:wght@400;500;600&family=DM+Serif+Display&family=EB+Garamond:wght@400;500;600&family=Libre+Caslon+Text:wght@400;700&family=Playfair+Display:wght@400;500&display=swap"; document.head.appendChild(l);
+  l.href = "https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400..900&family=Fraunces:opsz,wght@9..144,100..900&family=Jost:wght@200..500&family=Bebas+Neue&family=Cormorant+Garamond:wght@400;500;600&family=DM+Serif+Display&family=EB+Garamond:wght@400;500;600&family=Libre+Caslon+Text:wght@400;700&family=Playfair+Display:wght@400;500&display=swap"; document.head.appendChild(l);
 });
 </script>
 
 <script>
 /* ---------------- language table, must come first ---------------- */
-const T={"no": {"nav.home": "Hjem", "nav.work": "Arbeid", "nav.services": "Tjenester", "nav.about": "Om meg", "nav.contact": "Kontakt", "hero.h1": "Boliger på film.", "hero.sub": "Foto, film og drone på én dag. Oslo og omegn.", "hero.cta1": "Book befaring", "hero.cta2": "Se arbeidet", "stat1.n": "4K", "stat1.u": "", "stat1.l": "Film i 4K, til annonsen og sosiale medier.", "stat2.n": "2 til 3", "stat2.u": "min", "stat2.l": "Hovedfilmen, og en kort versjon til sosiale medier.", "stat3.n": "5", "stat3.u": "klipp", "stat3.l": "Korte klipp som følger med hver film.", "stat4.n": "100", "stat4.u": "%", "stat4.l": "Filmet og klippet av meg. Ingen underleverandør.", "proc.eyebrow": "Slik går det for seg", "proc.d1": "01", "proc.t1": "Samtale", "proc.p1": "Du forteller om boligen og visningen, og vi finner en dag.", "proc.d2": "02", "proc.t2": "Én dag på stedet", "proc.p2": "Bilder, film og drone i samme besøk.", "proc.d3": "03", "proc.t3": "Levering", "proc.p3": "Alt redigert, i liggende og stående format. Frist avtaler vi når jeg har sett boligen.", "work.eyebrow": "Arbeid", "work.h2": "Heyerdahls vei 8 B", "work.p": "Enebolig i Oslo, fotografert og filmet i august 2026.", "svc.eyebrow": "Tjenester", "svc.h2": "Jeg tar alt på én dag.", "svc.p": "Bilder, film og drone i samme besøk. Du slipper å finne fotograf, filmfotograf og dronepilot hver for seg.", "ab.eyebrow": "Om meg", "ab.h2": "Én person, spesialisert på eiendom.", "ab.p1": "ZEJAKOV MEDIA er et medieproduksjonsselskap i Oslo, og jeg jobber nesten bare med eiendom. Når du filmer boliger hver uke, lærer du hvor lyset faller i en Frogner-leilighet i mars, og hvor lite tid en megler har.", "ab.p2": "Den som kommer på opptak, er den samme som redigerer og leverer. Du har én person å forholde deg til.", "ab.p3": "Jeg holder meg til Oslo og omegn, så jeg rekker å gjøre hver jobb ordentlig.", "ab.f1": "Selskap", "ab.f2": "Organisasjonsnummer", "ab.f3": "Sted", "ab.f4": "Segment", "ab.f4v": "Boliger i det øvre sjiktet", "ab.cta": "Ta kontakt", "ct.eyebrow": "Kontakt", "ct.h2": "Fortell meg om boligen.", "ct.p": "Send adressen og datoen for visningen, så kommer jeg tilbake med pris og en dag som passer.", "ct.email": "E-post", "ct.phone": "Telefon", "ct.ig": "Instagram", "ct.area": "Dekningsområde", "ct.areav": "Oslo, Bærum, Asker og Nordre Follo", "ct.resp": "Svartid", "ct.respv": "Jeg svarer så fort jeg er ute av opptak.", "f.name": "Navn", "f.email": "E-post", "f.addr": "Adresse på boligen", "f.need": "Hva trenger du", "f.o1": "Foto, film og drone", "f.o2": "Kun film", "f.o3": "Kun foto", "f.o5": "Vet ikke ennå", "f.msg": "Melding", "f.send": "Send forespørsel", "f.note": "Jeg svarer så fort jeg er ute av opptak.", "rev.eyebrow": "Tilbakemeldinger", "rev.leave": "Legg igjen en vurdering", "rev.name": "Navn", "rev.rating": "Terningkast", "rev.msg": "Din vurdering", "rev.send": "Send inn", "rev.ok": "Takk. Vurderingen er mottatt og vises når den er godkjent.", "rev.err": "Noe gikk galt. Prøv igjen senere.", "rev.fill": "Fyll inn navn, terningkast og tekst.", "f.sending": "Sender ...", "f.ok": "Takk. Meldingen er mottatt, jeg tar kontakt.", "f.err": "Noe gikk galt. Send heller en e-post til post@zejakov.com.", "f.sent": "Skisse. I den ferdige versjonen sendes dette til post@zejakov.com.", "foot.r": "Medieproduksjon for eiendom, Oslo", "doc.title": "ZEJAKOV MEDIA | Medieproduksjon for eiendom, Oslo", "aria.reel": "Eiendomsfilm spilles", "aria.pause": "Pause filmen", "aria.play": "Spill filmen", "aria.mode": "Lys eller mørk", "aria.lang": "Bytt språk", "aria.panel": "Velg skrift og stil", "aria.hide": "Skjul", "aria.playcase": "Spill filmen for ", "panel.style": "Stil", "panel.wm": "Skrift på ZEJAKOV MEDIA", "panel.hair": "Tynne streker", "panel.track": "Avstand mellom bokstaver", "panel.head": "Serif i overskrifter", "panel.body": "Brødtekst", "panel.note": "Endrer kun logoteksten. Brødteksten følger valget under.", "panel.open": "Skrift", "foot.l": "ZEJAKOV ZELJKOVIC, org. 835 196 542", "sty.0": "Kull", "sty.1": "Sand", "sty.2": "Petrol", "sty.3": "Galleri", "sty.4": "Kontrast", "sty.5": "Skifer", "spec.body": "Lys, historie og bevegelse", "spec.head": "Eiendomsfilm", "look.eyebrow": "Stilen", "look.h2": "To versjoner av samme rom.", "look.p": "Til venstre: automatisk HDR, slik de fleste boligbilder ser ut. Flatt, jevnt lyst, alt like viktig. Ingenting er galt, og ingenting blir husket.", "look.drag": "Dra i bildet", "look.a": "Automatisk HDR", "look.b": "ZEJAKOV MEDIA", "look.cap1": "Soverom, Heyerdahls vei 8 B", "look.cap2": "Kjøkken og spisestue, samme bolig", "look.close": "Til høyre er standarden min. Hvert bilde bygges opp for hånd i timene etter opptak, til rommet ser ut slik det føles å stå der.", "look.close2": "Det gjelder alle boliger jeg tar, også de rimelige. Automatisk HDR kan jeg levere hvis du vil.", "match.eyebrow": "Samarbeidet", "match.h2": "Bildene og filmen er et verktøy. Målet er ditt.", "match.p": "Jeg lager dem for å nå de riktige kjøperne, og alt jeg leverer peker mot det du vil oppnå.", "match.big": "Vi passer godt sammen hvis du er ambisiøs og har vinnermentalitet.", "match.counter": "Er du fornøyd med at boligen bare blir lagt ut, er jeg feil mann.", "hero.slate": "Heyerdahls vei 8 B, Oslo", "gal.eyebrow": "Siste oppdrag", "gal.h2": "Heyerdahls vei 8 B", "gal.meta": "Enebolig i Oslo. Foto og film, august 2026.", "gal.all": "Se hele serien", "gal.prev": "Forrige bilde", "gal.next": "Neste bilde", "gal.list": "Bilder fra Heyerdahls vei 8 B", "st.big": "En bolig til 25 millioner, presentert som en til fem, ser overpriset ut.", "st.sub": "Kjøperne til slike boliger er få, og de har allerede bladd forbi hundre annonser med tomme rom og flatt lys.", "of.eyebrow": "Én dag", "of.h2": "Alt tas samme dag.", "of.p": "Bilder, film og drone i ett besøk. Du får det annonsen og sosiale medier trenger, og slipper å tenke mer på det.", "of.more": "Slik fungerer det", "svc.gets": "Du får", "svc.g1": "Bilder til annonsen", "svc.g1s": "Redigert for hånd", "svc.g2": "Film til sosiale medier", "svc.g2s": "2 til 3 minutter, og en kort versjon", "svc.g3": "Stående og liggende klipp", "svc.g3s": "Til Finn, Instagram og TikTok", "svc.g4": "Drone", "svc.g4s": "Bilder og film fra luften", "svc.close": "Poenget er at flere ser boligen, og at flere kommer på visning.", "svc.img": "Heyerdahls vei 8 B sett fra luften", "svc.cta": "Book befaring", "nav.menu": "Meny", "nav.close": "Lukk"}, "en": {"nav.home": "Home", "nav.work": "Work", "nav.services": "Services", "nav.about": "About me", "nav.contact": "Contact", "hero.h1": "Homes on film.", "hero.sub": "Photo, film and drone in one day. Oslo and the surrounding area.", "hero.cta1": "Book a walkthrough", "hero.cta2": "See the work", "stat1.n": "4K", "stat1.u": "", "stat1.l": "Film in 4K, for the listing and for social media.", "stat2.n": "2 til 3", "stat2.u": "min", "stat2.l": "The main film, and a short cut for social media.", "stat3.n": "5", "stat3.u": "klipp", "stat3.l": "Short clips that come with every film.", "stat4.n": "100", "stat4.u": "%", "stat4.l": "Shot and edited by me. No subcontractor.", "proc.eyebrow": "How it goes", "proc.d1": "01", "proc.t1": "A call", "proc.p1": "You tell me about the home and the viewing, and we find a day.", "proc.d2": "02", "proc.t2": "One day on site", "proc.p2": "Photos, film and drone in the same visit.", "proc.d3": "03", "proc.t3": "Delivery", "proc.p3": "Everything edited, in landscape and vertical. We agree the deadline once I have seen the home.", "work.eyebrow": "Work", "work.h2": "Heyerdahls vei 8 B", "work.p": "A house in Oslo, photographed and filmed in August 2026.", "svc.eyebrow": "Services", "svc.h2": "I shoot all of it in one day.", "svc.p": "Photos, film and drone in a single visit. No need to find a photographer, a filmmaker and a drone pilot separately.", "ab.eyebrow": "About me", "ab.h2": "One person, specialised in property.", "ab.p1": "ZEJAKOV MEDIA is a media production company in Oslo, and I work almost only with property. Film homes every week and you learn where the light falls in a Frogner flat in March, and how little time an agent has.", "ab.p2": "The person who turns up for the shoot is the one who edits and delivers. You deal with one person.", "ab.p3": "I stay within Oslo and the surrounding area, so every job gets done properly.", "ab.f1": "Company", "ab.f2": "Company number", "ab.f3": "Location", "ab.f4": "Segment", "ab.f4v": "Homes, upper segment", "ab.cta": "Get in touch", "ct.eyebrow": "Contact", "ct.h2": "Tell me about the home.", "ct.p": "Send the address and the viewing date, and I will come back with a price and a day that works.", "ct.email": "Email", "ct.phone": "Phone", "ct.ig": "Instagram", "ct.area": "Coverage", "ct.areav": "Oslo, Bærum, Asker and Nordre Follo", "ct.resp": "Response time", "ct.respv": "I reply as soon as I am out of a shoot.", "f.name": "Name", "f.email": "Email", "f.addr": "Address of the property", "f.need": "What do you need", "f.o1": "Photo, film and drone", "f.o2": "Film only", "f.o3": "Stills only", "f.o5": "Not sure yet", "f.msg": "Message", "f.send": "Send enquiry", "f.note": "I reply as soon as I am out of a shoot.", "rev.eyebrow": "Testimonials", "rev.leave": "Leave a review", "rev.name": "Name", "rev.rating": "Rating", "rev.msg": "Your review", "rev.send": "Submit", "rev.ok": "Thank you. Your review was received and appears once approved.", "rev.err": "Something went wrong. Please try again later.", "rev.fill": "Please fill in name, rating and text.", "f.sending": "Sending ...", "f.ok": "Thank you. Your message came through, I will be in touch.", "f.err": "Something went wrong. Please email post@zejakov.com instead.", "f.sent": "Mockup. In the finished version this goes to post@zejakov.com.", "foot.r": "Property media production, Oslo", "doc.title": "ZEJAKOV MEDIA | Property media production, Oslo", "aria.reel": "Property film playing", "aria.pause": "Pause the film", "aria.play": "Play the film", "aria.mode": "Light or dark", "aria.lang": "Change language", "aria.panel": "Choose type and style", "aria.hide": "Hide", "aria.playcase": "Play the film for ", "panel.style": "Style", "panel.wm": "ZEJAKOV MEDIA typeface", "panel.hair": "Hairline weight", "panel.track": "Letter spacing", "panel.head": "Heading serif", "panel.body": "Body text", "panel.note": "Changes the wordmark only. Body copy follows the choice below.", "panel.open": "Type", "foot.l": "ZEJAKOV ZELJKOVIC, company no. 835 196 542", "sty.0": "Charcoal", "sty.1": "Sand", "sty.2": "Petrol", "sty.3": "Gallery", "sty.4": "Contrast", "sty.5": "Slate", "spec.body": "Light, story and movement", "spec.head": "Property film", "look.eyebrow": "The look", "look.h2": "Two versions of the same room.", "look.p": "On the left, automatic HDR, the way most listing photos look. Flat, evenly lit, everything equally important. Nothing wrong, and nothing remembered.", "look.drag": "Drag the image", "look.a": "Automatic HDR", "look.b": "ZEJAKOV MEDIA", "look.cap1": "Bedroom, Heyerdahls vei 8 B", "look.cap2": "Kitchen and dining, same home", "look.close": "On the right is my standard. Every image is built up by hand in the hours after the shoot, until the room looks the way it feels to stand in it.", "look.close2": "That goes for every home I take on, the modest ones too. Automatic HDR is there if you want it.", "match.eyebrow": "Working together", "match.h2": "The photos and the film are a tool. The goal is yours.", "match.p": "I make them to reach the right buyers, and everything I deliver points at what you want to achieve.", "match.big": "We will be a great match if you are ambitious and have a winning mentality.", "match.counter": "If you are content simply having the home listed, I am the wrong person.", "hero.slate": "Heyerdahls vei 8 B, Oslo", "gal.eyebrow": "Latest work", "gal.h2": "Heyerdahls vei 8 B", "gal.meta": "A house in Oslo. Photo and film, August 2026.", "gal.all": "See the full set", "gal.prev": "Previous image", "gal.next": "Next image", "gal.list": "Images from Heyerdahls vei 8 B", "st.big": "A 25 million kroner home, presented like a 5 million one, looks overpriced.", "st.sub": "Buyers for homes like that are few, and they have already scrolled past a hundred listings of empty rooms in flat light.", "of.eyebrow": "One day", "of.h2": "All of it, shot on the same day.", "of.p": "Photos, film and drone in one visit. You get what the listing and social media need, and you can stop thinking about it.", "of.more": "How it works", "svc.gets": "You get", "svc.g1": "Photos for the listing", "svc.g1s": "Edited by hand", "svc.g2": "A film for social media", "svc.g2s": "2 to 3 minutes, plus a short cut", "svc.g3": "Vertical and landscape clips", "svc.g3s": "For the listing, Instagram and TikTok", "svc.g4": "Drone", "svc.g4s": "Photos and footage from the air", "svc.close": "The point is more people seeing the home, and more of them at the viewing.", "svc.img": "Heyerdahls vei 8 B from the air", "svc.cta": "Book a walkthrough", "nav.menu": "Menu", "nav.close": "Close"}};
+const T={"no": {"nav.home": "Hjem", "nav.work": "Arbeid", "nav.services": "Tjenester", "nav.about": "Om meg", "nav.contact": "Kontakt", "hero.h1": "Boliger på film.", "hero.cta1": "Book befaring", "hero.cta2": "Se arbeidet", "proc.eyebrow": "Slik går det for seg", "proc.d1": "01", "proc.t1": "Samtale", "proc.p1": "Du forteller om boligen og visningen, og vi finner en dag.", "proc.d2": "02", "proc.t2": "Opptak", "proc.p2": "Bilder, film og drone i samme besøk.", "proc.d3": "03", "proc.t3": "Levering", "proc.p3": "Alt redigert, i liggende og stående format.", "work.eyebrow": "Arbeid", "work.h2": "Heyerdahls vei 8 B", "work.p": "Enebolig i Oslo, fotografert og filmet i august 2026.", "svc.eyebrow": "Tjenester", "svc.h2": "Alt i ett besøk.", "svc.p": "Bilder, film og drone. Du slipper å finne fotograf, filmfotograf og dronepilot hver for seg.", "ab.eyebrow": "Om meg", "ab.h2": "Én person, spesialisert på eiendom.", "ab.p1": "ZEJAKOV MEDIA er et medieproduksjonsselskap i Oslo, og jeg jobber nesten bare med eiendom. Når du filmer boliger hver uke, lærer du hvor lyset faller i en Frogner-leilighet i mars, og hvor lite tid en megler har.", "ab.p2": "Den som kommer på opptak, er den samme som redigerer og leverer. Du har én person å forholde deg til.", "ab.p3": "Jeg holder meg til Oslo og omegn, så jeg rekker å gjøre hver jobb ordentlig.", "ab.f1": "Selskap", "ab.f2": "Organisasjonsnummer", "ab.f3": "Sted", "ab.f4": "Segment", "ab.f4v": "Boliger i det øvre sjiktet", "ab.cta": "Ta kontakt", "ct.eyebrow": "Kontakt", "ct.h2": "Fortell meg om boligen.", "ct.p": "Send adressen og hva du vil oppnå. Jeg gjør hver jobb selv, så datoen settes etter når jeg er ledig.", "ct.email": "E-post", "ct.phone": "Telefon", "ct.ig": "Instagram", "ct.area": "Dekningsområde", "ct.areav": "Oslo, Bærum, Asker og Nordre Follo", "ct.resp": "Svartid", "ct.respv": "Jeg svarer når jeg er ute av opptak.", "f.name": "Navn", "f.email": "E-post", "f.addr": "Adresse på boligen", "f.msg": "Melding", "f.send": "Send forespørsel", "f.note": "Jeg svarer når jeg er ute av opptak.", "rev.eyebrow": "Tilbakemeldinger", "rev.leave": "Legg igjen en vurdering", "rev.name": "Navn", "rev.rating": "Terningkast", "rev.msg": "Din vurdering", "rev.send": "Send inn", "rev.ok": "Takk. Vurderingen er mottatt og vises når den er godkjent.", "rev.err": "Noe gikk galt. Prøv igjen senere.", "rev.fill": "Fyll inn navn, terningkast og tekst.", "f.sending": "Sender ...", "f.ok": "Takk. Meldingen er mottatt, jeg tar kontakt.", "f.err": "Noe gikk galt. Send heller en e-post til post@zejakov.com.", "f.sent": "Skisse. I den ferdige versjonen sendes dette til post@zejakov.com.", "foot.r": "Medieproduksjon for eiendom, Oslo", "doc.title": "ZEJAKOV MEDIA | Medieproduksjon for eiendom, Oslo", "aria.reel": "Eiendomsfilm spilles", "aria.pause": "Pause filmen", "aria.play": "Spill filmen", "aria.mode": "Lys eller mørk", "aria.lang": "Bytt språk", "aria.panel": "Velg skrift og stil", "aria.hide": "Skjul", "aria.playcase": "Spill filmen for ", "panel.style": "Stil", "panel.wm": "Skrift på ZEJAKOV MEDIA", "panel.hair": "Tynne streker", "panel.track": "Avstand mellom bokstaver", "panel.head": "Serif i overskrifter", "panel.body": "Brødtekst", "panel.note": "Endrer kun logoteksten. Brødteksten følger valget under.", "panel.open": "Skrift", "foot.l": "ZEJAKOV ZELJKOVIC, org. 835 196 542", "sty.0": "Kull", "sty.1": "Sand", "sty.2": "Petrol", "sty.3": "Galleri", "sty.4": "Kontrast", "sty.5": "Skifer", "spec.body": "Lys, historie og bevegelse", "spec.head": "Eiendomsfilm", "look.eyebrow": "Stilen", "look.h2": "To versjoner av samme rom.", "look.p": "Til venstre: automatisk HDR, slik de fleste boligbilder ser ut. Flatt, jevnt lyst, alt like viktig. Ingenting er galt, og ingenting blir husket.", "look.drag": "Dra i bildet", "look.a": "Automatisk HDR", "look.b": "ZEJAKOV MEDIA", "look.cap1": "Soverom, Heyerdahls vei 8 B", "look.cap2": "Kjøkken og spisestue, samme bolig", "look.close": "Til høyre er standarden min. Hvert bilde bygges opp for hånd i timene etter opptak, til rommet ser ut slik det føles å stå der.", "look.close2": "Det gjelder alle boliger jeg tar, også de rimelige. Automatisk HDR kan jeg levere hvis du vil.", "match.eyebrow": "Samarbeidet", "match.h2": "Bildene og filmen er et verktøy. Målet er ditt.", "match.big": "Vi passer godt sammen hvis du er ambisiøs og har vinnermentalitet.", "match.counter": "Er du fornøyd med at boligen bare blir lagt ut, er jeg feil mann.", "gal.eyebrow": "Siste oppdrag", "gal.h2": "Heyerdahls vei 8 B", "gal.meta": "Enebolig i Oslo. Foto og film, august 2026.", "gal.all": "Se hele serien", "gal.prev": "Forrige bilde", "gal.next": "Neste bilde", "gal.list": "Bilder fra Heyerdahls vei 8 B", "st.big": "En bolig til 25 millioner, presentert som en til fem, ser overpriset ut.", "st.sub": "Kjøperne til slike boliger er få, og de har allerede bladd forbi hundre annonser med tomme rom og flatt lys.", "svc.gets": "Du får", "svc.g1": "Bilder til annonsen", "svc.g1s": "Redigert for hånd", "svc.g2": "Film", "svc.g2s": "Opptil 5 minutter", "svc.g3": "Stående og liggende klipp", "svc.g3s": "Til annonsen og sosiale medier", "svc.g4": "Drone", "svc.g4s": "Fra luften", "svc.img": "Heyerdahls vei 8 B sett fra luften", "svc.cta": "Book befaring", "nav.menu": "Meny", "nav.close": "Lukk", "f.phone": "Telefon"}, "en": {"nav.home": "Home", "nav.work": "Work", "nav.services": "Services", "nav.about": "About me", "nav.contact": "Contact", "hero.h1": "Homes on film.", "hero.cta1": "Book a walkthrough", "hero.cta2": "See the work", "proc.eyebrow": "How it goes", "proc.d1": "01", "proc.t1": "A call", "proc.p1": "You tell me about the home and the viewing, and we find a day.", "proc.d2": "02", "proc.t2": "The shoot", "proc.p2": "Photos, film and drone in the same visit.", "proc.d3": "03", "proc.t3": "Delivery", "proc.p3": "Everything edited, in landscape and vertical.", "work.eyebrow": "Work", "work.h2": "Heyerdahls vei 8 B", "work.p": "A house in Oslo, photographed and filmed in August 2026.", "svc.eyebrow": "Services", "svc.h2": "Everything in one visit.", "svc.p": "Photos, film and drone. No need to find a photographer, a filmmaker and a drone pilot separately.", "ab.eyebrow": "About me", "ab.h2": "One person, specialised in property.", "ab.p1": "ZEJAKOV MEDIA is a media production company in Oslo, and I work almost only with property. Film homes every week and you learn where the light falls in a Frogner flat in March, and how little time an agent has.", "ab.p2": "The person who turns up for the shoot is the one who edits and delivers. You deal with one person.", "ab.p3": "I stay within Oslo and the surrounding area, so every job gets done properly.", "ab.f1": "Company", "ab.f2": "Company number", "ab.f3": "Location", "ab.f4": "Segment", "ab.f4v": "Homes, upper segment", "ab.cta": "Get in touch", "ct.eyebrow": "Contact", "ct.h2": "Tell me about the home.", "ct.p": "Send the address and what you want to achieve. I do every job myself, so the date follows when I am free.", "ct.email": "Email", "ct.phone": "Phone", "ct.ig": "Instagram", "ct.area": "Coverage", "ct.areav": "Oslo, Bærum, Asker and Nordre Follo", "ct.resp": "Response time", "ct.respv": "I reply once I am out of a shoot.", "f.name": "Name", "f.email": "Email", "f.addr": "Address of the property", "f.msg": "Message", "f.send": "Send enquiry", "f.note": "I reply once I am out of a shoot.", "rev.eyebrow": "Testimonials", "rev.leave": "Leave a review", "rev.name": "Name", "rev.rating": "Rating", "rev.msg": "Your review", "rev.send": "Submit", "rev.ok": "Thank you. Your review was received and appears once approved.", "rev.err": "Something went wrong. Please try again later.", "rev.fill": "Please fill in name, rating and text.", "f.sending": "Sending ...", "f.ok": "Thank you. Your message came through, I will be in touch.", "f.err": "Something went wrong. Please email post@zejakov.com instead.", "f.sent": "Mockup. In the finished version this goes to post@zejakov.com.", "foot.r": "Property media production, Oslo", "doc.title": "ZEJAKOV MEDIA | Property media production, Oslo", "aria.reel": "Property film playing", "aria.pause": "Pause the film", "aria.play": "Play the film", "aria.mode": "Light or dark", "aria.lang": "Change language", "aria.panel": "Choose type and style", "aria.hide": "Hide", "aria.playcase": "Play the film for ", "panel.style": "Style", "panel.wm": "ZEJAKOV MEDIA typeface", "panel.hair": "Hairline weight", "panel.track": "Letter spacing", "panel.head": "Heading serif", "panel.body": "Body text", "panel.note": "Changes the wordmark only. Body copy follows the choice below.", "panel.open": "Type", "foot.l": "ZEJAKOV ZELJKOVIC, company no. 835 196 542", "sty.0": "Charcoal", "sty.1": "Sand", "sty.2": "Petrol", "sty.3": "Gallery", "sty.4": "Contrast", "sty.5": "Slate", "spec.body": "Light, story and movement", "spec.head": "Property film", "look.eyebrow": "The look", "look.h2": "Two versions of the same room.", "look.p": "On the left, automatic HDR, the way most listing photos look. Flat, evenly lit, everything equally important. Nothing wrong, and nothing remembered.", "look.drag": "Drag the image", "look.a": "Automatic HDR", "look.b": "ZEJAKOV MEDIA", "look.cap1": "Bedroom, Heyerdahls vei 8 B", "look.cap2": "Kitchen and dining, same home", "look.close": "On the right is my standard. Every image is built up by hand in the hours after the shoot, until the room looks the way it feels to stand in it.", "look.close2": "That goes for every home I take on, the modest ones too. Automatic HDR is there if you want it.", "match.eyebrow": "Working together", "match.h2": "The photos and the film are a tool. The goal is yours.", "match.big": "We will be a great match if you are ambitious and have a winning mentality.", "match.counter": "If you are content simply having the home listed, I am the wrong person.", "gal.eyebrow": "Latest work", "gal.h2": "Heyerdahls vei 8 B", "gal.meta": "A house in Oslo. Photo and film, August 2026.", "gal.all": "See the full set", "gal.prev": "Previous image", "gal.next": "Next image", "gal.list": "Images from Heyerdahls vei 8 B", "st.big": "A 25 million kroner home, presented like a 5 million one, looks overpriced.", "st.sub": "Buyers for homes like that are few, and they have already scrolled past a hundred listings of empty rooms in flat light.", "svc.gets": "You get", "svc.g1": "Photos for the listing", "svc.g1s": "Edited by hand", "svc.g2": "Film", "svc.g2s": "Up to 5 minutes", "svc.g3": "Vertical and landscape clips", "svc.g3s": "For the listing and social media", "svc.g4": "Drone", "svc.g4s": "From the air", "svc.img": "Heyerdahls vei 8 B from the air", "svc.cta": "Book a walkthrough", "nav.menu": "Menu", "nav.close": "Close", "f.phone": "Phone"}};
 let LANG="no";
 let PAGE="hjem";
 function updateMast(){
@@ -1080,25 +1148,7 @@ document.querySelectorAll("[data-ba]").forEach(w=>{
    headline drifts up slightly faster. Both stop once the hero is off screen. */
 const REDUCE = matchMedia("(prefers-reduced-motion: reduce)").matches;
 let parQueued=false;
-function parallax(){
-  parQueued=false;
-  const hero=document.querySelector(".hero");
-  const body=document.querySelector(".herobody");
-  if(!hero||!body) return;
-  if(REDUCE || PAGE!=="hjem"){
-    reelEl.style.transform=""; body.style.transform=""; body.style.opacity="";
-    return;
-  }
-  const H=hero.offsetHeight, y=Math.min(scrollY, H);
-  reelEl.style.transform = `translate3d(0, ${(y*0.35).toFixed(1)}px, 0)`;
-  body.style.transform   = `translate3d(0, ${(y*-0.10).toFixed(1)}px, 0)`;
-  // hold it solid for the first stretch, then let it go
-  body.style.opacity     = Math.max(0, Math.min(1, 1-(y-H*0.16)/(H*0.62))).toFixed(3);
-}
-addEventListener("scroll", ()=>{
-  if(!parQueued){ parQueued=true; requestAnimationFrame(parallax); }
-}, {passive:true});
-addEventListener("resize", parallax);
+function parallax(){}
 
 addEventListener("resize", updateMast);
 function setLang(l){
@@ -1169,83 +1219,9 @@ const HERO=[
  {"src": "img/hero-3-1920.2e474ae626.webp", "srcset": "img/hero-3-828.2e474ae626.webp 828w, img/hero-3-1280.2e474ae626.webp 1280w, img/hero-3-1920.2e474ae626.webp 1920w, img/hero-3-2200.2e474ae626.webp 2200w", "w": 1920, "h": 1279},
  {"src": "img/hero-4-1920.12d14c2b6c.webp", "srcset": "img/hero-4-828.12d14c2b6c.webp 828w, img/hero-4-1280.12d14c2b6c.webp 1280w, img/hero-4-1920.12d14c2b6c.webp 1920w, img/hero-4-2200.12d14c2b6c.webp 2200w", "w": 1920, "h": 1279}
 ];
-const DUR=7.2, XF=1.6;
-const reelEl=document.getElementById("reel");
-const HERO_SIZES="(orientation: portrait) 150vh, 100vw";
-const layers=HERO.map((h,i)=>{
-  const im=new Image(); im.alt=""; im.decoding="async"; im.sizes=HERO_SIZES;
-  const load=()=>{ im.srcset=h.srcset; im.src=h.src; };
-  /* The first shot is the page's largest image, so it loads at once.
-     The other three only fade in after 7 seconds, so they wait for the page. */
-  if(i===0){ im.fetchPriority="high"; load(); }
-  else if(document.readyState==="complete") setTimeout(load,200);
-  else addEventListener("load",()=>setTimeout(load,200),{once:true});
-  reelEl.appendChild(im); return im;
-});
-let shotI=0, shotT=0, lastTs=0;
-
-/* Each shot drifts its own way, so the loop does not read as mechanical. */
-const DRIFT=[[0.9,-0.6],[-0.8,0.5],[0.7,0.6],[-0.9,-0.5]];
-
-/* p is THIS shot's own progress, 0 to 1. The incoming shot starts its move
-   when the fade begins, and shotT is rewound to XF on the swap so it carries
-   straight on instead of snapping back to the start. */
-function place(im, p, i){
-  const z=1.02+p*0.07, d=DRIFT[i%DRIFT.length];
-  im.style.transform=`scale(${z.toFixed(4)}) translate3d(`
-    +`${((p-.5)*d[0]).toFixed(3)}%, ${((p-.5)*d[1]).toFixed(3)}%, 0)`;
-}
-
-function paint(){
-  const nx=(shotI+1)%layers.length;
-  const fading = shotT > DUR-XF;
-  const inT = fading ? shotT-(DUR-XF) : 0;
-  layers.forEach((im,i)=>{
-    if(i===shotI){
-      im.style.zIndex="1"; im.style.opacity="1";
-      place(im, Math.min(shotT/DUR,1), i);
-    } else if(fading && i===nx){
-      /* sits ON TOP and dissolves in, so the cut is never visible */
-      im.style.zIndex="2"; im.style.opacity=(inT/XF).toFixed(3);
-      place(im, inT/DUR, i);
-    } else {
-      im.style.zIndex="0"; im.style.opacity="0";
-    }
-  });
-}
-
-/* The loop only runs while the reel is on screen, on the home page, in a visible
-   tab and playing. Otherwise it paints once and stops, so it costs nothing. */
-let rafId=0, heroSeen=true, shownShot=-1;
-const shotn=document.getElementById("shotn"), shott=document.getElementById("shott");
-if(shott) shott.textContent=String(layers.length).padStart(2,"0");
-function frame(ts){
-  if(!lastTs) lastTs=ts;
-  const dt=Math.min((ts-lastTs)/1000, 0.05); lastTs=ts;
-  if(playing){
-    shotT+=dt;
-    if(shotT>=DUR){ shotT=XF; shotI=(shotI+1)%layers.length; }
-  }
-  paint();
-  if(shotn && shownShot!==shotI){
-    shownShot=shotI; shotn.textContent=String(shotI+1).padStart(2,"0");
-    shotn.classList.remove("tick"); void shotn.offsetWidth; shotn.classList.add("tick");
-  }
-  if(playing && PAGE==="hjem" && heroSeen && !document.hidden) rafId=requestAnimationFrame(frame);
-  else { rafId=0; lastTs=0; }
-}
-function kickReel(){ if(!rafId) rafId=requestAnimationFrame(frame); }
-if("IntersectionObserver" in window)
-  new IntersectionObserver(es=>{ heroSeen=es[0].isIntersecting; if(heroSeen) kickReel(); }).observe(document.querySelector(".hero"));
-document.addEventListener("visibilitychange", ()=>{ if(!document.hidden) kickReel(); });
-kickReel();
-
-const pp=document.getElementById("pp");
-function syncBtn(){
-  pp.textContent = playing ? "❚❚" : "▶";
-  pp.setAttribute("aria-label", playing ? T[LANG]["aria.pause"] : T[LANG]["aria.play"]);
-}
-pp.addEventListener("click", ()=>{ playing=!playing; syncBtn(); kickReel(); });
+/* The hero is a still gallery arc, so there is no reel loop to run. */
+function syncBtn(){}
+function kickReel(){}
 
 /* ---------------- cases ---------------- */
 const IMG=[
@@ -1344,6 +1320,7 @@ setTrack(0.20);
 
 /* ---------------- heading serif ---------------- */
 const HDF=[
+ {name:"Inter Tight",       css:"'Inter Tight'",       sc:1.00, w:600, sp:"1.35rem"},
  {name:"Bodoni Moda",       css:"'Bodoni Moda'",       sc:1.00, w:400, sp:"1.5rem"},
  {name:"Playfair Display",  css:"'Playfair Display'",  sc:0.98, w:400, sp:"1.45rem"},
  {name:"Fraunces",          css:"'Fraunces'",          sc:0.96, w:400, sp:"1.42rem"},
@@ -1381,6 +1358,7 @@ setOpsz(21);
 
 /* ---------------- body text ---------------- */
 const TXF=[
+ {name:"Inter",             css:"'Inter'",             w:400, sc:0.95, sp:".92rem"},
  {name:"Fraunces",          css:"'Fraunces'",          w:400, sc:0.98, sp:".95rem"},
  {name:"EB Garamond",       css:"'EB Garamond'",       w:500, sc:1.06, sp:"1rem"},
  {name:"Cormorant Garamond",css:"'Cormorant Garamond'",w:500, sc:1.14, sp:"1.05rem"},
@@ -1513,7 +1491,7 @@ show(location.hash.slice(1)||"hjem", false);
     if (note) note.textContent = tr("f.sending","Sender ...");
     fetch(SB + "/rest/v1/contact_submissions", { method:"POST", headers:H,
       body: JSON.stringify({ name:navn, email:epost, address:v("f-adr"),
-                             service:v("f-type"), message:v("f-melding"), status:"new",
+                             phone:v("f-tlf"), message:v("f-melding"), status:"new",
                              source:SRC.source, referrer:SRC.referrer, landing:SRC.landing }) })
       .then(function(r){ if(!r.ok) throw 0; form.reset(); track("contact_submit"); if(note) note.textContent = tr("f.ok","Takk."); })
       .catch(function(){ if(note) note.textContent = tr("f.err","Noe gikk galt."); })
@@ -1604,7 +1582,7 @@ show(location.hash.slice(1)||"hjem", false);
   btn.addEventListener("click", function(){ set(!root.classList.contains("menu-open")); });
   [].forEach.call(document.querySelectorAll("#nav a, .brand"), function(a){ a.addEventListener("click", function(){ set(false); }); });
   addEventListener("keydown", function(e){ if (e.key === "Escape") set(false); });
-  var wide = matchMedia("(min-width: 761px)");
+  var wide = matchMedia("(min-width: 981px)");
   (wide.addEventListener ? wide.addEventListener.bind(wide, "change") : wide.addListener.bind(wide))(function(e){ if (e.matches) set(false); });
 })();
 
@@ -1624,12 +1602,14 @@ show(location.hash.slice(1)||"hjem", false);
   /* frames peek in from the side of the strip, so they reveal as soon as any of them shows */
   reveal(document.querySelectorAll(".frame"), { rootMargin: "0px 0px -4% 0px", threshold: 0 });
 
-  /* hero opens from black once the first frame is decoded */
+  var h0 = document.querySelector(".arc-hero");
+  if (h0 && !h0.classList.contains("pre")) h0.classList.add("done");
+  /* the arc fans out once the first card is decoded */
   var hero = document.querySelector(".hero.pre");
   if (hero) {
-    var first = document.querySelector("#reel img"), go = false;
+    var first = document.querySelector("#arc img"), go = false;
     var start = function(){ if (go) return; go = true;
-      requestAnimationFrame(function(){ requestAnimationFrame(function(){ hero.classList.remove("pre"); }); }); };
+      requestAnimationFrame(function(){ requestAnimationFrame(function(){ hero.classList.remove("pre"); setTimeout(function(){ hero.classList.add("done"); }, 2600); }); }); };
     if (first && first.complete && first.naturalWidth) start();
     else if (first) { first.addEventListener("load", start, { once:true }); first.addEventListener("error", start, { once:true }); }
     setTimeout(start, 1400);
