@@ -469,10 +469,10 @@ html:not(.design) #fsopen{display:none!important}
   transition:opacity 1s var(--ease-soft) var(--d,0s),transform 1.25s var(--ease-cine) var(--d,0s)}
 
 /* film hero */
-.hero.vhero{--poster:url("img/hero-poster-960.747ff715b6.webp");min-height:max(620px,94svh);justify-content:flex-end;background:#0B0A09;color:#F2EFEA}
+.hero.vhero{--poster:url("img/hero-poster-960.acaa0991d0.webp");min-height:max(600px,90svh);justify-content:flex-end;background:#0B0A09;color:#F2EFEA}
 .vstage{position:absolute;top:0;left:0;right:0;height:132%;z-index:0;overflow:hidden;
   will-change:transform}
-.vfilm{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+.vfilm{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 42%;
   background:#0B0A09 center/cover no-repeat;opacity:0;filter:saturate(1.05) contrast(1.04);
   transition:opacity 1.4s var(--ease-soft)}
 .vfilm.on{opacity:1}
@@ -499,7 +499,7 @@ html:not(.design) #fsopen{display:none!important}
 .vhero .btn.solid:hover{background:transparent;color:#F2EFEA}
 .vhero .btn.ghost{color:#F2EFEA;border-color:rgba(242,239,234,.24);background:rgba(242,239,234,.05)}
 .vhero .btn.ghost:hover{border-color:#F2EFEA}
-@media (min-width:761px){.hero.vhero{--poster:url("img/hero-poster-1600.022c48387e.webp")}}
+@media (min-width:761px){.hero.vhero{--poster:url("img/hero-poster-1600.581931d192.webp")}}
 .vcue{position:absolute;z-index:3;right:clamp(20px,4vw,44px);bottom:clamp(58px,8vw,104px);
   display:flex;align-items:flex-end;height:64px}
 .vcue i{display:block;width:1px;height:64px;background:linear-gradient(180deg,rgba(242,239,234,0),rgba(242,239,234,.5));
@@ -507,7 +507,7 @@ html:not(.design) #fsopen{display:none!important}
 @keyframes vcue{0%,100%{transform:scaleY(.45);opacity:.5}50%{transform:scaleY(1);opacity:1}}
 @media (max-width:760px){.vcue{display:none}
   .vh1{max-width:13ch;font-size:clamp(2rem,9.2vw,2.9rem)}
-  .hero.vhero{min-height:max(560px,88svh)}}
+  .hero.vhero{min-height:max(480px,74svh)}}
 @media (prefers-reduced-motion:reduce){.vcue i{animation:none}}
 
 /* reviews, quiet and centred */
@@ -539,11 +539,35 @@ html:not(.design) #fsopen{display:none!important}
 .revform #zv-note{color:var(--muted);font-size:.78rem;margin:0}
 
 /* closing line */
-.close{border-top:1px solid var(--line)}
 .closeline{font-family:var(--hd-font),Georgia,serif;font-weight:400;
   font-size:clamp(1.3rem,2.9vw,2.2rem);line-height:1.24;letter-spacing:-.024em;
   color:var(--cream);max-width:20ch;margin:0}
-.close .btnrow{margin-top:clamp(26px,3vw,38px)}
+
+/* the home page closes on a frame from the film */
+.endband{position:relative;overflow:hidden;display:flex;align-items:flex-end;
+  min-height:clamp(420px,58svh,640px);background:#0B0A09}
+.endband>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 46%}
+.endscrim{position:absolute;inset:0;background:
+  linear-gradient(180deg, rgba(11,10,9,.34) 0%, rgba(11,10,9,.08) 30%,
+    rgba(11,10,9,.52) 72%, rgba(11,10,9,.9) 100%)}
+.endin{position:relative;z-index:2;width:100%;padding-block:clamp(38px,5.5vw,76px)}
+.endin .closeline{color:#F5F2ED;max-width:17ch;text-shadow:0 1px 26px rgba(0,0,0,.45)}
+.endin .btnrow{margin-top:clamp(24px,3vw,34px)}
+.endband .btn.solid{background:#F2EFEA;border-color:#F2EFEA;color:#0D0B0A}
+.endband .btn.solid:hover,.endband .btn.solid:focus-visible{background:transparent;color:#F2EFEA}
+
+/* who it is for, on the services page */
+.svcfilter{margin-top:clamp(56px,7.5vw,104px);display:grid;
+  grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);gap:clamp(30px,5vw,88px);align-items:start}
+.svcfilter h3{font-size:calc(clamp(1.5rem,2.9vw,2.15rem) * var(--hd-scale));line-height:1.14;
+  letter-spacing:-.035em;margin-top:14px;max-width:16ch;font-weight:var(--hd-weight)}
+.svcbig{font-family:var(--hd-font),Georgia,serif;font-weight:600;letter-spacing:-.03em;
+  font-size:calc(clamp(1.45rem,2.7vw,2.05rem) * var(--hd-scale));line-height:1.18;
+  color:var(--cream);margin:0;max-width:20ch}
+.svccounter{margin:clamp(18px,2.4vw,26px) 0 0;color:var(--muted);
+  font-size:clamp(.95rem,1.4vw,1.06rem);line-height:1.6;max-width:36ch}
+@media (max-width:900px){.svcfilter{grid-template-columns:1fr;gap:clamp(22px,4vw,30px)}
+  .svcfilter h3{max-width:20ch}}
 
 /* services */
 .svcgrid{padding:clamp(84px,11vw,150px) clamp(20px,4vw,44px) 0;
@@ -823,7 +847,7 @@ h3{letter-spacing:-.02em}
   <header class="hero vhero pre" id="hero">
     <div class="vstage" aria-hidden="true">
       <video class="vfilm" id="herovid" muted loop playsinline preload="none"
-             poster="img/hero-poster-1600.022c48387e.webp" width="1920" height="1080"></video>
+             poster="img/hero-poster-1600.581931d192.webp" width="1920" height="1080"></video>
     </div>
     <div class="vscrim" aria-hidden="true"></div>
     <div class="grain" aria-hidden="true"></div>
@@ -914,21 +938,14 @@ h3{letter-spacing:-.02em}
       </form>
     </div>
   </section>
-  <section class="section match">
-    <div class="wrap">
-      <div class="matchhead">
-        <p class="eyebrow rv" data-t="match.eyebrow">Samarbeidet</p>
-        <h2 class="rv" style="--d:.08s" data-t="match.h2">Bildene og filmen er et verktøy. Målet er ditt.</h2>
-      </div>
-      <p class="matchbig rv" data-t="match.big">Vi passer godt sammen hvis du er ambisiøs og har vinnermentalitet.</p>
-      <p class="matchcounter rv" style="--d:.12s" data-t="match.counter">Er du fornøyd med at boligen bare blir lagt ut, er jeg feil mann.</p>
-    </div>
-  </section>
   
-  <section class="section close">
-    <div class="wrap">
+  
+  <section class="endband">
+    <img src="img/utsikt-1920.81953dbe3e.webp" srcset="img/utsikt-1100.bd5f6889d3.webp 1100w, img/utsikt-1920.81953dbe3e.webp 1920w" sizes="100vw" width="1920" height="885" alt="Utsikt mot Oslo fra Heyerdahls vei 8 B" loading="lazy" decoding="async">
+    <div class="endscrim" aria-hidden="true"></div>
+    <div class="wrap endin">
       <p class="closeline rv" data-t="close.line">Fortell meg om boligen, så tar vi det derfra.</p>
-      <div class="btnrow rv" style="--d:.1s"><button class="btn" data-go="kontakt" data-t="hero.cta1">Book befaring</button></div>
+      <div class="btnrow rv" style="--d:.1s"><button class="btn solid" data-go="kontakt" data-t="hero.cta1">Book befaring</button></div>
     </div>
   </section>
 </main>
@@ -960,6 +977,16 @@ h3{letter-spacing:-.02em}
   <figure class="svcband rv">
     <img src="img/case-4-1080.2c80210965.webp" srcset="img/case-4-640.2c80210965.webp 640w, img/case-4-1080.2c80210965.webp 1080w" sizes="100vw" width="1080" height="810" data-ta="svc.img" alt="Heyerdahls vei 8 B sett fra luften" loading="lazy" decoding="async">
   </figure>
+  <div class="wrap svcfilter">
+    <div>
+      <p class="eyebrow rv" data-t="match.eyebrow">Samarbeidet</p>
+      <h3 class="rv" style="--d:.06s" data-t="match.h2">Bildene og filmen er et verktøy. Målet er ditt.</h3>
+    </div>
+    <div>
+      <p class="svcbig rv" data-t="match.big">Vi passer godt sammen hvis du er ambisiøs og har vinnermentalitet.</p>
+      <p class="svccounter rv" style="--d:.1s" data-t="match.counter">Er du fornøyd med at boligen bare blir lagt ut, er jeg feil mann.</p>
+    </div>
+  </div>
   <div class="wrap svcclose">
     <p class="closeline rv" data-t="svc.b4">Hva boligen trenger, finner vi ut på befaringen.</p>
     <div class="btnrow rv" style="--d:.1s"><button class="btn" data-go="kontakt" data-t="svc.cta">Book befaring</button></div>
@@ -1751,7 +1778,7 @@ show(location.hash.slice(1)||"hjem", false);
   if (c.saveData === true || /^(slow-2g|2g)$/.test(c.effectiveType || "")) return;
   var w = Math.min(innerWidth * (devicePixelRatio || 1), 2400);
   if (c.effectiveType === "3g") w = 0;
-  v.src = w > 1500 ? "video/hero-1080.mp4?v=1" : w > 900 ? "video/hero-720.mp4?v=1" : "video/hero-480.mp4?v=1";
+  v.src = w > 1500 ? "video/hero-1080.mp4?v=2" : w > 900 ? "video/hero-720.mp4?v=2" : "video/hero-480.mp4?v=2";
   v.load();
   v.addEventListener("canplay", function(){
     var p = v.play(); if (p && p.catch) p.catch(function(){});
