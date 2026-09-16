@@ -10,6 +10,8 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500..700&family=Inter:wght@300..600&family=Montserrat:wght@200..500&display=swap">
 
 <style>
+[hidden]{display:none!important}
+
 :root{
   /* defaults are Kull, so the page is right even before the script runs */
   --field:#14110F;
@@ -56,7 +58,7 @@ a{color:inherit;text-decoration:none}
 /* the hero and the case cards are always dark imagery, so their type
    stays light no matter which style is active */
 .hero h1{color:#F2EFEA}
-.hero .eyebrow,.herosub,.nowplaying{color:#9FB0BA}
+
 .hero .btn.ghost{color:#B9C6CD;border-color:rgba(242,239,234,.26)}
 .hero .btn.ghost:hover,.hero .btn.ghost:focus-visible{color:#F2EFEA;border-color:#F2EFEA}
 .vbtn{color:#F2EFEA;border-color:rgba(242,239,234,.2)}
@@ -122,17 +124,12 @@ a{color:inherit;text-decoration:none}
 #reel{position:absolute;inset:0;overflow:hidden;will-change:transform}
 #reel img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
   opacity:0;will-change:transform,opacity}
-.scrim{position:absolute;inset:0;pointer-events:none;
-  background:
-    radial-gradient(120% 90% at 50% 38%, rgba(12,10,9,0) 30%, rgba(12,10,9,.55) 100%),
-    linear-gradient(to bottom,
-      rgba(12,10,9,.86) 0%, rgba(12,10,9,.42) 30%, rgba(12,10,9,.52) 58%,
-      rgba(12,10,9,.88) 82%, rgba(12,10,9,.98) 100%)}
+
 .herobody{position:relative;z-index:3;margin-top:auto;
   padding-bottom:clamp(32px,5vw,60px);will-change:transform,opacity}
-.herogrid{display:flex;align-items:flex-end;justify-content:space-between;gap:32px;flex-wrap:wrap}
+
 h1{font-size:calc(clamp(1.9rem,4.6vw,3.4rem) * var(--hd-scale));line-height:1.1;max-width:21ch;letter-spacing:-.005em}
-.herosub{color:var(--muted);max-width:38ch;margin-top:18px;font-size:clamp(.92rem,1.5vw,1.04rem)}
+
 .btnrow{display:flex;gap:12px;margin-top:26px;flex-wrap:wrap}
 .zvarrow{width:42px;height:42px;border:1px solid var(--line);background:none;color:var(--cream);
   font-size:1.3rem;line-height:1;cursor:pointer;font-family:inherit;transition:border-color .2s,color .2s}
@@ -150,8 +147,7 @@ h1{font-size:calc(clamp(1.9rem,4.6vw,3.4rem) * var(--hd-scale));line-height:1.1;
 .btn.ghost{border-color:var(--line);color:var(--muted)}
 .btn.ghost:hover,.btn.ghost:focus-visible{border-color:var(--cream);background:none;color:var(--cream)}
 .reelmeta{display:flex;flex-direction:column;gap:11px;align-items:flex-end;text-align:right}
-.nowplaying{display:flex;align-items:center;gap:9px;font-size:.62rem;letter-spacing:.18em;
-  text-transform:uppercase;color:var(--muted)}
+
 .dot{width:6px;height:6px;border-radius:50%;background:var(--brass);flex:none}
 .dot.live{animation:pulse 2.4s ease-in-out infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.26}}
@@ -164,7 +160,7 @@ h1{font-size:calc(clamp(1.9rem,4.6vw,3.4rem) * var(--hd-scale));line-height:1.1;
 /* ---------- shared ---------- */
 .section{padding:clamp(54px,8vw,104px) 0}
 .section.tight{padding:clamp(40px,5vw,64px) 0}
-.pagehead{padding:clamp(48px,7vw,92px) 0 clamp(28px,4vw,44px)}
+.pagehead{padding:clamp(48px,7vw,92px) clamp(20px,4vw,44px) clamp(28px,4vw,44px)}
 .pagehead h2{font-size:calc(clamp(2rem,4.6vw,3.2rem) * var(--hd-scale));line-height:1.06;max-width:16ch;margin-top:14px}
 .pagehead p{color:var(--muted);max-width:52ch;margin-top:18px}
 
@@ -276,12 +272,6 @@ h1{font-size:calc(clamp(1.9rem,4.6vw,3.4rem) * var(--hd-scale));line-height:1.1;
   border-top:1px solid rgba(201,160,99,.4);padding-top:9px}
 
 /* timeline */
-.tl{display:grid;grid-template-columns:repeat(auto-fit,minmax(216px,1fr));gap:clamp(18px,3vw,38px)}
-.tlstep{border-top:1px solid var(--line);padding-top:19px}
-.tlwhen{font-size:.63rem;letter-spacing:.2em;text-transform:uppercase;color:var(--brass);
-  font-variant-numeric:tabular-nums}
-.tlstep h3{font-size:1.1rem;margin-top:9px;font-family:"Jost",sans-serif;font-weight:400}
-.tlstep p{color:var(--muted);font-size:.85rem;margin-top:8px}
 
 /* services */
 .svc{border-top:1px solid var(--line)}
@@ -394,8 +384,6 @@ h1{letter-spacing:-.022em} h2{letter-spacing:-.015em} h3{letter-spacing:-.006em}
 .nav a:active{opacity:.6}
 
 /* §12 vibrancy: type over photography needs contrast, never flat grey */
-.hero .eyebrow{color:rgba(240,235,227,.82)}
-.herosub{color:rgba(240,235,227,.9);text-shadow:0 1px 22px rgba(0,0,0,.5)}
 
 /* §2/§3 the slider is grabbable */
 .bawrap{cursor:grab} .bawrap.dragging{cursor:grabbing}
@@ -421,7 +409,7 @@ h1{letter-spacing:-.022em} h2{letter-spacing:-.015em} h3{letter-spacing:-.006em}
 .wrap{max-width:1180px}
 .section{padding:clamp(88px,12.5vw,176px) 0}
 .section.tight{padding:clamp(64px,8vw,110px) 0}
-.pagehead{padding:clamp(84px,11vw,150px) 0 clamp(40px,5vw,64px)}
+.pagehead{padding:clamp(84px,11vw,150px) clamp(20px,4vw,44px) clamp(40px,5vw,64px)}
 
 /* hairlines: a premium page whispers its structure */
 .proof{border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
@@ -434,7 +422,7 @@ h1{font-size:calc(clamp(2.1rem,5.2vw,3.9rem) * var(--hd-scale));letter-spacing:-
 
 /* small caps get real tracking, the cheapest luxury signal there is */
 .eyebrow{letter-spacing:.28em;font-size:.66rem}
-.tlwhen,.svcnum,.bacap,.mocklabel{letter-spacing:.22em}
+.svcnum,.bacap,.mocklabel{letter-spacing:.22em}
 .casetype{letter-spacing:.19em}
 
 /* fewer, larger images */
@@ -460,33 +448,10 @@ h1{font-size:calc(clamp(2.1rem,5.2vw,3.9rem) * var(--hd-scale));letter-spacing:-
 html:not(.design) #fsopen{display:none!important}
 
 /* hero */
-.hero.cine{min-height:100svh}
-.cine .scrim{background:
-  radial-gradient(130% 100% at 50% 42%, rgba(12,10,9,0) 38%, rgba(12,10,9,.62) 100%),
-  linear-gradient(to bottom, rgba(12,10,9,.58) 0%, rgba(12,10,9,.06) 26%, rgba(12,10,9,.1) 52%,
-    rgba(12,10,9,.8) 86%, rgba(12,10,9,.97) 100%)}
-.cine .grain{position:absolute;inset:0;z-index:1;pointer-events:none;opacity:.07;mix-blend-mode:overlay;
-  background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>") repeat;background-size:180px 180px}
-.cine .fade{position:absolute;inset:0;z-index:2;background:#000;pointer-events:none;opacity:0;
-  transition:opacity 1.7s var(--ease-soft) .1s}
-.cine .bars i{position:absolute;left:0;right:0;height:13svh;background:#000;z-index:5;pointer-events:none;
-  transform:scaleY(0);transition:transform 1.6s var(--ease-cine) .45s}
-.cine .bars i:first-child{top:0;transform-origin:top}
-.cine .bars i:last-child{bottom:0;transform-origin:bottom}
-.cine .herobody{padding-bottom:clamp(34px,5.5vw,70px)}
-.cine .herogrid{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end}
-.cine .herocopy{grid-area:1/1/2/3;min-width:0}
-.cine .slate{grid-area:1/2/2/3;justify-self:end;align-self:end;position:relative;z-index:1;padding-bottom:6px}
+
 .page.live .hero h1{animation:none}
 .mast.onhero{backdrop-filter:none;-webkit-backdrop-filter:none}
-.cine h1{font-size:clamp(3rem,8.6vw,7.2rem);line-height:.95;letter-spacing:-.036em;max-width:none;
-  font-variation-settings:"opsz" 96,"wght" 430}
-.cine .ln{display:block;overflow:hidden;padding-bottom:.12em;margin-bottom:-.12em}
-.cine .ln>span{display:inline-block;transition:transform 1.3s var(--ease-cine) .8s}
-.cine .herosub{max-width:none;margin-top:22px;font-size:clamp(1rem,1.45vw,1.14rem);color:rgba(240,235,227,.88)}
-.cine .hi{transition:opacity 1s var(--ease-soft) calc(1.05s + var(--d,0s)),transform 1.2s var(--ease-cine) calc(1.05s + var(--d,0s))}
-.hero.pre .fade{opacity:1;transition:none}
-.hero.pre .bars i{transform:scaleY(1);transition:none}
+
 .hero.pre .ln>span{transform:translate3d(0,112%,0);transition:none}
 .hero.pre .hi{opacity:0;transform:translate3d(0,16px,0);transition:none}
 .slate{display:flex;align-items:center;gap:clamp(12px,1.6vw,22px);font-family:var(--ui-font),sans-serif;
@@ -502,6 +467,111 @@ html:not(.design) #fsopen{display:none!important}
 .js .rv{opacity:0;transform:translate3d(0,22px,0)}
 .js .rv.in{opacity:1;transform:none;
   transition:opacity 1s var(--ease-soft) var(--d,0s),transform 1.25s var(--ease-cine) var(--d,0s)}
+
+/* film hero */
+.hero.vhero{--poster:url("img/hero-poster-960.747ff715b6.webp");min-height:max(620px,94svh);justify-content:flex-end;background:#0B0A09;color:#F2EFEA}
+.vstage{position:absolute;top:0;left:0;right:0;height:132%;z-index:0;overflow:hidden;
+  will-change:transform}
+.vfilm{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  background:#0B0A09 center/cover no-repeat;opacity:0;filter:saturate(1.05) contrast(1.04);
+  transition:opacity 1.4s var(--ease-soft)}
+.vfilm.on{opacity:1}
+.vstage::after{content:"";position:absolute;inset:0;background:var(--poster) center/cover no-repeat;
+  opacity:1;transition:opacity 1.4s var(--ease-soft)}
+.vstage.live::after{opacity:0}
+.vscrim{position:absolute;inset:0;z-index:1;pointer-events:none;background:
+  linear-gradient(180deg, rgba(11,10,9,.74) 0%, rgba(11,10,9,.30) 20%,
+    rgba(11,10,9,.26) 46%, rgba(11,10,9,.78) 84%, rgba(11,10,9,.95) 100%),
+  radial-gradient(118% 88% at 20% 84%, rgba(11,10,9,.60) 0%, rgba(11,10,9,0) 60%)}
+.vhero .grain{position:absolute;inset:0;z-index:2;pointer-events:none;opacity:.055;mix-blend-mode:overlay;
+  background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>") repeat;background-size:180px 180px}
+.vhero .herobody{z-index:3;padding-bottom:clamp(58px,8vw,104px);will-change:transform,opacity}
+.vh1{font-family:var(--hd-font),"Inter",system-ui,sans-serif;font-weight:600;
+  font-size:clamp(2.1rem,5.1vw,4.3rem);line-height:1.02;letter-spacing:-.042em;
+  max-width:16ch;margin:0;color:#F5F2ED;text-wrap:balance}
+.vh1 .soft{color:rgba(245,242,237,.66)}
+.vhero .ln{display:block;overflow:hidden;padding-bottom:.1em;margin-bottom:-.1em}
+.vhero .ln>span{display:inline-block;transition:transform 1.15s var(--ease-cine) var(--d,.25s)}
+.vhero .ln:nth-child(2)>span{--d:.38s}
+.vhero .btnrow{margin-top:clamp(24px,3vw,34px)}
+.vhero .hi{transition:opacity .9s var(--ease-soft) .8s,transform 1s var(--ease-cine) .8s}
+.vhero .btn.solid{background:#F2EFEA;border-color:#F2EFEA;color:#0D0B0A}
+.vhero .btn.solid:hover{background:transparent;color:#F2EFEA}
+.vhero .btn.ghost{color:#F2EFEA;border-color:rgba(242,239,234,.24);background:rgba(242,239,234,.05)}
+.vhero .btn.ghost:hover{border-color:#F2EFEA}
+@media (min-width:761px){.hero.vhero{--poster:url("img/hero-poster-1600.022c48387e.webp")}}
+.vcue{position:absolute;z-index:3;right:clamp(20px,4vw,44px);bottom:clamp(58px,8vw,104px);
+  display:flex;align-items:flex-end;height:64px}
+.vcue i{display:block;width:1px;height:64px;background:linear-gradient(180deg,rgba(242,239,234,0),rgba(242,239,234,.5));
+  transform-origin:50% 100%;animation:vcue 2.8s var(--ease-soft) infinite}
+@keyframes vcue{0%,100%{transform:scaleY(.45);opacity:.5}50%{transform:scaleY(1);opacity:1}}
+@media (max-width:760px){.vcue{display:none}
+  .vh1{max-width:13ch;font-size:clamp(2rem,9.2vw,2.9rem)}
+  .hero.vhero{min-height:max(560px,88svh)}}
+@media (prefers-reduced-motion:reduce){.vcue i{animation:none}}
+
+/* reviews, quiet and centred */
+.revsec{border-top:1px solid var(--line);text-align:center}
+.revsec .eyebrow{justify-content:center}
+.revslide{margin:clamp(30px,4vw,52px) auto 0;min-height:clamp(200px,22vw,260px);
+  display:flex;align-items:center;justify-content:center}
+.revslide figure{margin:0;animation:zvin .5s var(--ease-cine)}
+.revstars{color:var(--brass);letter-spacing:.3em;margin:0 0 20px;font-size:.78rem}
+.revq{margin:0 0 22px;font-family:var(--hd-font),Georgia,serif;font-weight:400;
+  line-height:1.38;letter-spacing:-.018em;color:var(--cream);text-wrap:pretty}
+.revq{max-width:46ch;margin-inline:auto}
+.revq.s1{font-size:clamp(1.25rem,2.5vw,1.95rem);max-width:21ch}
+.revq.s2{font-size:clamp(1.06rem,1.8vw,1.4rem);max-width:30ch}
+.revq.s3{font-size:clamp(1rem,1.45vw,1.16rem);max-width:50ch}
+.revby{color:var(--muted);font-size:.7rem;letter-spacing:.2em;text-transform:uppercase}
+.revfoot{display:flex;align-items:center;justify-content:center;gap:clamp(20px,4vw,44px);
+  flex-wrap:wrap;margin-top:clamp(30px,4vw,48px)}
+.revnav{display:flex;align-items:center;gap:18px}
+.revnav #zv-count{color:var(--muted);font-size:.68rem;letter-spacing:.2em;min-width:4ch}
+.revsec .zvarrow{border:0;width:auto;height:auto;padding:4px 2px;font-size:1.5rem;color:var(--muted)}
+.revsec .zvarrow:hover:not(:disabled){color:var(--cream)}
+.revlink{background:none;border:0;padding:6px 0;cursor:pointer;font:inherit;color:var(--muted);
+  font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;
+  border-bottom:1px solid var(--line);transition:color .22s,border-color .22s}
+.revlink:hover,.revlink:focus-visible{color:var(--cream);border-color:var(--cream)}
+.revform{margin:clamp(30px,4vw,48px) auto 0;border-top:1px solid var(--line);
+  padding-top:clamp(26px,3.2vw,38px);display:grid;gap:20px;max-width:620px;text-align:left}
+.revform #zv-note{color:var(--muted);font-size:.78rem;margin:0}
+
+/* closing line */
+.close{border-top:1px solid var(--line)}
+.closeline{font-family:var(--hd-font),Georgia,serif;font-weight:400;
+  font-size:clamp(1.3rem,2.9vw,2.2rem);line-height:1.24;letter-spacing:-.024em;
+  color:var(--cream);max-width:20ch;margin:0}
+.close .btnrow{margin-top:clamp(26px,3vw,38px)}
+
+/* services */
+.svcgrid{padding:clamp(84px,11vw,150px) clamp(20px,4vw,44px) 0;
+  display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);
+  gap:clamp(30px,5vw,88px);align-items:start}
+.svchead h2{font-size:calc(clamp(2rem,4.4vw,3.05rem) * var(--hd-scale));line-height:1.06;
+  letter-spacing:-.045em;margin-top:14px;display:grid;gap:.16em;max-width:15ch}
+.svchead h2 .soft{color:var(--muted)}
+.svctext{display:grid;gap:clamp(16px,2vw,24px);padding-top:clamp(6px,1.4vw,18px)}
+.svctext p{font-size:clamp(1rem,1.4vw,1.1rem);line-height:1.68;color:var(--cream);margin:0}
+.svctext p+p{color:var(--muted)}
+.svcband{margin:clamp(58px,8vw,110px) 0 0;overflow:hidden}
+.svcband img{width:100%;height:auto;display:block;aspect-ratio:2.4/1;object-fit:cover}
+.svcclose{margin-top:clamp(52px,7vw,92px)}
+@media (max-width:900px){
+  .svcgrid{grid-template-columns:1fr;gap:clamp(24px,5vw,34px)}
+  .svchead h2{max-width:18ch}
+  .svcband img{aspect-ratio:16/10}}
+
+/* legal */
+.legal{margin-top:clamp(34px,4.5vw,58px);display:grid;gap:clamp(26px,3.4vw,40px)}
+.legal section,.legal p,.legalupd{max-width:68ch}
+.legal h3{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--muted);font-weight:500;margin:0 0 10px;font-family:var(--tx-font),system-ui,sans-serif}
+.legal p{margin:0;font-size:clamp(.94rem,1.25vw,1.02rem);line-height:1.68;color:var(--cream)}
+.legalupd{color:var(--muted);font-size:.78rem;padding-top:8px;border-top:1px solid var(--line-2)}
+.footin a{color:inherit;text-decoration:none;border-bottom:1px solid var(--line)}
+.footin a:hover{color:var(--cream);border-color:var(--cream)}
 
 /* gallery strip */
 .gal{padding:clamp(84px,11vw,150px) 0 clamp(64px,8vw,110px)}
@@ -556,17 +626,6 @@ html:not(.design) #fsopen{display:none!important}
 .offer p{color:var(--muted);max-width:40ch}
 
 /* services */
-.svcone{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(32px,6vw,96px);align-items:center;
-  padding-bottom:clamp(80px,11vw,150px)}
-.svcimg{margin:0;position:relative;aspect-ratio:4/3;overflow:hidden;background:var(--field-2)}
-.svcimg img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
-.gets{list-style:none;margin:18px 0 0;padding:0;border-top:1px solid var(--line)}
-.gets li{display:flex;justify-content:space-between;align-items:baseline;gap:18px;padding:19px 0;border-bottom:1px solid var(--line-2)}
-.gets b{font-family:var(--hd-font),Georgia,serif;font-weight:var(--hd-weight);
-  font-variation-settings:"opsz" 48,"wght" 460;font-size:clamp(1.18rem,2vw,1.55rem);line-height:1.2;letter-spacing:-.012em}
-.gets span{flex:none;max-width:48%;font-family:var(--ui-font),sans-serif;font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;
-  color:var(--muted);text-align:right}
-.svcclose{margin-top:30px;font-size:clamp(1rem,1.4vw,1.1rem);max-width:38ch}
 
 /* small screens: the five links open as a full-screen index instead of a cramped row */
 .menubtn{display:none;text-transform:uppercase}
@@ -599,11 +658,11 @@ html:not(.design) #fsopen{display:none!important}
    Overrides the earlier passes; the palette is unchanged. */
 :root{--r:16px}
 body{letter-spacing:-.006em}
-h1,h2,h3,.stmtbig,.matchbig,.gets b{font-family:var(--hd-font),"Inter",system-ui,sans-serif;
+h1,h2,h3,.stmtbig,.matchbig{font-family:var(--hd-font),"Inter",system-ui,sans-serif;
   font-weight:var(--hd-weight);font-variation-settings:normal}
 h2,.stmtbig,.matchbig{letter-spacing:-.04em}
 h3{letter-spacing:-.02em}
-.gets b{font-weight:500;letter-spacing:-.025em}
+
 .eyebrow{font-size:.7rem;letter-spacing:.14em;font-weight:500}
 .pagehead h2{letter-spacing:-.045em;line-height:1}
 
@@ -631,19 +690,11 @@ h3{letter-spacing:-.02em}
 .matchcounter{padding-left:0}
 
 /* rounded frames */
-.frame .fimg,.bawrap,.svcimg,.portrait{border-radius:var(--r)}
+.frame .fimg,.bawrap,.portrait{border-radius:var(--r)}
 .bawrap{border:0}
 
 /* hero: a fan of frames around the name, dark in every style */
-.hero.arc-hero{position:relative;display:block;min-height:max(640px,100svh);background:#0D0B0A;color:#F2EFEA;
-  overflow:hidden;margin-top:-71px;padding-top:71px;
-  --cy:70%;--R:min(34vw,52svh);--W:clamp(84px,9vw,150px)}
-.arc-hero .glow{position:absolute;inset:0;pointer-events:none;
-  background:radial-gradient(55% 45% at 50% 70%, rgba(201,160,99,.17), rgba(13,11,10,0) 72%),
-             radial-gradient(90% 60% at 50% 100%, rgba(0,0,0,.6), rgba(0,0,0,0) 60%)}
-.arc-hero .grain{position:absolute;inset:0;z-index:1;pointer-events:none;opacity:.06;mix-blend-mode:overlay;
-  background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>") repeat;background-size:180px 180px}
-.arc{position:absolute;inset:0;z-index:2;transform-origin:50% var(--cy)}
+
 .card{position:absolute;left:50%;top:var(--cy);width:var(--W);aspect-ratio:3/4;
   margin-left:calc(var(--W) / -2);margin-top:calc(var(--W) * -2 / 3);
   border-radius:calc(var(--W) * .12);overflow:hidden;background:#1B1714;
@@ -651,25 +702,14 @@ h3{letter-spacing:-.02em}
   transform:rotate(var(--a)) translateY(calc(-1 * var(--R)));
   transition:transform 1.6s var(--ease-cine) calc(.1s + var(--i) * 75ms),opacity .9s var(--ease-soft) calc(.1s + var(--i) * 75ms)}
 .card img{width:100%;height:100%;object-fit:cover;display:block}
-.hero.pre .card{transform:rotate(0deg) translateY(calc(-.12 * var(--R))) scale(.7);opacity:0;transition:none}
-.arc-hero.done .card{transition:transform .9s var(--ease-cine),opacity .6s var(--ease-soft)}
-.herocenter{position:absolute;left:0;right:0;top:var(--cy);z-index:3;transform:translateY(-38%);
-  text-align:center;padding:0 20px}
-.arc-hero h1{font-family:var(--hd-font),"Inter",system-ui,sans-serif;font-weight:600;
-  font-size:clamp(2.5rem,6vw,5.4rem);line-height:.98;letter-spacing:-.046em;color:#F2EFEA;max-width:none;margin:0 auto}
-.arc-hero .ln{display:block;overflow:hidden;padding-bottom:.12em;margin-bottom:-.12em}
-.arc-hero .ln>span{display:inline-block;transition:transform 1.25s var(--ease-cine) .6s}
+
 .hero.pre .ln>span{transform:translate3d(0,112%,0);transition:none}
-.arc-hero .btnrow{justify-content:center;margin-top:28px}
-.arc-hero .hi{transition:opacity 1s var(--ease-soft) .95s,transform 1.1s var(--ease-cine) .95s}
+
 .hero.pre .hi{opacity:0;transform:translate3d(0,14px,0);transition:none}
-.arc-hero .btn.solid{background:#F2EFEA;border-color:#F2EFEA;color:#0D0B0A}
-.arc-hero .btn.solid:hover{background:transparent;color:#F2EFEA}
-.arc-hero .btn.ghost{color:#F2EFEA;border-color:rgba(242,239,234,.22);background:rgba(242,239,234,.05)}
-.arc-hero .btn.ghost:hover{border-color:#F2EFEA}
+
 @supports (animation-timeline: scroll()){
-  .arc{animation:arcturn linear both;animation-timeline:scroll(root);animation-range:0 85svh}
-  @keyframes arcturn{to{transform:rotate(-10deg) scale(.95);opacity:.3}}
+
+  
 }
 
 @media (max-width:980px){
@@ -680,15 +720,7 @@ h3{letter-spacing:-.02em}
   .mast .nav a.on{background:none;color:var(--brass)}
   .mast.onhero .nav{background:var(--field);border:0}
 }
-@media (max-width:980px) and (orientation:portrait){
-  .hero.arc-hero{--cy:62%;--R:50vw;--W:clamp(84px,13vw,120px);min-height:max(640px,88svh)}
-  .arc-hero h1{font-size:clamp(2.6rem,8vw,4.2rem)}
-}
-@media (max-width:640px){
-  .hero.arc-hero{--cy:64%;--R:80vw;--W:clamp(70px,20vw,90px);min-height:max(580px,86svh)}
-  .arc-hero h1{font-size:clamp(2.5rem,12.5vw,3.3rem)}
-  .herocenter{transform:translateY(-30%)}
-}
+
 @media (prefers-reduced-motion:reduce){ .arc{animation:none} }
 
 /* calmer statistics under the offer */
@@ -698,24 +730,21 @@ h3{letter-spacing:-.02em}
 .mast.onhero .brandname{text-shadow:0 1px 14px rgba(0,0,0,.45)}
 
 @media (max-width:860px){
-  .offergrid,.svcone{grid-template-columns:1fr}
+  .offergrid{grid-template-columns:1fr}
 }
 @media (max-width:640px){
-  .cine h1{font-size:clamp(2.7rem,13vw,3.6rem)}
-  .cine .herogrid{gap:26px}
-  .cine .herogrid{display:flex;flex-direction:column;align-items:stretch}
+
   .slate{width:100%;justify-content:space-between;padding-bottom:0}
   .strip .frame.L .fimg{height:auto;width:84vw}
   .strip .frame.S .fimg{height:auto;width:66vw}
   .galnav .zvarrow{display:none}
   .grid{grid-template-columns:1fr}
   .grid .frame:nth-child(even){margin-top:0}
-  .gets li{flex-direction:column;gap:6px}
-  .gets span{text-align:left}
+
 }
 @media (prefers-reduced-motion:reduce){
   .js .rv,.js .frame .fimg img,.js .frame figcaption{opacity:1!important;transform:none!important}
-  .cine .grain{display:none}
+
 }
 
 @media (max-width:860px){
@@ -724,7 +753,7 @@ h3{letter-spacing:-.02em}
 @media (max-width:640px){
   .nav{gap:12px;font-size:.6rem}
   .brandname{display:none}
-  .herogrid{flex-direction:column;align-items:flex-start}
+
   .reelmeta{align-items:flex-start;text-align:left}
   .stat{border-right:0;border-bottom:1px solid var(--line-2)}
 }
@@ -791,27 +820,24 @@ h3{letter-spacing:-.02em}
 
 <!-- ============ HJEM ============ -->
 <main class="page live" id="p-hjem">
-  <header class="hero arc-hero">
-    <div class="glow" aria-hidden="true"></div>
-    <div class="grain" aria-hidden="true"></div>
-    <div class="arc" id="arc" aria-hidden="true">
-      <div class="card" style="--a:-72deg;--i:7"><img src="img/arc-1-360.31db3e7f7c.webp" srcset="img/arc-1-240.31db3e7f7c.webp 240w, img/arc-1-360.31db3e7f7c.webp 360w, img/arc-1-540.31db3e7f7c.webp 540w" sizes="(max-width: 640px) 90px, 150px" width="360" height="480" alt="" decoding="async"></div>
-      <div class="card" style="--a:-54deg;--i:5"><img src="img/arc-2-360.98e845ff08.webp" srcset="img/arc-2-240.98e845ff08.webp 240w, img/arc-2-360.98e845ff08.webp 360w, img/arc-2-540.98e845ff08.webp 540w" sizes="(max-width: 640px) 90px, 150px" width="360" height="480" alt="" decoding="async"></div>
-      <div class="card" style="--a:-36deg;--i:3"><img src="img/arc-3-360.39ebef6fa8.webp" srcset="img/arc-3-240.39ebef6fa8.webp 240w, img/arc-3-360.39ebef6fa8.webp 360w, img/arc-3-540.39ebef6fa8.webp 540w" sizes="(max-width: 640px) 90px, 150px" width="360" height="480" alt="" decoding="async"></div>
-      <div class="card" style="--a:-18deg;--i:1"><img src="img/arc-4-360.048b09728b.webp" srcset="img/arc-4-240.048b09728b.webp 240w, img/arc-4-360.048b09728b.webp 360w, img/arc-4-540.048b09728b.webp 540w" sizes="(max-width: 640px) 90px, 150px" width="360" height="480" alt="" decoding="async"></div>
-      <div class="card" style="--a:0deg;--i:0"><img src="img/arc-5-360.96a3e21d2e.webp" srcset="img/arc-5-240.96a3e21d2e.webp 240w, img/arc-5-360.96a3e21d2e.webp 360w, img/arc-5-540.96a3e21d2e.webp 540w" sizes="(max-width: 640px) 90px, 150px" width="360" height="480" alt="" decoding="async"></div>
-      <div class="card" style="--a:18deg;--i:2"><img src="img/arc-6-360.deafb18ce2.webp" srcset="img/arc-6-240.deafb18ce2.webp 240w, img/arc-6-360.deafb18ce2.webp 360w, img/arc-6-540.deafb18ce2.webp 540w" sizes="(max-width: 640px) 90px, 150px" width="360" height="480" alt="" decoding="async"></div>
-      <div class="card" style="--a:36deg;--i:4"><img src="img/arc-7-360.ccecc4d47f.webp" srcset="img/arc-7-240.ccecc4d47f.webp 240w, img/arc-7-360.ccecc4d47f.webp 360w, img/arc-7-540.ccecc4d47f.webp 540w" sizes="(max-width: 640px) 90px, 150px" width="360" height="480" alt="" decoding="async"></div>
-      <div class="card" style="--a:54deg;--i:6"><img src="img/arc-8-360.3aec5bbb8c.webp" srcset="img/arc-8-240.3aec5bbb8c.webp 240w, img/arc-8-360.3aec5bbb8c.webp 360w, img/arc-8-540.3aec5bbb8c.webp 540w" sizes="(max-width: 640px) 90px, 150px" width="360" height="480" alt="" decoding="async"></div>
-      <div class="card" style="--a:72deg;--i:8"><img src="img/arc-9-360.a950f8d513.webp" srcset="img/arc-9-240.a950f8d513.webp 240w, img/arc-9-360.a950f8d513.webp 360w, img/arc-9-540.a950f8d513.webp 540w" sizes="(max-width: 640px) 90px, 150px" width="360" height="480" alt="" decoding="async"></div>
+  <header class="hero vhero pre" id="hero">
+    <div class="vstage" aria-hidden="true">
+      <video class="vfilm" id="herovid" muted loop playsinline preload="none"
+             poster="img/hero-poster-1600.022c48387e.webp" width="1920" height="1080"></video>
     </div>
-    <div class="herocenter">
-      <h1><span class="ln"><span data-t="hero.h1">Boliger på film.</span></span></h1>
+    <div class="vscrim" aria-hidden="true"></div>
+    <div class="grain" aria-hidden="true"></div>
+    <div class="wrap herobody">
+      <h1 class="vh1">
+        <span class="ln"><span data-t="hero.h1a">Hver bolig har en historie.</span></span>
+        <span class="ln"><span class="soft" data-t="hero.h1b">La oss fortelle den.</span></span>
+      </h1>
       <div class="btnrow hi">
         <button class="btn solid" data-go="kontakt" data-t="hero.cta1">Book befaring</button>
         <button class="btn ghost" data-go="arbeid" data-t="hero.cta2">Se arbeidet</button>
       </div>
     </div>
+    <div class="vcue hi" aria-hidden="true"><i></i></div>
   </header>
 <script>(function(){var h=document.currentScript.previousElementSibling;if(!h||matchMedia("(prefers-reduced-motion: reduce)").matches)return;var x=location.hash;if(x&&x!=="#hjem")return;h.classList.add("pre")})();</script>
 
@@ -859,30 +885,20 @@ h3{letter-spacing:-.02em}
     </div>
   </section>
 
-  <section class="section match">
+  <section class="section revsec" id="zv-reviews" hidden>
     <div class="wrap">
-      <div class="matchhead">
-        <p class="eyebrow rv" data-t="match.eyebrow">Samarbeidet</p>
-        <h2 class="rv" style="--d:.08s" data-t="match.h2">Bildene og filmen er et verktøy. Målet er ditt.</h2>
-      </div>
-      <p class="matchbig rv" data-t="match.big">Vi passer godt sammen hvis du er ambisiøs og har vinnermentalitet.</p>
-      <p class="matchcounter rv" style="--d:.12s" data-t="match.counter">Er du fornøyd med at boligen bare blir lagt ut, er jeg feil mann.</p>
-    </div>
-  </section>
-  <section class="section" id="zv-reviews" hidden style="border-top:1px solid var(--line)">
-    <div class="wrap">
-      <p class="eyebrow" data-t="rev.eyebrow">Tilbakemeldinger</p>
-      <div id="zv-slide" style="margin-top:clamp(26px,3.6vw,44px);min-height:clamp(190px,22vw,250px)"></div>
-      <div style="display:flex;flex-wrap:wrap;gap:20px;align-items:center;justify-content:space-between;margin-top:clamp(26px,3.4vw,40px);border-top:1px solid var(--line-2);padding-top:22px">
-        <div id="zv-nav" hidden style="display:flex;align-items:center;gap:16px">
+      <p class="eyebrow rv" data-t="rev.eyebrow">Tilbakemeldinger</p>
+      <div id="zv-slide" class="revslide"></div>
+      <div class="revfoot">
+        <div id="zv-nav" hidden class="revnav">
           <button type="button" class="zvarrow" id="zv-prev" aria-label="Forrige">&#8249;</button>
-          <span id="zv-count" style="color:var(--muted);font-size:.74rem;letter-spacing:.16em"></span>
+          <span id="zv-count"></span>
           <button type="button" class="zvarrow" id="zv-next" aria-label="Neste">&#8250;</button>
         </div>
-        <button type="button" class="btn" id="zv-open" data-t="rev.leave">Legg igjen en vurdering</button>
+        <button type="button" class="revlink" id="zv-open" data-t="rev.leave">Legg igjen en vurdering</button>
       </div>
 
-      <form id="zv-form" hidden style="margin-top:clamp(28px,3.6vw,44px);border-top:1px solid var(--line);padding-top:clamp(26px,3.2vw,38px);display:grid;gap:20px;max-width:620px">
+      <form id="zv-form" hidden class="revform">
         <div class="fld"><label for="zv-navn" data-t="rev.name">Navn</label><input id="zv-navn" autocomplete="name"></div>
         <div class="fld">
           <label data-t="rev.rating">Terningkast</label>
@@ -894,22 +910,25 @@ h3{letter-spacing:-.02em}
         </div>
         <div class="fld"><label for="zv-melding" data-t="rev.msg">Din vurdering</label><textarea id="zv-melding" rows="4"></textarea></div>
         <button class="btn" type="submit" style="justify-self:start" data-t="rev.send">Send inn</button>
-        <p id="zv-note" style="color:var(--muted);font-size:.78rem;margin:0"></p>
+        <p id="zv-note"></p>
       </form>
     </div>
   </section>
-  <section class="section tight" style="border-top:1px solid var(--line)">
+  <section class="section match">
     <div class="wrap">
-      <p class="eyebrow rv" style="margin-bottom:30px" data-t="proc.eyebrow">Slik går det for seg</p>
-      <div class="tl">
-        <div class="tlstep rv"><div class="tlwhen" data-t="proc.d1">01</div><h3 data-t="proc.t1">Samtale</h3>
-          <p data-t="proc.p1">Du forteller om boligen og visningen, og vi finner en dag.</p></div>
-        <div class="tlstep rv" style="--d:.1s"><div class="tlwhen" data-t="proc.d2">02</div><h3 data-t="proc.t2">Opptak</h3>
-          <p data-t="proc.p2">Bilder, film og drone i samme besøk.</p></div>
-        <div class="tlstep rv" style="--d:.2s"><div class="tlwhen" data-t="proc.d3">03</div><h3 data-t="proc.t3">Levering</h3>
-          <p data-t="proc.p3">Alt redigert, i liggende og stående format.</p></div>
+      <div class="matchhead">
+        <p class="eyebrow rv" data-t="match.eyebrow">Samarbeidet</p>
+        <h2 class="rv" style="--d:.08s" data-t="match.h2">Bildene og filmen er et verktøy. Målet er ditt.</h2>
       </div>
-      <div class="btnrow rv" style="margin-top:clamp(34px,4vw,52px)"><button class="btn" data-go="kontakt" data-t="hero.cta1">Book befaring</button></div>
+      <p class="matchbig rv" data-t="match.big">Vi passer godt sammen hvis du er ambisiøs og har vinnermentalitet.</p>
+      <p class="matchcounter rv" style="--d:.12s" data-t="match.counter">Er du fornøyd med at boligen bare blir lagt ut, er jeg feil mann.</p>
+    </div>
+  </section>
+  
+  <section class="section close">
+    <div class="wrap">
+      <p class="closeline rv" data-t="close.line">Fortell meg om boligen, så tar vi det derfra.</p>
+      <div class="btnrow rv" style="--d:.1s"><button class="btn" data-go="kontakt" data-t="hero.cta1">Book befaring</button></div>
     </div>
   </section>
 </main>
@@ -926,23 +945,24 @@ h3{letter-spacing:-.02em}
 </main>
 <!-- ============ TJENESTER ============ -->
 <main class="page" id="p-tjenester">
-  <div class="wrap pagehead">
-    <p class="eyebrow" data-t="svc.eyebrow">Tjenester</p>
-    <h2 data-t="svc.h2">Alt i ett besøk.</h2>
-    <p data-t="svc.p">Bilder, film og drone. Du slipper å finne fotograf, filmfotograf og dronepilot hver for seg.</p>
-  </div>
-  <div class="wrap svcone">
-    <figure class="svcimg rv"><img src="img/case-4-1080.2c80210965.webp" srcset="img/case-4-640.2c80210965.webp 640w, img/case-4-1080.2c80210965.webp 1080w" sizes="(max-width: 860px) 100vw, 560px" width="1080" height="810" data-ta="svc.img" alt="Heyerdahls vei 8 B sett fra luften" loading="lazy" decoding="async"></figure>
-    <div>
-      <p class="eyebrow rv" data-t="svc.gets">Du får</p>
-      <ul class="gets">
-        <li class="rv" style="--d:0.00s"><b data-t="svc.g1">Bilder til annonsen</b><span data-t="svc.g1s">Redigert for hånd</span></li>
-        <li class="rv" style="--d:0.07s"><b data-t="svc.g2">Film</b><span data-t="svc.g2s">Opptil 5 minutter</span></li>
-        <li class="rv" style="--d:0.14s"><b data-t="svc.g3">Stående og liggende klipp</b><span data-t="svc.g3s">Til annonsen og sosiale medier</span></li>
-        <li class="rv" style="--d:0.21s"><b data-t="svc.g4">Drone</b><span data-t="svc.g4s">Fra luften</span></li>
-      </ul>
-      <div class="btnrow rv"><button class="btn" data-go="kontakt" data-t="svc.cta">Book befaring</button></div>
+  <div class="wrap svcgrid">
+    <div class="svchead">
+      <p class="eyebrow">Tjenester</p>
+      <h2><span data-t="svc.h2">Jeg selger ikke pene filmer.</span>
+        <span class="soft" data-t="svc.p">Jeg fører seriøse øyne til deg og boligen din.</span></h2>
     </div>
+    <div class="svctext">
+      <p class="rv" data-t="svc.b1">Skal du bare ha bilder og film slik alle andre har det, finnes det mange som gjør den jobben, og de gjør den billigere enn meg.</p>
+      <p class="rv" style="--d:.08s" data-t="svc.b2">Er du eier eller megler med ambisjoner, og vil at den rette kjøperen skal kjenne hvordan boligen faktisk er å bo i, da gjør vi noe annet.</p>
+      <p class="rv" style="--d:.16s" data-t="svc.b3">Jeg tar hele produksjonen selv. Stillbilder, film, drone der det gir mening, flere kameraer og lys jeg tar med meg når rommet krever det. Fra rene annonsebilder til en kort dokumentar om boligen.</p>
+    </div>
+  </div>
+  <figure class="svcband rv">
+    <img src="img/case-4-1080.2c80210965.webp" srcset="img/case-4-640.2c80210965.webp 640w, img/case-4-1080.2c80210965.webp 1080w" sizes="100vw" width="1080" height="810" data-ta="svc.img" alt="Heyerdahls vei 8 B sett fra luften" loading="lazy" decoding="async">
+  </figure>
+  <div class="wrap svcclose">
+    <p class="closeline rv" data-t="svc.b4">Hva boligen trenger, finner vi ut på befaringen.</p>
+    <div class="btnrow rv" style="--d:.1s"><button class="btn" data-go="kontakt" data-t="svc.cta">Book befaring</button></div>
   </div>
 </main>
 <!-- ============ OM ============ -->
@@ -995,6 +1015,50 @@ h3{letter-spacing:-.02em}
   </div>
 </main>
 
+<!-- ============ PERSONVERN ============ -->
+<main class="page" id="p-personvern">
+  <div class="wrap pagehead">
+    <p class="eyebrow" data-t="pv.eyebrow">Personvern</p>
+    <h2 data-t="pv.h2">Hva jeg lagrer, og hvorfor.</h2>
+    <p data-t="pv.p">Kort fortalt: bare det du selv sender meg, og bare så lenge jobben krever det.</p>
+  </div>
+  <div class="wrap legal">
+    <section class="rv">
+      <h3 data-t="pv.t1">Behandlingsansvarlig</h3>
+      <p data-t="pv.c1">ZEJAKOV ZELJKOVIC, org. 835 196 542, Oslo. Kontakt: post@zejakov.com.</p>
+    </section>
+    <section class="rv">
+      <h3 data-t="pv.t2">Skjemaet på siden</h3>
+      <p data-t="pv.c2">Sender du inn kontaktskjemaet, lagres navn, e-post, telefon, adressen på boligen og meldingen din. Det brukes til å svare deg og til å gjennomføre oppdraget, og grunnlaget er din forespørsel og en berettiget interesse i å drive virksomheten. Opplysningene slettes når forespørselen er avsluttet, og senest etter tolv måneder uten kontakt. Er det blitt et oppdrag, oppbevares bilagene så lenge bokføringsloven krever.</p>
+    </section>
+    <section class="rv">
+      <h3 data-t="pv.t3">Vurderinger</h3>
+      <p data-t="pv.c3">Legger du igjen en vurdering, lagres navnet du oppgir, terningkastet og teksten. Den vises på siden først etter at jeg har godkjent den. Vil du ha den fjernet, si fra, så er den borte.</p>
+    </section>
+    <section class="rv">
+      <h3 data-t="pv.t4">Databehandlere</h3>
+      <p data-t="pv.c4">Siden ligger hos Hostinger. Skjemaer og vurderinger lagres hos Supabase, og varsler sendes med Resend. Alle tre behandler opplysningene på mine vegne, og lagringen skjer innenfor EU og EØS.</p>
+    </section>
+    <section class="rv">
+      <h3 data-t="pv.t5">Informasjonskapsler og måling</h3>
+      <p data-t="pv.c5">Siden setter ingen informasjonskapsler, og det er ingen annonsesporing her. For å se hvor forespørslene kommer fra, lagres kilden til besøket midlertidig i nettleseren din og følger med når du sender skjemaet. Den forsvinner når du lukker fanen. Skriftene lastes fra Google Fonts, som da ser IP-adressen din.</p>
+    </section>
+    <section class="rv">
+      <h3 data-t="pv.t6">Bilder og film</h3>
+      <p data-t="pv.c6">Opptak fra et oppdrag brukes i markedsføringen av boligen. Vil du at jeg også skal vise dem i mitt eget arbeid, avtaler vi det. Er det mennesker i bildet, spør jeg først.</p>
+    </section>
+    <section class="rv">
+      <h3 data-t="pv.t7">Rettighetene dine</h3>
+      <p data-t="pv.c7">Du kan be om innsyn i det som er lagret om deg, få det rettet eller slettet, og du kan trekke et samtykke tilbake. Send en e-post, så ordner jeg det. Mener du at noe er galt, kan du klage til Datatilsynet.</p>
+    </section>
+    <section class="rv">
+      <h3 data-t="pv.t8">Opphavsrett</h3>
+      <p data-t="pv.c8">Bilder og film på denne siden er mine egne, og kan ikke brukes uten avtale.</p>
+    </section>
+    <p class="legalupd" data-t="pv.upd">Sist oppdatert 16. september 2026.</p>
+  </div>
+</main>
+
 <footer>
   <div class="wrap footbadge" style="display:flex;align-items:center;gap:14px;padding-bottom:22px">
     <svg viewBox="0 0 512 512" style="width:30px;height:30px;display:block;flex:none" aria-hidden="true">
@@ -1004,6 +1068,7 @@ h3{letter-spacing:-.02em}
   <div class="wrap footin">
     <span data-t="foot.l">ZEJAKOV ZELJKOVIC, org. 835 196 542</span>
     <span data-t="foot.r">Medieproduksjon for eiendom, Oslo</span>
+    <a href="#personvern" data-go="personvern" data-t="foot.pv">Personvern</a>
   </div>
 </footer>
 
@@ -1039,7 +1104,7 @@ document.getElementById("fsopen").addEventListener("click", function(){
 
 <script>
 /* ---------------- language table, must come first ---------------- */
-const T={"no": {"nav.home": "Hjem", "nav.work": "Arbeid", "nav.services": "Tjenester", "nav.about": "Om meg", "nav.contact": "Kontakt", "hero.h1": "Boliger på film.", "hero.cta1": "Book befaring", "hero.cta2": "Se arbeidet", "proc.eyebrow": "Slik går det for seg", "proc.d1": "01", "proc.t1": "Samtale", "proc.p1": "Du forteller om boligen og visningen, og vi finner en dag.", "proc.d2": "02", "proc.t2": "Opptak", "proc.p2": "Bilder, film og drone i samme besøk.", "proc.d3": "03", "proc.t3": "Levering", "proc.p3": "Alt redigert, i liggende og stående format.", "work.eyebrow": "Arbeid", "work.h2": "Heyerdahls vei 8 B", "work.p": "Enebolig i Oslo, fotografert og filmet i august 2026.", "svc.eyebrow": "Tjenester", "svc.h2": "Alt i ett besøk.", "svc.p": "Bilder, film og drone. Du slipper å finne fotograf, filmfotograf og dronepilot hver for seg.", "ab.eyebrow": "Om meg", "ab.h2": "Én person, spesialisert på eiendom.", "ab.p1": "ZEJAKOV MEDIA er et medieproduksjonsselskap i Oslo, og jeg jobber nesten bare med eiendom. Når du filmer boliger hver uke, lærer du hvor lyset faller i en Frogner-leilighet i mars, og hvor lite tid en megler har.", "ab.p2": "Den som kommer på opptak, er den samme som redigerer og leverer. Du har én person å forholde deg til.", "ab.p3": "Jeg holder meg til Oslo og omegn, så jeg rekker å gjøre hver jobb ordentlig.", "ab.f1": "Selskap", "ab.f2": "Organisasjonsnummer", "ab.f3": "Sted", "ab.f4": "Segment", "ab.f4v": "Boliger i det øvre sjiktet", "ab.cta": "Ta kontakt", "ct.eyebrow": "Kontakt", "ct.h2": "Fortell meg om boligen.", "ct.p": "Send adressen og hva du vil oppnå. Jeg gjør hver jobb selv, så datoen settes etter når jeg er ledig.", "ct.email": "E-post", "ct.phone": "Telefon", "ct.ig": "Instagram", "ct.area": "Dekningsområde", "ct.areav": "Oslo, Bærum, Asker og Nordre Follo", "ct.resp": "Svartid", "ct.respv": "Jeg svarer når jeg er ute av opptak.", "f.name": "Navn", "f.email": "E-post", "f.addr": "Adresse på boligen", "f.msg": "Melding", "f.send": "Send forespørsel", "f.note": "Jeg svarer når jeg er ute av opptak.", "rev.eyebrow": "Tilbakemeldinger", "rev.leave": "Legg igjen en vurdering", "rev.name": "Navn", "rev.rating": "Terningkast", "rev.msg": "Din vurdering", "rev.send": "Send inn", "rev.ok": "Takk. Vurderingen er mottatt og vises når den er godkjent.", "rev.err": "Noe gikk galt. Prøv igjen senere.", "rev.fill": "Fyll inn navn, terningkast og tekst.", "f.sending": "Sender ...", "f.ok": "Takk. Meldingen er mottatt, jeg tar kontakt.", "f.err": "Noe gikk galt. Send heller en e-post til post@zejakov.com.", "f.sent": "Skisse. I den ferdige versjonen sendes dette til post@zejakov.com.", "foot.r": "Medieproduksjon for eiendom, Oslo", "doc.title": "ZEJAKOV MEDIA | Medieproduksjon for eiendom, Oslo", "aria.reel": "Eiendomsfilm spilles", "aria.pause": "Pause filmen", "aria.play": "Spill filmen", "aria.mode": "Lys eller mørk", "aria.lang": "Bytt språk", "aria.panel": "Velg skrift og stil", "aria.hide": "Skjul", "aria.playcase": "Spill filmen for ", "panel.style": "Stil", "panel.wm": "Skrift på ZEJAKOV MEDIA", "panel.hair": "Tynne streker", "panel.track": "Avstand mellom bokstaver", "panel.head": "Serif i overskrifter", "panel.body": "Brødtekst", "panel.note": "Endrer kun logoteksten. Brødteksten følger valget under.", "panel.open": "Skrift", "foot.l": "ZEJAKOV ZELJKOVIC, org. 835 196 542", "sty.0": "Kull", "sty.1": "Sand", "sty.2": "Petrol", "sty.3": "Galleri", "sty.4": "Kontrast", "sty.5": "Skifer", "spec.body": "Lys, historie og bevegelse", "spec.head": "Eiendomsfilm", "look.eyebrow": "Stilen", "look.h2": "To versjoner av samme rom.", "look.p": "Til venstre: automatisk HDR, slik de fleste boligbilder ser ut. Flatt, jevnt lyst, alt like viktig. Ingenting er galt, og ingenting blir husket.", "look.drag": "Dra i bildet", "look.a": "Automatisk HDR", "look.b": "ZEJAKOV MEDIA", "look.cap1": "Soverom, Heyerdahls vei 8 B", "look.cap2": "Kjøkken og spisestue, samme bolig", "look.close": "Til høyre er standarden min. Hvert bilde bygges opp for hånd i timene etter opptak, til rommet ser ut slik det føles å stå der.", "look.close2": "Det gjelder alle boliger jeg tar, også de rimelige. Automatisk HDR kan jeg levere hvis du vil.", "match.eyebrow": "Samarbeidet", "match.h2": "Bildene og filmen er et verktøy. Målet er ditt.", "match.big": "Vi passer godt sammen hvis du er ambisiøs og har vinnermentalitet.", "match.counter": "Er du fornøyd med at boligen bare blir lagt ut, er jeg feil mann.", "gal.eyebrow": "Siste oppdrag", "gal.h2": "Heyerdahls vei 8 B", "gal.meta": "Enebolig i Oslo. Foto og film, august 2026.", "gal.all": "Se hele serien", "gal.prev": "Forrige bilde", "gal.next": "Neste bilde", "gal.list": "Bilder fra Heyerdahls vei 8 B", "st.big": "En bolig til 25 millioner, presentert som en til fem, ser overpriset ut.", "st.sub": "Kjøperne til slike boliger er få, og de har allerede bladd forbi hundre annonser med tomme rom og flatt lys.", "svc.gets": "Du får", "svc.g1": "Bilder til annonsen", "svc.g1s": "Redigert for hånd", "svc.g2": "Film", "svc.g2s": "Opptil 5 minutter", "svc.g3": "Stående og liggende klipp", "svc.g3s": "Til annonsen og sosiale medier", "svc.g4": "Drone", "svc.g4s": "Fra luften", "svc.img": "Heyerdahls vei 8 B sett fra luften", "svc.cta": "Book befaring", "nav.menu": "Meny", "nav.close": "Lukk", "f.phone": "Telefon"}, "en": {"nav.home": "Home", "nav.work": "Work", "nav.services": "Services", "nav.about": "About me", "nav.contact": "Contact", "hero.h1": "Homes on film.", "hero.cta1": "Book a walkthrough", "hero.cta2": "See the work", "proc.eyebrow": "How it goes", "proc.d1": "01", "proc.t1": "A call", "proc.p1": "You tell me about the home and the viewing, and we find a day.", "proc.d2": "02", "proc.t2": "The shoot", "proc.p2": "Photos, film and drone in the same visit.", "proc.d3": "03", "proc.t3": "Delivery", "proc.p3": "Everything edited, in landscape and vertical.", "work.eyebrow": "Work", "work.h2": "Heyerdahls vei 8 B", "work.p": "A house in Oslo, photographed and filmed in August 2026.", "svc.eyebrow": "Services", "svc.h2": "Everything in one visit.", "svc.p": "Photos, film and drone. No need to find a photographer, a filmmaker and a drone pilot separately.", "ab.eyebrow": "About me", "ab.h2": "One person, specialised in property.", "ab.p1": "ZEJAKOV MEDIA is a media production company in Oslo, and I work almost only with property. Film homes every week and you learn where the light falls in a Frogner flat in March, and how little time an agent has.", "ab.p2": "The person who turns up for the shoot is the one who edits and delivers. You deal with one person.", "ab.p3": "I stay within Oslo and the surrounding area, so every job gets done properly.", "ab.f1": "Company", "ab.f2": "Company number", "ab.f3": "Location", "ab.f4": "Segment", "ab.f4v": "Homes, upper segment", "ab.cta": "Get in touch", "ct.eyebrow": "Contact", "ct.h2": "Tell me about the home.", "ct.p": "Send the address and what you want to achieve. I do every job myself, so the date follows when I am free.", "ct.email": "Email", "ct.phone": "Phone", "ct.ig": "Instagram", "ct.area": "Coverage", "ct.areav": "Oslo, Bærum, Asker and Nordre Follo", "ct.resp": "Response time", "ct.respv": "I reply once I am out of a shoot.", "f.name": "Name", "f.email": "Email", "f.addr": "Address of the property", "f.msg": "Message", "f.send": "Send enquiry", "f.note": "I reply once I am out of a shoot.", "rev.eyebrow": "Testimonials", "rev.leave": "Leave a review", "rev.name": "Name", "rev.rating": "Rating", "rev.msg": "Your review", "rev.send": "Submit", "rev.ok": "Thank you. Your review was received and appears once approved.", "rev.err": "Something went wrong. Please try again later.", "rev.fill": "Please fill in name, rating and text.", "f.sending": "Sending ...", "f.ok": "Thank you. Your message came through, I will be in touch.", "f.err": "Something went wrong. Please email post@zejakov.com instead.", "f.sent": "Mockup. In the finished version this goes to post@zejakov.com.", "foot.r": "Property media production, Oslo", "doc.title": "ZEJAKOV MEDIA | Property media production, Oslo", "aria.reel": "Property film playing", "aria.pause": "Pause the film", "aria.play": "Play the film", "aria.mode": "Light or dark", "aria.lang": "Change language", "aria.panel": "Choose type and style", "aria.hide": "Hide", "aria.playcase": "Play the film for ", "panel.style": "Style", "panel.wm": "ZEJAKOV MEDIA typeface", "panel.hair": "Hairline weight", "panel.track": "Letter spacing", "panel.head": "Heading serif", "panel.body": "Body text", "panel.note": "Changes the wordmark only. Body copy follows the choice below.", "panel.open": "Type", "foot.l": "ZEJAKOV ZELJKOVIC, company no. 835 196 542", "sty.0": "Charcoal", "sty.1": "Sand", "sty.2": "Petrol", "sty.3": "Gallery", "sty.4": "Contrast", "sty.5": "Slate", "spec.body": "Light, story and movement", "spec.head": "Property film", "look.eyebrow": "The look", "look.h2": "Two versions of the same room.", "look.p": "On the left, automatic HDR, the way most listing photos look. Flat, evenly lit, everything equally important. Nothing wrong, and nothing remembered.", "look.drag": "Drag the image", "look.a": "Automatic HDR", "look.b": "ZEJAKOV MEDIA", "look.cap1": "Bedroom, Heyerdahls vei 8 B", "look.cap2": "Kitchen and dining, same home", "look.close": "On the right is my standard. Every image is built up by hand in the hours after the shoot, until the room looks the way it feels to stand in it.", "look.close2": "That goes for every home I take on, the modest ones too. Automatic HDR is there if you want it.", "match.eyebrow": "Working together", "match.h2": "The photos and the film are a tool. The goal is yours.", "match.big": "We will be a great match if you are ambitious and have a winning mentality.", "match.counter": "If you are content simply having the home listed, I am the wrong person.", "gal.eyebrow": "Latest work", "gal.h2": "Heyerdahls vei 8 B", "gal.meta": "A house in Oslo. Photo and film, August 2026.", "gal.all": "See the full set", "gal.prev": "Previous image", "gal.next": "Next image", "gal.list": "Images from Heyerdahls vei 8 B", "st.big": "A 25 million kroner home, presented like a 5 million one, looks overpriced.", "st.sub": "Buyers for homes like that are few, and they have already scrolled past a hundred listings of empty rooms in flat light.", "svc.gets": "You get", "svc.g1": "Photos for the listing", "svc.g1s": "Edited by hand", "svc.g2": "Film", "svc.g2s": "Up to 5 minutes", "svc.g3": "Vertical and landscape clips", "svc.g3s": "For the listing and social media", "svc.g4": "Drone", "svc.g4s": "From the air", "svc.img": "Heyerdahls vei 8 B from the air", "svc.cta": "Book a walkthrough", "nav.menu": "Menu", "nav.close": "Close", "f.phone": "Phone"}};
+const T={"no": {"nav.home": "Hjem", "nav.work": "Arbeid", "nav.services": "Tjenester", "nav.about": "Om meg", "nav.contact": "Kontakt", "hero.h1a": "Hver bolig har en historie.", "hero.h1b": "La oss fortelle den.", "hero.cta1": "Book befaring", "hero.cta2": "Se arbeidet", "work.eyebrow": "Arbeid", "work.h2": "Heyerdahls vei 8 B", "work.p": "Enebolig i Oslo, fotografert og filmet i august 2026.", "svc.eyebrow": "Tjenester", "svc.h2": "Jeg selger ikke pene filmer.", "svc.p": "Jeg fører seriøse øyne til deg og boligen din.", "ab.eyebrow": "Om meg", "ab.h2": "Én person, spesialisert på eiendom.", "ab.p1": "ZEJAKOV MEDIA er et medieproduksjonsselskap i Oslo, og jeg jobber nesten bare med eiendom. Når du filmer boliger hver uke, lærer du hvor lyset faller i en Frogner-leilighet i mars, og hvor lite tid en megler har.", "ab.p2": "Den som kommer på opptak, er den samme som redigerer og leverer. Du har én person å forholde deg til.", "ab.p3": "Jeg holder meg til Oslo og omegn, så jeg rekker å gjøre hver jobb ordentlig.", "ab.f1": "Selskap", "ab.f2": "Organisasjonsnummer", "ab.f3": "Sted", "ab.f4": "Segment", "ab.f4v": "Boliger i det øvre sjiktet", "ab.cta": "Ta kontakt", "ct.eyebrow": "Kontakt", "ct.h2": "Fortell meg om boligen.", "ct.p": "Send adressen og hva du vil oppnå. Jeg gjør hver jobb selv, så datoen settes etter når jeg er ledig.", "ct.email": "E-post", "ct.phone": "Telefon", "ct.ig": "Instagram", "ct.area": "Dekningsområde", "ct.areav": "Oslo, Bærum, Asker og Nordre Follo", "ct.resp": "Svartid", "ct.respv": "Jeg svarer når jeg er ute av opptak.", "f.name": "Navn", "f.email": "E-post", "f.addr": "Adresse på boligen", "f.msg": "Melding", "f.send": "Send forespørsel", "f.note": "Jeg svarer når jeg er ute av opptak.", "rev.eyebrow": "Tilbakemeldinger", "rev.leave": "Legg igjen en vurdering", "rev.name": "Navn", "rev.rating": "Terningkast", "rev.msg": "Din vurdering", "rev.send": "Send inn", "rev.ok": "Takk. Vurderingen er mottatt og vises når den er godkjent.", "rev.err": "Noe gikk galt. Prøv igjen senere.", "rev.fill": "Fyll inn navn, terningkast og tekst.", "f.sending": "Sender ...", "f.ok": "Takk. Meldingen er mottatt, jeg tar kontakt.", "f.err": "Noe gikk galt. Send heller en e-post til post@zejakov.com.", "f.sent": "Skisse. I den ferdige versjonen sendes dette til post@zejakov.com.", "foot.r": "Medieproduksjon for eiendom, Oslo", "doc.title": "ZEJAKOV MEDIA | Medieproduksjon for eiendom, Oslo", "aria.reel": "Eiendomsfilm spilles", "aria.pause": "Pause filmen", "aria.play": "Spill filmen", "aria.mode": "Lys eller mørk", "aria.lang": "Bytt språk", "aria.panel": "Velg skrift og stil", "aria.hide": "Skjul", "aria.playcase": "Spill filmen for ", "panel.style": "Stil", "panel.wm": "Skrift på ZEJAKOV MEDIA", "panel.hair": "Tynne streker", "panel.track": "Avstand mellom bokstaver", "panel.head": "Serif i overskrifter", "panel.body": "Brødtekst", "panel.note": "Endrer kun logoteksten. Brødteksten følger valget under.", "panel.open": "Skrift", "foot.l": "ZEJAKOV ZELJKOVIC, org. 835 196 542", "sty.0": "Kull", "sty.1": "Sand", "sty.2": "Petrol", "sty.3": "Galleri", "sty.4": "Kontrast", "sty.5": "Skifer", "spec.body": "Lys, historie og bevegelse", "spec.head": "Eiendomsfilm", "look.eyebrow": "Stilen", "look.h2": "To versjoner av samme rom.", "look.p": "Til venstre: automatisk HDR, slik de fleste boligbilder ser ut. Flatt, jevnt lyst, alt like viktig. Ingenting er galt, og ingenting blir husket.", "look.drag": "Dra i bildet", "look.a": "Automatisk HDR", "look.b": "ZEJAKOV MEDIA", "look.cap1": "Soverom, Heyerdahls vei 8 B", "look.cap2": "Kjøkken og spisestue, samme bolig", "look.close": "Til høyre er standarden min. Hvert bilde bygges opp for hånd i timene etter opptak, til rommet ser ut slik det føles å stå der.", "look.close2": "Det gjelder alle boliger jeg tar, også de rimelige. Automatisk HDR kan jeg levere hvis du vil.", "match.eyebrow": "Samarbeidet", "match.h2": "Bildene og filmen er et verktøy. Målet er ditt.", "match.big": "Vi passer godt sammen hvis du er ambisiøs og har vinnermentalitet.", "match.counter": "Er du fornøyd med at boligen bare blir lagt ut, er jeg feil mann.", "gal.eyebrow": "Siste oppdrag", "gal.h2": "Heyerdahls vei 8 B", "gal.meta": "Enebolig i Oslo. Foto og film, august 2026.", "gal.all": "Se hele serien", "gal.prev": "Forrige bilde", "gal.next": "Neste bilde", "gal.list": "Bilder fra Heyerdahls vei 8 B", "st.big": "En bolig til 25 millioner, presentert som en til fem, ser overpriset ut.", "st.sub": "Kjøperne til slike boliger er få, og de har allerede bladd forbi hundre annonser med tomme rom og flatt lys.", "svc.img": "Heyerdahls vei 8 B sett fra luften", "svc.cta": "Book befaring", "nav.menu": "Meny", "nav.close": "Lukk", "f.phone": "Telefon", "svc.b1": "Skal du bare ha bilder og film slik alle andre har det, finnes det mange som gjør den jobben, og de gjør den billigere enn meg.", "svc.b2": "Er du eier eller megler med ambisjoner, og vil at den rette kjøperen skal kjenne hvordan boligen faktisk er å bo i, da gjør vi noe annet.", "svc.b3": "Jeg tar hele produksjonen selv. Stillbilder, film, drone der det gir mening, flere kameraer og lys jeg tar med meg når rommet krever det. Fra rene annonsebilder til en kort dokumentar om boligen.", "svc.b4": "Hva boligen trenger, finner vi ut på befaringen.", "close.line": "Fortell meg om boligen, så tar vi det derfra.", "foot.pv": "Personvern", "pv.eyebrow": "Personvern", "pv.h2": "Hva jeg lagrer, og hvorfor.", "pv.p": "Kort fortalt: bare det du selv sender meg, og bare så lenge jobben krever det.", "pv.t1": "Behandlingsansvarlig", "pv.c1": "ZEJAKOV ZELJKOVIC, org. 835 196 542, Oslo. Kontakt: post@zejakov.com.", "pv.t2": "Skjemaet på siden", "pv.c2": "Sender du inn kontaktskjemaet, lagres navn, e-post, telefon, adressen på boligen og meldingen din. Det brukes til å svare deg og til å gjennomføre oppdraget, og grunnlaget er din forespørsel og en berettiget interesse i å drive virksomheten. Opplysningene slettes når forespørselen er avsluttet, og senest etter tolv måneder uten kontakt. Er det blitt et oppdrag, oppbevares bilagene så lenge bokføringsloven krever.", "pv.t3": "Vurderinger", "pv.c3": "Legger du igjen en vurdering, lagres navnet du oppgir, terningkastet og teksten. Den vises på siden først etter at jeg har godkjent den. Vil du ha den fjernet, si fra, så er den borte.", "pv.t4": "Databehandlere", "pv.c4": "Siden ligger hos Hostinger. Skjemaer og vurderinger lagres hos Supabase, og varsler sendes med Resend. Alle tre behandler opplysningene på mine vegne, og lagringen skjer innenfor EU og EØS.", "pv.t5": "Informasjonskapsler og måling", "pv.c5": "Siden setter ingen informasjonskapsler, og det er ingen annonsesporing her. For å se hvor forespørslene kommer fra, lagres kilden til besøket midlertidig i nettleseren din og følger med når du sender skjemaet. Den forsvinner når du lukker fanen. Skriftene lastes fra Google Fonts, som da ser IP-adressen din.", "pv.t6": "Bilder og film", "pv.c6": "Opptak fra et oppdrag brukes i markedsføringen av boligen. Vil du at jeg også skal vise dem i mitt eget arbeid, avtaler vi det. Er det mennesker i bildet, spør jeg først.", "pv.t7": "Rettighetene dine", "pv.c7": "Du kan be om innsyn i det som er lagret om deg, få det rettet eller slettet, og du kan trekke et samtykke tilbake. Send en e-post, så ordner jeg det. Mener du at noe er galt, kan du klage til Datatilsynet.", "pv.t8": "Opphavsrett", "pv.c8": "Bilder og film på denne siden er mine egne, og kan ikke brukes uten avtale.", "pv.upd": "Sist oppdatert 16. september 2026."}, "en": {"nav.home": "Home", "nav.work": "Work", "nav.services": "Services", "nav.about": "About me", "nav.contact": "Contact", "hero.h1a": "Every home has a story.", "hero.h1b": "Let us tell it.", "hero.cta1": "Book a walkthrough", "hero.cta2": "See the work", "work.eyebrow": "Work", "work.h2": "Heyerdahls vei 8 B", "work.p": "A house in Oslo, photographed and filmed in August 2026.", "svc.eyebrow": "Services", "svc.h2": "I do not sell pretty films.", "svc.p": "I bring serious eyes to you and your home.", "ab.eyebrow": "About me", "ab.h2": "One person, specialised in property.", "ab.p1": "ZEJAKOV MEDIA is a media production company in Oslo, and I work almost only with property. Film homes every week and you learn where the light falls in a Frogner flat in March, and how little time an agent has.", "ab.p2": "The person who turns up for the shoot is the one who edits and delivers. You deal with one person.", "ab.p3": "I stay within Oslo and the surrounding area, so every job gets done properly.", "ab.f1": "Company", "ab.f2": "Company number", "ab.f3": "Location", "ab.f4": "Segment", "ab.f4v": "Homes, upper segment", "ab.cta": "Get in touch", "ct.eyebrow": "Contact", "ct.h2": "Tell me about the home.", "ct.p": "Send the address and what you want to achieve. I do every job myself, so the date follows when I am free.", "ct.email": "Email", "ct.phone": "Phone", "ct.ig": "Instagram", "ct.area": "Coverage", "ct.areav": "Oslo, Bærum, Asker and Nordre Follo", "ct.resp": "Response time", "ct.respv": "I reply once I am out of a shoot.", "f.name": "Name", "f.email": "Email", "f.addr": "Address of the property", "f.msg": "Message", "f.send": "Send enquiry", "f.note": "I reply once I am out of a shoot.", "rev.eyebrow": "Testimonials", "rev.leave": "Leave a review", "rev.name": "Name", "rev.rating": "Rating", "rev.msg": "Your review", "rev.send": "Submit", "rev.ok": "Thank you. Your review was received and appears once approved.", "rev.err": "Something went wrong. Please try again later.", "rev.fill": "Please fill in name, rating and text.", "f.sending": "Sending ...", "f.ok": "Thank you. Your message came through, I will be in touch.", "f.err": "Something went wrong. Please email post@zejakov.com instead.", "f.sent": "Mockup. In the finished version this goes to post@zejakov.com.", "foot.r": "Property media production, Oslo", "doc.title": "ZEJAKOV MEDIA | Property media production, Oslo", "aria.reel": "Property film playing", "aria.pause": "Pause the film", "aria.play": "Play the film", "aria.mode": "Light or dark", "aria.lang": "Change language", "aria.panel": "Choose type and style", "aria.hide": "Hide", "aria.playcase": "Play the film for ", "panel.style": "Style", "panel.wm": "ZEJAKOV MEDIA typeface", "panel.hair": "Hairline weight", "panel.track": "Letter spacing", "panel.head": "Heading serif", "panel.body": "Body text", "panel.note": "Changes the wordmark only. Body copy follows the choice below.", "panel.open": "Type", "foot.l": "ZEJAKOV ZELJKOVIC, company no. 835 196 542", "sty.0": "Charcoal", "sty.1": "Sand", "sty.2": "Petrol", "sty.3": "Gallery", "sty.4": "Contrast", "sty.5": "Slate", "spec.body": "Light, story and movement", "spec.head": "Property film", "look.eyebrow": "The look", "look.h2": "Two versions of the same room.", "look.p": "On the left, automatic HDR, the way most listing photos look. Flat, evenly lit, everything equally important. Nothing wrong, and nothing remembered.", "look.drag": "Drag the image", "look.a": "Automatic HDR", "look.b": "ZEJAKOV MEDIA", "look.cap1": "Bedroom, Heyerdahls vei 8 B", "look.cap2": "Kitchen and dining, same home", "look.close": "On the right is my standard. Every image is built up by hand in the hours after the shoot, until the room looks the way it feels to stand in it.", "look.close2": "That goes for every home I take on, the modest ones too. Automatic HDR is there if you want it.", "match.eyebrow": "Working together", "match.h2": "The photos and the film are a tool. The goal is yours.", "match.big": "We will be a great match if you are ambitious and have a winning mentality.", "match.counter": "If you are content simply having the home listed, I am the wrong person.", "gal.eyebrow": "Latest work", "gal.h2": "Heyerdahls vei 8 B", "gal.meta": "A house in Oslo. Photo and film, August 2026.", "gal.all": "See the full set", "gal.prev": "Previous image", "gal.next": "Next image", "gal.list": "Images from Heyerdahls vei 8 B", "st.big": "A 25 million kroner home, presented like a 5 million one, looks overpriced.", "st.sub": "Buyers for homes like that are few, and they have already scrolled past a hundred listings of empty rooms in flat light.", "svc.img": "Heyerdahls vei 8 B from the air", "svc.cta": "Book a walkthrough", "nav.menu": "Menu", "nav.close": "Close", "f.phone": "Phone", "svc.b1": "If you only want photos and film the way everyone else has them, plenty of people do that job, and they do it cheaper than me.", "svc.b2": "If you are an owner or an agent with ambition, and you want the right buyer to feel what the home is actually like to live in, then we are doing something else.", "svc.b3": "I handle the whole production myself. Stills, film, drone where it earns its place, several cameras and lighting I bring along when the room calls for it. From plain listing photos to a short documentary about the home.", "svc.b4": "What the home needs, we work out at the walkthrough.", "close.line": "Tell me about the home, and we take it from there.", "foot.pv": "Privacy", "pv.eyebrow": "Privacy", "pv.h2": "What I store, and why.", "pv.p": "Short version: only what you send me, and only as long as the job needs it.", "pv.t1": "Data controller", "pv.c1": "ZEJAKOV ZELJKOVIC, company no. 835 196 542, Oslo. Contact: post@zejakov.com.", "pv.t2": "The form on this site", "pv.c2": "If you send the contact form, your name, email, phone, the address of the home and your message are stored. They are used to answer you and to carry out the job, on the basis of your own enquiry and a legitimate interest in running the business. They are deleted once the enquiry is closed, and at the latest after twelve months without contact. If it became a job, the accounting records are kept for as long as Norwegian bookkeeping law requires.", "pv.t3": "Reviews", "pv.c3": "If you leave a review, the name you give, the rating and the text are stored. It only appears on the site after I have approved it. Ask me to remove it and it is gone.", "pv.t4": "Processors", "pv.c4": "The site is hosted by Hostinger. Forms and reviews are stored with Supabase, and notifications are sent with Resend. All three process the data on my behalf, and storage is within the EU and EEA.", "pv.t5": "Cookies and measurement", "pv.c5": "This site sets no cookies, and there is no ad tracking here. To see where enquiries come from, the source of your visit is held temporarily in your browser and travels with the form when you send it. It disappears when you close the tab. Type is loaded from Google Fonts, which therefore sees your IP address.", "pv.t6": "Photos and film", "pv.c6": "Footage from a job is used to market that home. If you also want me to show it in my own work, we agree on that. If there are people in frame, I ask first.", "pv.t7": "Your rights", "pv.c7": "You can ask for access to what is stored about you, have it corrected or deleted, and you can withdraw a consent. Send an email and I will sort it. If you think something is wrong, you can complain to the Norwegian Data Protection Authority.", "pv.t8": "Copyright", "pv.c8": "The photos and film on this site are my own, and cannot be used without an agreement.", "pv.upd": "Last updated 16 September 2026."}};
 let LANG="no";
 let PAGE="hjem";
 function updateMast(){
@@ -1182,7 +1247,7 @@ function setMode(dark){
 document.getElementById("mode").addEventListener("click",()=>setMode(!DARK));
 
 const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
-const PAGES = ["hjem","arbeid","tjenester","om","kontakt"];
+const PAGES = ["hjem","arbeid","tjenester","om","kontakt","personvern"];
 
 /* ---------------- routing ---------------- */
 function show(name, push){
@@ -1509,15 +1574,11 @@ show(location.hash.slice(1)||"hjem", false);
   function draw(){
     if (!rows.length) return;
     var r = rows[at], n = String(r.message||"").length;
-    var size = n < 150 ? "clamp(1.2rem,2.3vw,1.7rem)" : (n < 320 ? "clamp(1.02rem,1.7vw,1.28rem)" : "clamp(.95rem,1.35vw,1.08rem)");
+    var size = n < 150 ? "s1" : (n < 320 ? "s2" : "s3");
     slide.innerHTML = '<figure>'
-      + '<p style="color:var(--brass);letter-spacing:.26em;margin:0 0 16px;font-size:.9rem">'
-      + "★".repeat(Math.max(0,Math.min(5, r.rating|0))) + '</p>'
-      + '<blockquote style="margin:0 0 18px;font-family:var(--hd-font),Georgia,serif;font-style:italic;'
-      + 'font-size:' + size + ';line-height:1.4;color:var(--cream);max-width:36ch">“'
-      + esc(r.message) + '”</blockquote>'
-      + '<figcaption style="color:var(--muted);font-size:.76rem;letter-spacing:.12em;text-transform:uppercase">'
-      + esc(r.name) + '</figcaption></figure>';
+      + '<p class="revstars">' + "★".repeat(Math.max(0,Math.min(5, r.rating|0))) + '</p>'
+      + '<blockquote class="revq ' + size + '">“' + esc(r.message) + '”</blockquote>'
+      + '<figcaption class="revby">' + esc(r.name) + '</figcaption></figure>';
     if (cnt) cnt.textContent = (at+1) + " / " + rows.length;
   }
   function go(d){ if(!rows.length) return; at = (at + d + rows.length) % rows.length; draw(); }
@@ -1602,17 +1663,15 @@ show(location.hash.slice(1)||"hjem", false);
   /* frames peek in from the side of the strip, so they reveal as soon as any of them shows */
   reveal(document.querySelectorAll(".frame"), { rootMargin: "0px 0px -4% 0px", threshold: 0 });
 
-  var h0 = document.querySelector(".arc-hero");
-  if (h0 && !h0.classList.contains("pre")) h0.classList.add("done");
-  /* the arc fans out once the first card is decoded */
+  /* the headline lifts as soon as the poster is up, the film follows when it can */
   var hero = document.querySelector(".hero.pre");
   if (hero) {
-    var first = document.querySelector("#arc img"), go = false;
+    var go = false;
     var start = function(){ if (go) return; go = true;
-      requestAnimationFrame(function(){ requestAnimationFrame(function(){ hero.classList.remove("pre"); setTimeout(function(){ hero.classList.add("done"); }, 2600); }); }); };
-    if (first && first.complete && first.naturalWidth) start();
-    else if (first) { first.addEventListener("load", start, { once:true }); first.addEventListener("error", start, { once:true }); }
-    setTimeout(start, 1400);
+      requestAnimationFrame(function(){ requestAnimationFrame(function(){ hero.classList.remove("pre"); }); }); };
+    if (document.readyState === "complete") start();
+    else addEventListener("load", start, { once:true });
+    setTimeout(start, 900);
   }
 
   /* gallery strip: drag with a mouse, swipe on touch, arrows, a progress hairline */
@@ -1655,5 +1714,58 @@ show(location.hash.slice(1)||"hjem", false);
 })();
 </script>
 
+
+<script>
+/* ---------------- hero: the film, and the drift under the page ---------------- */
+(function(){
+  var hero  = document.getElementById("hero"); if (!hero) return;
+  var v     = document.getElementById("herovid");
+  var stage = hero.querySelector(".vstage");
+  var body  = hero.querySelector(".herobody");
+  var cue   = hero.querySelector(".vcue");
+  var reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* the film drifts slower than the page, so the hero lets go instead of sliding off */
+  if (!reduce && stage && body) {
+    var tick = false, h = hero.offsetHeight;
+    addEventListener("resize", function(){ h = hero.offsetHeight; }, { passive:true });
+    var paint = function(){
+      tick = false;
+      if (!h) { h = hero.offsetHeight; if (!h) return; }
+      var y = scrollY; if (y > h) y = h;
+      stage.style.transform = "translate3d(0," + (y * 0.28).toFixed(1) + "px,0)";
+      body.style.transform  = "translate3d(0," + (y * 0.12).toFixed(1) + "px,0)";
+      var o = 1 - y / (h * 0.86); if (o < 0) o = 0;
+      body.style.opacity = o.toFixed(3);
+      if (cue) cue.style.opacity = o.toFixed(3);
+    };
+    addEventListener("scroll", function(){
+      if (!tick) { tick = true; requestAnimationFrame(paint); }
+    }, { passive:true });
+    paint();
+  }
+
+  /* the poster carries the hero on its own, so the film only loads when it is welcome */
+  if (!v || reduce) return;
+  var c = navigator.connection || {};
+  if (c.saveData === true || /^(slow-2g|2g)$/.test(c.effectiveType || "")) return;
+  var w = Math.min(innerWidth * (devicePixelRatio || 1), 2400);
+  if (c.effectiveType === "3g") w = 0;
+  v.src = w > 1500 ? "video/hero-1080.mp4?v=1" : w > 900 ? "video/hero-720.mp4?v=1" : "video/hero-480.mp4?v=1";
+  v.load();
+  v.addEventListener("canplay", function(){
+    var p = v.play(); if (p && p.catch) p.catch(function(){});
+  }, { once:true });
+  v.addEventListener("playing", function(){
+    v.classList.add("on");
+    setTimeout(function(){ stage.classList.add("live"); }, 900);
+  }, { once:true });
+  /* a tab nobody is looking at is not worth decoding */
+  document.addEventListener("visibilitychange", function(){
+    if (document.hidden) v.pause();
+    else if (v.classList.contains("on")) { var p = v.play(); if (p && p.catch) p.catch(function(){}); }
+  });
+})();
+</script>
 </body>
 </html>
