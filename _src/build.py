@@ -9,19 +9,13 @@ Run from the repo root:  python3 _src/build.py
 """
 import os, re, sys, json, datetime
 
+import tinycss2
+
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SRC = os.path.join(ROOT, "_src", "site.html")
 SITE = "https://zejakov.com"
 
 # slug -> (output path, <title>, meta description, nav href)
-EN_TITLE = {
- "hjem": "ZEJAKOV MEDIA | Property film, photography and drone in Oslo",
- "arbeid": "Work | A home filmed and photographed in Oslo | ZEJAKOV MEDIA",
- "tjenester": "Property film, photography and drone in Oslo | ZEJAKOV MEDIA",
- "om": "About me | Property photographer and filmmaker in Oslo | ZEJAKOV MEDIA",
- "kontakt": "Contact | Book a walkthrough in Oslo | ZEJAKOV MEDIA",
- "personvern": "Privacy | ZEJAKOV MEDIA",
-}
 PAGES = {
  "hjem": ("index.html",
    "ZEJAKOV MEDIA | Boligfilm, boligfoto og drone i Oslo",
@@ -70,7 +64,7 @@ def split(src):
     return src[:first], mains, src[last:]
 
 
-def meta(head, title, desc, url, slug):
+def meta(head, title, desc, url):
     head = re.sub(r'<title>.*?</title>', '<title>%s</title>' % title, head, count=1, flags=re.S)
     head = re.sub(r'<meta name="description" content="[^"]*">',
                   '<meta name="description" content="%s">' % desc, head, count=1)
@@ -82,10 +76,52 @@ def meta(head, title, desc, url, slug):
                   '<meta property="og:title" content="%s">' % title, head, count=1)
     head = re.sub(r'<meta property="og:description" content="[^"]*">',
                   '<meta property="og:description" content="%s">' % desc, head, count=1)
-    head = head.replace("</head>",
-        '<script>window.DOCTITLE=%s</script>\n</head>'
-        % json.dumps({"no": title, "en": EN_TITLE[slug]}, ensure_ascii=False), 1)
     return head
+
+
+def _ws(text):
+    return re.sub(r"\s+", " ", text).strip()
+
+
+def _selector(prelude):
+    sel = _ws(tinycss2.serialize(prelude))
+    return re.sub(r"\s*([,>+~])\s*", r"\1", sel)
+
+
+def _declarations(content):
+    out = []
+    for d in tinycss2.parse_declaration_list(content, skip_comments=True, skip_whitespace=True):
+        if d.type != "declaration":
+            continue
+        out.append("%s:%s%s" % (d.name if d.name.startswith("--") else d.lower_name,
+                                _ws(tinycss2.serialize(d.value)),
+                                "!important" if d.important else ""))
+    return ";".join(out)
+
+
+def _rules(nodes):
+    out = []
+    for n in nodes:
+        if n.type == "qualified-rule":
+            out.append("%s{%s}" % (_selector(n.prelude), _declarations(n.content)))
+        elif n.type == "at-rule":
+            kw, pre = n.lower_at_keyword, _ws(tinycss2.serialize(n.prelude))
+            if n.content is None:
+                out.append("@%s %s;" % (kw, pre))
+            elif kw in ("media", "supports", "keyframes"):
+                inner = tinycss2.parse_rule_list(n.content, skip_comments=True, skip_whitespace=True)
+                out.append("@%s %s{%s}" % (kw, pre, _rules(inner)))
+            else:
+                out.append("@%s%s{%s}" % (kw, (" " + pre) if pre else "", _declarations(n.content)))
+    return "".join(out)
+
+
+def minify_style(head):
+    """The stylesheet ships without comments or spacing; the source keeps both."""
+    a = head.index("<style>") + len("<style>")
+    b = head.index("</style>", a)
+    css = tinycss2.parse_stylesheet(head[a:b], skip_comments=True, skip_whitespace=True)
+    return head[:a] + _rules(css) + head[b:]
 
 
 def links(chunk, current):
@@ -102,6 +138,7 @@ def main():
     src = open(SRC, encoding="utf-8").read()
     head_end = src.index("</head>") + len("</head>")
     head, rest = src[:head_end], src[head_end:]
+    head = minify_style(head)
     before, mains, after = split(rest)
 
     written = []
@@ -111,15 +148,12 @@ def main():
         page = mains[slug][2]
         # the page's own heading is the document heading, once it is a document
         if slug != "hjem":
-            page = page.replace('<h2 data-t=', '<h1 data-t=', 1)
-            page = page.replace('<h2><span data-t=', '<h1><span data-t=', 1)
-            if "<h1" in page:
-                i = page.index("<h1")
-                j = page.index("</h2>", i)
-                page = page[:j] + "</h1>" + page[j + len("</h2>"):]
+            i = page.index("<h2")
+            j = page.index("</h2>", i)
+            page = page[:i] + "<h1" + page[i + 3:j] + "</h1>" + page[j + len("</h2>"):]
         page = page.replace('<main class="page" id=', '<main class="page live" id=', 1)
 
-        doc = meta(head, title, desc, url, slug) + links(before, slug) + page + links(after, slug)
+        doc = meta(head, title, desc, url) + links(before, slug) + page + links(after, slug)
         out = os.path.join(ROOT, path)
         os.makedirs(os.path.dirname(out) or ".", exist_ok=True)
         open(out, "w", encoding="utf-8").write(doc)
