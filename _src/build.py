@@ -18,12 +18,12 @@ SITE = "https://zejakov.com"
 # slug -> (output path, <title>, meta description, nav href)
 PAGES = {
  "hjem": ("index.html",
-   "ZEJAKOV MEDIA | Boligfilm, boligfoto og drone i Oslo",
+   "Boligfilm og boligfoto i Oslo | ZEJAKOV MEDIA",
    "Medieproduksjon for eiendom i Oslo. Boligfilm, boligfoto og drone til visning "
    "og annonse, alt gjort av én person. Se arbeidet og book befaring.",
    "/"),
  "arbeid": ("arbeid/index.html",
-   "Arbeid | Bolig filmet og fotografert i Oslo | ZEJAKOV MEDIA",
+   "Boligfilm fra Oslo: Heyerdahls vei 8 B | ZEJAKOV MEDIA",
    "En hel bolig i Oslo, fotografert og filmet i samme besøk: stillbilder, "
    "film og drone fra Heyerdahls vei 8 B.",
    "/arbeid/"),
@@ -33,14 +33,14 @@ PAGES = {
    "og meglere som vil vise hvordan boligen faktisk er å bo i.",
    "/tjenester/"),
  "om": ("om/index.html",
-   "Om meg | Boligfotograf og filmfotograf i Oslo | ZEJAKOV MEDIA",
+   "Boligfotograf og filmfotograf i Oslo | ZEJAKOV MEDIA",
    "Én person, spesialisert på eiendom i Oslo og omegn. Den som filmer er "
    "den samme som redigerer og leverer.",
    "/om/"),
  "kontakt": ("kontakt/index.html",
-   "Kontakt | Book befaring i Oslo | ZEJAKOV MEDIA",
-   "Fortell meg om boligen, så finner vi en dag. Oslo, Bærum, Asker og "
-   "Nordre Follo.",
+   "Book befaring for boligfilm i Oslo | ZEJAKOV MEDIA",
+   "Fortell meg om boligen, så finner vi en dag for befaring. Boligfilm, "
+   "boligfoto og drone i Oslo, Bærum, Asker og Nordre Follo.",
    "/kontakt/"),
  "personvern": ("personvern/index.html",
    "Personvern | ZEJAKOV MEDIA",

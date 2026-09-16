@@ -113,7 +113,7 @@ h1{font-size:calc(clamp(1.9rem,4.6vw,3.4rem) * var(--hd-scale));line-height:1.1;
 .zvstar.on{color:var(--brass)}
 #zv-slide figure{margin:0;animation:zvin .45s cubic-bezier(.22,.61,.36,1)}
 @keyframes zvin{from{opacity:0;transform:translateY(9px)}to{opacity:1;transform:none}}
-.btn{display:inline-flex;align-items:center;gap:10px;border:1px solid var(--brass);color:var(--brass);
+.btn{display:inline-flex;align-items:center;line-height:normal;text-decoration:none;gap:10px;border:1px solid var(--brass);color:var(--brass);
   padding:13px 24px;font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;
   background:none;font-family:inherit;transition:background .22s,color .22s}
 .btn:hover,.btn:focus-visible{background:var(--brass);color:var(--ink)}
@@ -533,7 +533,7 @@ h3{letter-spacing:-.02em}
 
 <div class="mast" id="mast">
   <div class="wrap mastin">
-    <a class="brand" href="#hjem">
+    <a class="brand" href="/">
       <span class="badgewrap" role="img" aria-label="ZEJAKOV MEDIA">
         <svg class="b-light" viewBox="0 0 512 512" aria-hidden="true">
           <circle cx="256" cy="256" r="256"/><use href="#mk"/>
@@ -552,7 +552,7 @@ h3{letter-spacing:-.02em}
       <a href="#kontakt">Kontakt</a>
     </nav>
     <div class="mtools">
-      <button class="btn solid navcta" data-go="kontakt">Book befaring</button>
+      <a class="btn solid navcta" href="/kontakt/">Book befaring</a>
       <button id="menubtn" class="mt menubtn" type="button" aria-controls="nav" aria-expanded="false">Meny</button>
       <button id="mode" class="mt" aria-label="Lys eller mørk">☾</button>
     </div>
@@ -575,8 +575,8 @@ h3{letter-spacing:-.02em}
       </h1>
       <p class="vsub hi">Er du fornøyd med at boligen bare blir lagt ut, er jeg feil mann.</p>
       <div class="btnrow hi">
-        <button class="btn solid" data-go="kontakt">Book befaring</button>
-        <button class="btn ghost" data-go="arbeid">Se arbeidet</button>
+        <a class="btn solid" href="/kontakt/">Book befaring</a>
+        <a class="btn ghost" href="/arbeid/">Se arbeidet</a>
       </div>
     </div>
     <div class="vcue hi" aria-hidden="true"><i></i></div>
@@ -597,7 +597,7 @@ h3{letter-spacing:-.02em}
       <div class="galnav">
         <button class="zvarrow" id="gprev" type="button" aria-label="Forrige bilde">&#8249;</button>
         <button class="zvarrow" id="gnext" type="button" aria-label="Neste bilde">&#8250;</button>
-        <button class="btn ghost" data-go="arbeid">Se hele serien</button>
+        <a class="btn ghost" href="/arbeid/">Se hele serien</a>
       </div>
     </div>
   </section>
@@ -617,8 +617,8 @@ h3{letter-spacing:-.02em}
         <p class="rv" style="--d:.16s">Til venstre: standard HDR, slik de fleste boligbilder ser ut. Flatt, jevnt lyst, alt like viktig. Ingenting er galt, og ingenting blir husket.</p>
       </div>
       <div class="bas">
-<figure class="ba"><div class="bawrap" style="--pos:50%" data-ba tabindex="0" role="slider" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" aria-label="Soverom, Heyerdahls vei 8 B"><img src="/img/ba-soverom-1-1280.4b0ac45da2.webp" srcset="/img/ba-soverom-1-828.4b0ac45da2.webp 828w, /img/ba-soverom-1-1280.4b0ac45da2.webp 1280w, /img/ba-soverom-1-1920.4b0ac45da2.webp 1920w" sizes="(max-width: 1180px) 100vw, 1100px" width="1280" height="854" alt="" loading="lazy" decoding="async"><div class="baclip"><img src="/img/ba-soverom-2-1280.aa3c605f69.webp" srcset="/img/ba-soverom-2-828.aa3c605f69.webp 828w, /img/ba-soverom-2-1280.aa3c605f69.webp 1280w, /img/ba-soverom-2-1920.aa3c605f69.webp 1920w" sizes="(max-width: 1180px) 100vw, 1100px" width="1280" height="853" alt="" loading="lazy" decoding="async"></div><div class="bahandle"></div><span class="balab balab-l">Standard HDR</span><span class="balab balab-r">ZEJAKOV MEDIA</span><span class="badrag">Dra i bildet</span></div><figcaption class="bacap">Soverom, Heyerdahls vei 8 B</figcaption></figure>
-<figure class="ba"><div class="bawrap" style="--pos:50%" data-ba tabindex="0" role="slider" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" aria-label="Kjøkken og spisestue, samme bolig"><img src="/img/ba-kjokken-1-1280.4422c30286.webp" srcset="/img/ba-kjokken-1-828.4422c30286.webp 828w, /img/ba-kjokken-1-1280.4422c30286.webp 1280w, /img/ba-kjokken-1-1920.4422c30286.webp 1920w" sizes="(max-width: 1180px) 100vw, 1100px" width="1280" height="852" alt="" loading="lazy" decoding="async"><div class="baclip"><img src="/img/ba-kjokken-2-1280.eba65d9517.webp" srcset="/img/ba-kjokken-2-828.eba65d9517.webp 828w, /img/ba-kjokken-2-1280.eba65d9517.webp 1280w, /img/ba-kjokken-2-1920.eba65d9517.webp 1920w" sizes="(max-width: 1180px) 100vw, 1100px" width="1280" height="852" alt="" loading="lazy" decoding="async"></div><div class="bahandle"></div><span class="balab balab-l">Standard HDR</span><span class="balab balab-r">ZEJAKOV MEDIA</span><span class="badrag">Dra i bildet</span></div><figcaption class="bacap">Kjøkken og spisestue, samme bolig</figcaption></figure>
+<figure class="ba"><div class="bawrap" style="--pos:50%" data-ba tabindex="0" role="slider" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" aria-label="Soverom, Heyerdahls vei 8 B"><img src="/img/ba-soverom-1-1280.4b0ac45da2.webp" srcset="/img/ba-soverom-1-828.4b0ac45da2.webp 828w, /img/ba-soverom-1-1280.4b0ac45da2.webp 1280w, /img/ba-soverom-1-1920.4b0ac45da2.webp 1920w" sizes="(max-width: 1180px) 100vw, 1100px" width="1280" height="854" alt="Soverom i enebolig i Oslo, redigert av ZEJAKOV MEDIA" loading="lazy" decoding="async"><div class="baclip"><img src="/img/ba-soverom-2-1280.aa3c605f69.webp" srcset="/img/ba-soverom-2-828.aa3c605f69.webp 828w, /img/ba-soverom-2-1280.aa3c605f69.webp 1280w, /img/ba-soverom-2-1920.aa3c605f69.webp 1920w" sizes="(max-width: 1180px) 100vw, 1100px" width="1280" height="853" alt="Samme soverom med standard HDR" loading="lazy" decoding="async"></div><div class="bahandle"></div><span class="balab balab-l">Standard HDR</span><span class="balab balab-r">ZEJAKOV MEDIA</span><span class="badrag">Dra i bildet</span></div><figcaption class="bacap">Soverom, Heyerdahls vei 8 B</figcaption></figure>
+<figure class="ba"><div class="bawrap" style="--pos:50%" data-ba tabindex="0" role="slider" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" aria-label="Kjøkken og spisestue, samme bolig"><img src="/img/ba-kjokken-1-1280.4422c30286.webp" srcset="/img/ba-kjokken-1-828.4422c30286.webp 828w, /img/ba-kjokken-1-1280.4422c30286.webp 1280w, /img/ba-kjokken-1-1920.4422c30286.webp 1920w" sizes="(max-width: 1180px) 100vw, 1100px" width="1280" height="852" alt="Kjøkken og spisestue i enebolig i Oslo, redigert av ZEJAKOV MEDIA" loading="lazy" decoding="async"><div class="baclip"><img src="/img/ba-kjokken-2-1280.eba65d9517.webp" srcset="/img/ba-kjokken-2-828.eba65d9517.webp 828w, /img/ba-kjokken-2-1280.eba65d9517.webp 1280w, /img/ba-kjokken-2-1920.eba65d9517.webp 1920w" sizes="(max-width: 1180px) 100vw, 1100px" width="1280" height="852" alt="Samme kjøkken med standard HDR" loading="lazy" decoding="async"></div><div class="bahandle"></div><span class="balab balab-l">Standard HDR</span><span class="balab balab-r">ZEJAKOV MEDIA</span><span class="badrag">Dra i bildet</span></div><figcaption class="bacap">Kjøkken og spisestue, samme bolig</figcaption></figure>
       </div>
       <div class="lookclose rv">
         <p>Til høyre er standarden min. Hvert bilde bygges opp for hånd i timene etter opptak, til rommet ser ut slik det føles å stå der.</p>
@@ -663,7 +663,7 @@ h3{letter-spacing:-.02em}
     <div class="endscrim" aria-hidden="true"></div>
     <div class="wrap endin">
       <p class="closeline rv">Fortell meg om boligen, så tar vi det derfra.</p>
-      <div class="btnrow rv" style="--d:.1s"><button class="btn solid" data-go="kontakt">Book befaring</button></div>
+      <div class="btnrow rv" style="--d:.1s"><a class="btn solid" href="/kontakt/">Book befaring</a></div>
     </div>
   </section>
 </main>
@@ -693,13 +693,13 @@ h3{letter-spacing:-.02em}
     </div>
   </div>
   <figure class="svcband rv">
-    <img src="/img/case-4-1080.2c80210965.webp" srcset="/img/case-4-640.2c80210965.webp 640w, /img/case-4-1080.2c80210965.webp 1080w" sizes="100vw" width="1080" height="810" alt="Heyerdahls vei 8 B sett fra luften" loading="lazy" decoding="async">
+    <img src="/img/case-4-1080.2c80210965.webp" srcset="/img/case-4-640.2c80210965.webp 640w, /img/case-4-1080.2c80210965.webp 1080w" sizes="100vw" width="1080" height="810" alt="Heyerdahls vei 8 B i Oslo sett fra luften, dronefoto" loading="lazy" decoding="async">
   </figure>
   <div class="wrap svcfilter">
     <p class="eyebrow rv">Samarbeidet</p>
     <p class="svcbig rv" style="--d:.06s">Bildene og filmen er et verktøy. Målet er ditt.</p>
     <p class="svccounter rv" style="--d:.12s">Hva boligen trenger, finner vi ut på befaringen.</p>
-    <div class="btnrow rv" style="--d:.18s"><button class="btn" data-go="kontakt">Book befaring</button></div>
+    <div class="btnrow rv" style="--d:.18s"><a class="btn" href="/kontakt/">Book befaring</a></div>
   </div>
 </main>
 <!-- ============ OM ============ -->
@@ -709,7 +709,7 @@ h3{letter-spacing:-.02em}
     <h2>Én person, spesialisert på eiendom.</h2>
   </div>
   <div class="wrap abgrid" style="padding-bottom:clamp(50px,8vw,96px)">
-    <div class="portrait"><img src="/img/om-bolig-1280.4fc5e6c769.webp" srcset="/img/om-bolig-828.4fc5e6c769.webp 828w, /img/om-bolig-1280.4fc5e6c769.webp 1280w, /img/om-bolig-1500.4fc5e6c769.webp 1500w" sizes="(max-width: 800px) 100vw, 60vw" width="1280" height="853" alt="Heyerdahls vei 8 B" loading="lazy" decoding="async"></div>
+    <div class="portrait"><img src="/img/om-bolig-1280.4fc5e6c769.webp" srcset="/img/om-bolig-828.4fc5e6c769.webp 828w, /img/om-bolig-1280.4fc5e6c769.webp 1280w, /img/om-bolig-1500.4fc5e6c769.webp 1500w" sizes="(max-width: 800px) 100vw, 60vw" width="1280" height="853" alt="Heyerdahls vei 8 B i Oslo, fotografert av ZEJAKOV MEDIA" loading="lazy" decoding="async"></div>
     <div>
       <p>ZEJAKOV MEDIA er et medieproduksjonsselskap i Oslo, og jeg jobber nesten bare med eiendom. Når du filmer boliger hver uke, lærer du hvor lyset faller i en Frogner-leilighet i mars, og hvor lite tid en megler har.</p>
       <p>Den som kommer på opptak, er den samme som redigerer og leverer. Du har én person å forholde deg til.</p>
@@ -720,7 +720,7 @@ h3{letter-spacing:-.02em}
         <div class="fact"><span>Sted</span><span>Oslo</span></div>
         <div class="fact"><span>Segment</span><span>Boliger i det øvre sjiktet</span></div>
       </div>
-      <div class="btnrow"><button class="btn" data-go="kontakt">Ta kontakt</button></div>
+      <div class="btnrow"><a class="btn" href="/kontakt/">Ta kontakt</a></div>
     </div>
   </div>
 </main>
@@ -802,7 +802,7 @@ h3{letter-spacing:-.02em}
   <div class="wrap footin">
     <span>ZEJAKOV ZELJKOVIC, org. 835 196 542</span>
     <span>Medieproduksjon for eiendom, Oslo</span>
-    <a href="#personvern" data-go="personvern">Personvern</a>
+    <a href="/personvern/">Personvern</a>
   </div>
 </footer>
 
@@ -922,15 +922,6 @@ function setMode(dark){
 }
 modeBtn.addEventListener("click",()=>setMode(document.documentElement.dataset.surface==="light"));
 
-/* ---------------- links ----------------
-   Every page is its own document at its own address. Buttons simply go there. */
-const HREF = { hjem:"/", arbeid:"/arbeid/", tjenester:"/tjenester/",
-               om:"/om/", kontakt:"/kontakt/", personvern:"/personvern/" };
-document.addEventListener("click", e=>{
-  const b = e.target.closest("[data-go]");
-  if(b){ e.preventDefault(); location.href = HREF[b.dataset.go] || "/"; }
-});
-
 /* ---------------- gallery ---------------- */
 const HERO=[
  {"src": "/img/hero-1-1920.0c15a51d49.webp", "srcset": "/img/hero-1-828.0c15a51d49.webp 828w, /img/hero-1-1280.0c15a51d49.webp 1280w, /img/hero-1-1920.0c15a51d49.webp 1920w, /img/hero-1-2200.0c15a51d49.webp 2200w", "w": 1920, "h": 1280},
@@ -961,7 +952,7 @@ const home=document.getElementById("strip"), all=document.getElementById("cases-
 function buildFrame(f, sizes){
   const el=document.createElement("figure");
   el.className="frame "+f.s; el.setAttribute("role","listitem");
-  el.innerHTML=`<div class="fimg"><img src="${f.img.src}" srcset="${f.img.srcset}" sizes="${sizes}" width="${f.img.w}" height="${f.img.h}" alt="Heyerdahls vei 8 B, ${f.t}" loading="lazy" decoding="async" draggable="false"></div>`+
+  el.innerHTML=`<div class="fimg"><img src="${f.img.src}" srcset="${f.img.srcset}" sizes="${sizes}" width="${f.img.w}" height="${f.img.h}" alt="${f.t}, Heyerdahls vei 8 B i Oslo" loading="lazy" decoding="async" draggable="false"></div>`+
     `<figcaption><b>${f.t}</b><span>${f.r}</span></figcaption>`;
   return el;
 }
@@ -1006,7 +997,7 @@ setMode(true);
     if (/^tel:/.test(href)) track("click_phone");
     else if (/^mailto:/.test(href)) track("click_email");
     else if (/instagram\.com/.test(href)) track("click_instagram");
-    else if (el.getAttribute("data-go") === "kontakt") track("cta_book");
+    else if (el.classList.contains("btn") && /\/kontakt\/$/.test(href)) track("cta_book");
   }, true);
 
   /* ---------- kontaktskjema ---------- */
