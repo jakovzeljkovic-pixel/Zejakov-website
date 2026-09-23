@@ -513,24 +513,25 @@ h3{letter-spacing:-.02em}
 }
 
 /* hero: the line reads as a title, not a caption */
-.vh1{font-size:clamp(2.5rem,6vw,5.5rem);line-height:.98;letter-spacing:-.05em;max-width:13ch}
+.vh1{font-size:clamp(2.5rem,6vw,5.5rem);line-height:1.06;letter-spacing:-.034em;max-width:13ch}
+.vhero .ln{padding-bottom:.16em;margin-bottom:-.12em}
 .vsub{font-size:clamp(1.02rem,1.4vw,1.2rem);max-width:34ch}
 
 /* gallery head */
 .galhead{align-items:flex-end}
-.galhead h2{font-size:clamp(2.4rem,6vw,5rem);letter-spacing:-.05em;margin-top:0}
+.galhead h2{font-size:clamp(2.4rem,6vw,5rem);line-height:1.04;letter-spacing:-.036em;margin-top:0}
 .galmeta{font-family:var(--tx-font),sans-serif;font-size:.92rem;letter-spacing:0;text-transform:none;
   line-height:1.5;color:var(--muted);text-align:right}
 
 /* the statement is the loudest thing on the page */
 .stmt{border-top:0;padding-block:clamp(110px,15vw,220px)}
-.stmtbig{font-size:clamp(2.3rem,6.2vw,5.9rem);line-height:1;letter-spacing:-.052em;max-width:15ch;
+.stmtbig{font-size:clamp(2.3rem,6.2vw,5.9rem);line-height:1.06;letter-spacing:-.036em;max-width:15ch;
   font-weight:600;font-variation-settings:normal}
 .stmtbig em{font-style:normal;color:var(--brass)}
 .stmtsub{font-size:clamp(1.02rem,1.45vw,1.2rem);max-width:40ch;margin-top:clamp(28px,3.6vw,44px)}
 
 /* before and after */
-.lookhead h2{font-size:clamp(2.1rem,4.8vw,3.9rem);line-height:1;letter-spacing:-.05em;margin-top:0}
+.lookhead h2{font-size:clamp(2.1rem,4.8vw,3.9rem);line-height:1.06;letter-spacing:-.036em;margin-top:0}
 .lookhead p{font-size:clamp(1rem,1.3vw,1.1rem)}
 .lookclose{border-left-width:1px}
 
@@ -544,13 +545,13 @@ h3{letter-spacing:-.02em}
 
 /* page heads */
 .pagehead h1,.pagehead h2,.svchead h1,.svchead h2{font-size:calc(clamp(2.5rem,6vw,5rem) * var(--hd-scale));
-  line-height:.98;letter-spacing:-.05em;margin-top:0;max-width:14ch}
+  line-height:1.06;letter-spacing:-.036em;margin-top:0;max-width:14ch}
 .svchead h1,.svchead h2{max-width:13ch}
-.svcbig{font-size:calc(clamp(2rem,5vw,4.2rem) * var(--hd-scale));line-height:1;letter-spacing:-.05em;max-width:15ch;margin-top:0}
+.svcbig{font-size:calc(clamp(2rem,5vw,4.2rem) * var(--hd-scale));line-height:1.06;letter-spacing:-.036em;max-width:15ch;margin-top:0}
 
 /* the closing frame */
 .endband{min-height:clamp(480px,70svh,760px)}
-.endin .closeline{font-size:clamp(2rem,4.8vw,4rem);font-weight:600;line-height:1;letter-spacing:-.05em;max-width:14ch}
+.endin .closeline{font-size:clamp(2rem,4.8vw,4rem);font-weight:600;line-height:1.06;letter-spacing:-.036em;max-width:14ch}
 
 /* signature */
 footer{padding-top:clamp(56px,8vw,110px)}
@@ -559,6 +560,31 @@ footer{padding-top:clamp(56px,8vw,110px)}
   font-family:var(--wm-font),sans-serif;font-weight:300;letter-spacing:.14em;white-space:nowrap;overflow:hidden;
   font-size:clamp(1.9rem,7.4vw,6.4rem);line-height:1;color:var(--cream);opacity:.9}
 @media (max-width:640px){ .galmeta{text-align:left} .footmark{letter-spacing:.1em} }
+
+
+/* before and after: a hairline and a slim grip */
+.bahandle{width:1px;background:rgba(245,242,237,.95);transform:translateX(-.5px);
+  box-shadow:0 0 16px rgba(0,0,0,.35)}
+.bahandle::after{width:8px;height:54px;margin:-27px 0 0 -4px;border:0;border-radius:1px;
+  background:#F2EFEA;box-shadow:0 0 0 1px rgba(0,0,0,.14),0 3px 16px rgba(0,0,0,.4)}
+.bahandle::before{content:"";position:absolute;top:50%;left:50%;width:50px;height:12px;margin:-6px 0 0 -25px;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 50 12'%3E%3Cpath d='M6 1 1 6l5 5M44 1l5 5-5 5' fill='none' stroke='%23F2EFEA' stroke-width='1.4'/%3E%3C/svg%3E") center/contain no-repeat;
+  filter:drop-shadow(0 1px 4px rgba(0,0,0,.5))}
+.balab,.balab-l,.balab-r{background:none;border:0;padding:0;bottom:18px;font-size:.62rem;letter-spacing:.2em;
+  color:rgba(245,242,237,.92);text-shadow:0 1px 12px rgba(0,0,0,.6)}
+.balab-l{left:20px}.balab-r{right:20px;color:#F2EFEA}
+.badrag{background:none;padding:0;top:18px;font-size:.6rem;letter-spacing:.2em;color:rgba(245,242,237,.85);
+  text-shadow:0 1px 12px rgba(0,0,0,.6)}
+.bawrap:hover .bahandle::after,.bawrap:focus-visible .bahandle::after{height:64px;margin-top:-32px;transition:height .25s var(--ease-cine),margin .25s var(--ease-cine)}
+
+/* the signature stays a signature */
+.footmark{font-size:clamp(1.3rem,3.4vw,2.9rem);letter-spacing:.2em;opacity:.75;margin-bottom:clamp(20px,2.4vw,30px)}
+@media (max-width:640px){ .footmark{letter-spacing:.14em} }
+
+/* phones keep their own hero size */
+@media (max-width:760px){ .vh1{font-size:clamp(2.1rem,9vw,2.8rem);max-width:14ch} }
+
+@media (max-width:980px){ .mast .nav a{letter-spacing:-.025em} }
 
 :root[data-surface="light"]{
   --field:#E9E2D6;--field-2:#F5F1E8;--field-3:#D8CFBE;--cream:#241E18;--muted:#786E62;
@@ -1264,10 +1290,22 @@ setMode(true);
   if (!v || reduce) return;
   var c = navigator.connection || {};
   if (c.saveData === true || /^(slow-2g|2g)$/.test(c.effectiveType || "")) return;
-  var w = Math.min(innerWidth * (devicePixelRatio || 1), 2400);
+  /* sized by the window, not the pixel density: the film sits under a dark scrim,
+     and a 5 MB file on a laptop was holding up the next page on ordinary lines */
+  var w = innerWidth;
   if (c.effectiveType === "3g") w = 0;
-  v.src = w > 1500 ? "/video/hero-1080.mp4?v=2" : w > 900 ? "/video/hero-720.mp4?v=2" : "/video/hero-480.mp4?v=2";
-  v.load();
+  var src = w > 1600 ? "/video/hero-1080.mp4?v=2" : w > 900 ? "/video/hero-720.mp4?v=2" : "/video/hero-480.mp4?v=2";
+  function startFilm(){ if (v.getAttribute("src")) return; v.src = src; v.load(); }
+  /* the page, its fonts and first images come first; the film follows */
+  if (document.readyState === "complete") setTimeout(startFilm, 400);
+  else addEventListener("load", function(){ setTimeout(startFilm, 400); }, { once:true });
+  /* leaving the page drops the download at once, so the next page is not queued behind it */
+  function stopFilm(){ if (!v.getAttribute("src")) return; v.pause(); v.removeAttribute("src"); v.load(); }
+  document.addEventListener("click", function(e){
+    var a = e.target.closest ? e.target.closest("a[href]") : null;
+    if (a && a.origin === location.origin && a.pathname !== location.pathname) stopFilm();
+  }, true);
+  addEventListener("pagehide", stopFilm);
   v.addEventListener("canplay", function(){
     var p = v.play(); if (p && p.catch) p.catch(function(){});
   }, { once:true });
