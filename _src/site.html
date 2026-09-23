@@ -496,6 +496,70 @@ h3{letter-spacing:-.02em}
   .brandname{display:none}
 }
 
+
+/* ============ punch: architectural edges, fewer labels, bigger type ============ */
+:root{--r:2px}
+.frame .fimg,.bawrap,.portrait,.svcband img{border-radius:var(--r)}
+.btn{border-radius:2px;padding:15px 26px;font-size:.9rem;font-weight:500;letter-spacing:-.01em}
+.mt,.zvarrow,.balab,.badrag{border-radius:2px}
+.navcta{border-radius:2px;padding:10px 18px}
+
+@media (min-width:981px){
+  .nav,.mast.onhero .nav{background:none;border:0;padding:0;gap:clamp(20px,2.3vw,34px);font-size:.84rem}
+  .nav a{padding:6px 0;border-radius:0;border-bottom:1px solid transparent;background:none}
+  .nav a:hover{color:var(--cream)}
+  .nav a.on,.mast.onhero .nav a.on{background:none;color:var(--cream);border-bottom-color:currentColor}
+  .mast.onhero .nav a:hover{color:#F2EFEA}
+}
+
+/* hero: the line reads as a title, not a caption */
+.vh1{font-size:clamp(2.5rem,6vw,5.5rem);line-height:.98;letter-spacing:-.05em;max-width:13ch}
+.vsub{font-size:clamp(1.02rem,1.4vw,1.2rem);max-width:34ch}
+
+/* gallery head */
+.galhead{align-items:flex-end}
+.galhead h2{font-size:clamp(2.4rem,6vw,5rem);letter-spacing:-.05em;margin-top:0}
+.galmeta{font-family:var(--tx-font),sans-serif;font-size:.92rem;letter-spacing:0;text-transform:none;
+  line-height:1.5;color:var(--muted);text-align:right}
+
+/* the statement is the loudest thing on the page */
+.stmt{border-top:0;padding-block:clamp(110px,15vw,220px)}
+.stmtbig{font-size:clamp(2.3rem,6.2vw,5.9rem);line-height:1;letter-spacing:-.052em;max-width:15ch;
+  font-weight:600;font-variation-settings:normal}
+.stmtbig em{font-style:normal;color:var(--brass)}
+.stmtsub{font-size:clamp(1.02rem,1.45vw,1.2rem);max-width:40ch;margin-top:clamp(28px,3.6vw,44px)}
+
+/* before and after */
+.lookhead h2{font-size:clamp(2.1rem,4.8vw,3.9rem);line-height:1;letter-spacing:-.05em;margin-top:0}
+.lookhead p{font-size:clamp(1rem,1.3vw,1.1rem)}
+.lookclose{border-left-width:1px}
+
+/* reviews */
+.revsec{border-top:0;padding-block:clamp(100px,13vw,190px)}
+.revsec .eyebrow{letter-spacing:.2em}
+.revq.s1{font-size:clamp(1.6rem,3.4vw,2.8rem);max-width:22ch;line-height:1.2}
+.revq.s2{font-size:clamp(1.3rem,2.4vw,1.9rem);max-width:30ch;line-height:1.3}
+.revq.s3{font-size:clamp(1.12rem,1.75vw,1.45rem);max-width:46ch;line-height:1.45}
+.revq{font-weight:500;letter-spacing:-.02em}
+
+/* page heads */
+.pagehead h1,.pagehead h2,.svchead h1,.svchead h2{font-size:calc(clamp(2.5rem,6vw,5rem) * var(--hd-scale));
+  line-height:.98;letter-spacing:-.05em;margin-top:0;max-width:14ch}
+.svchead h1,.svchead h2{max-width:13ch}
+.svcbig{font-size:calc(clamp(2rem,5vw,4.2rem) * var(--hd-scale));line-height:1;letter-spacing:-.05em;max-width:15ch;margin-top:0}
+
+/* the closing frame */
+.endband{min-height:clamp(480px,70svh,760px)}
+.endin .closeline{font-size:clamp(2rem,4.8vw,4rem);font-weight:600;line-height:1;letter-spacing:-.05em;max-width:14ch}
+
+/* signature */
+footer{padding-top:clamp(56px,8vw,110px)}
+.footbadge{display:none!important}
+.footmark{margin:0 0 clamp(26px,3vw,40px);padding:0 clamp(20px,4vw,44px);max-width:1180px;margin-inline:auto;
+  font-family:var(--wm-font),sans-serif;font-weight:300;letter-spacing:.14em;white-space:nowrap;overflow:hidden;
+  font-size:clamp(1.9rem,7.4vw,6.4rem);line-height:1;color:var(--cream);opacity:.9}
+@media (max-width:640px){ .galmeta{text-align:left} .footmark{letter-spacing:.1em} }
+
 :root[data-surface="light"]{
   --field:#E9E2D6;--field-2:#F5F1E8;--field-3:#D8CFBE;--cream:#241E18;--muted:#786E62;
   --brass:#8A5E2B;--line:rgba(36,30,24,.11);--line-2:rgba(36,30,24,.05);--mast-bg:rgba(233,226,214,.9);
@@ -573,7 +637,7 @@ h3{letter-spacing:-.02em}
         <span class="ln"><span>Hver bolig har en historie.</span></span>
         <span class="ln"><span class="soft">La oss fortelle den.</span></span>
       </h1>
-      <p class="vsub hi">Er du fornøyd med at boligen bare blir lagt ut, er jeg feil mann.</p>
+      <p class="vsub hi">Er du fornøyd med en vanlig annonse, er jeg feil mann.</p>
       <div class="btnrow hi">
         <a class="btn solid" href="/kontakt/">Book befaring</a>
         <a class="btn ghost" href="/arbeid/">Se arbeidet</a>
@@ -585,11 +649,8 @@ h3{letter-spacing:-.02em}
 
   <section class="gal">
     <div class="wrap galhead">
-      <div>
-        <p class="eyebrow rv">Siste oppdrag</p>
-        <h2 class="rv" style="--d:.08s">Heyerdahls vei 8 B</h2>
-      </div>
-      <p class="galmeta rv" style="--d:.16s">Enebolig i Oslo. Foto og film, august 2026.</p>
+      <h2 class="rv">Heyerdahls vei 8 B</h2>
+      <p class="galmeta rv" style="--d:.1s">Siste oppdrag. Enebolig i Oslo,<br>foto og film i august 2026.</p>
     </div>
     <div class="strip" id="strip" role="list" aria-label="Bilder fra Heyerdahls vei 8 B"></div>
     <div class="wrap galfoot">
@@ -604,32 +665,31 @@ h3{letter-spacing:-.02em}
 
   <section class="section stmt">
     <div class="wrap">
-      <p class="stmtbig rv">En bolig til 25 millioner, presentert som en til fem, ser overpriset ut.</p>
-      <p class="stmtsub rv" style="--d:.12s">Kjøperne til slike boliger er få, og de har allerede bladd forbi hundre annonser med tomme rom og flatt lys.</p>
+      <p class="stmtbig rv">Et hus til 25 millioner som ser ut som et til 5, <em>virker overpriset.</em></p>
+      <p class="stmtsub rv" style="--d:.12s">Det er få kjøpere til slike hus, og de har allerede scrollet forbi hundre annonser med tomme rom og flatt lys.</p>
     </div>
   </section>
 
   <section class="section look">
     <div class="wrap">
       <div class="lookhead">
-        <p class="eyebrow rv">Stilen</p>
         <h2 class="rv" style="--d:.08s">To versjoner av samme rom.</h2>
-        <p class="rv" style="--d:.16s">Til venstre: standard HDR, slik de fleste boligbilder ser ut. Flatt, jevnt lyst, alt like viktig. Ingenting er galt, og ingenting blir husket.</p>
+        <p class="rv" style="--d:.16s">Til venstre: standard HDR, slik de fleste boligbilder ser ut. Flatt og jevnt lyst, der alt er like viktig. Det er ikke noe galt med det, men ingen husker det heller.</p>
       </div>
       <div class="bas">
 <figure class="ba"><div class="bawrap" style="--pos:50%" data-ba tabindex="0" role="slider" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" aria-label="Soverom, Heyerdahls vei 8 B"><img src="/img/ba-soverom-1-1280.4b0ac45da2.webp" srcset="/img/ba-soverom-1-828.4b0ac45da2.webp 828w, /img/ba-soverom-1-1280.4b0ac45da2.webp 1280w, /img/ba-soverom-1-1920.4b0ac45da2.webp 1920w" sizes="(max-width: 1180px) 100vw, 1100px" width="1280" height="854" alt="Soverom i enebolig i Oslo, redigert av ZEJAKOV MEDIA" loading="lazy" decoding="async"><div class="baclip"><img src="/img/ba-soverom-2-1280.aa3c605f69.webp" srcset="/img/ba-soverom-2-828.aa3c605f69.webp 828w, /img/ba-soverom-2-1280.aa3c605f69.webp 1280w, /img/ba-soverom-2-1920.aa3c605f69.webp 1920w" sizes="(max-width: 1180px) 100vw, 1100px" width="1280" height="853" alt="Samme soverom med standard HDR" loading="lazy" decoding="async"></div><div class="bahandle"></div><span class="balab balab-l">Standard HDR</span><span class="balab balab-r">ZEJAKOV MEDIA</span><span class="badrag">Dra i bildet</span></div><figcaption class="bacap">Soverom, Heyerdahls vei 8 B</figcaption></figure>
 <figure class="ba"><div class="bawrap" style="--pos:50%" data-ba tabindex="0" role="slider" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" aria-label="Kjøkken og spisestue, samme bolig"><img src="/img/ba-kjokken-1-1280.4422c30286.webp" srcset="/img/ba-kjokken-1-828.4422c30286.webp 828w, /img/ba-kjokken-1-1280.4422c30286.webp 1280w, /img/ba-kjokken-1-1920.4422c30286.webp 1920w" sizes="(max-width: 1180px) 100vw, 1100px" width="1280" height="852" alt="Kjøkken og spisestue i enebolig i Oslo, redigert av ZEJAKOV MEDIA" loading="lazy" decoding="async"><div class="baclip"><img src="/img/ba-kjokken-2-1280.eba65d9517.webp" srcset="/img/ba-kjokken-2-828.eba65d9517.webp 828w, /img/ba-kjokken-2-1280.eba65d9517.webp 1280w, /img/ba-kjokken-2-1920.eba65d9517.webp 1920w" sizes="(max-width: 1180px) 100vw, 1100px" width="1280" height="852" alt="Samme kjøkken med standard HDR" loading="lazy" decoding="async"></div><div class="bahandle"></div><span class="balab balab-l">Standard HDR</span><span class="balab balab-r">ZEJAKOV MEDIA</span><span class="badrag">Dra i bildet</span></div><figcaption class="bacap">Kjøkken og spisestue, samme bolig</figcaption></figure>
       </div>
       <div class="lookclose rv">
-        <p>Til høyre er standarden min. Hvert bilde bygges opp for hånd i timene etter opptak, til rommet ser ut slik det føles å stå der.</p>
-        <p>Det gjelder alle boliger jeg tar, også de rimelige. Standard HDR kan jeg levere hvis du vil.</p>
+        <p>Til høyre er slik jeg leverer. Hvert bilde redigeres for hånd, til rommet ser ut slik det faktisk føles å stå der.</p>
+        <p>Det gjelder alle oppdrag, også de rimeligste boligene. Vil du heller ha standard HDR, kan du få det.</p>
       </div>
     </div>
   </section>
 
   <section class="section revsec" id="zv-reviews" hidden>
     <div class="wrap">
-      <p class="eyebrow rv">Tilbakemeldinger</p>
+      <p class="eyebrow rv">Hva kundene sier</p>
       <div id="zv-slide" class="revslide"></div>
       <div class="revfoot">
         <div id="zv-nav" hidden class="revnav">
@@ -670,7 +730,6 @@ h3{letter-spacing:-.02em}
 <!-- ============ ARBEID ============ -->
 <main class="page" id="p-arbeid">
   <div class="wrap pagehead">
-    <p class="eyebrow">Arbeid</p>
     <h2>Heyerdahls vei 8 B</h2>
     <p>Enebolig i Oslo, fotografert og filmet i august 2026.</p>
   </div>
@@ -682,22 +741,20 @@ h3{letter-spacing:-.02em}
 <main class="page" id="p-tjenester">
   <div class="wrap svcgrid">
     <div class="svchead">
-      <p class="eyebrow">Tjenester</p>
       <h2><span>Jeg selger ikke pene filmer.</span>
-        <span class="soft">Jeg fører seriøse øyne til deg og boligen din.</span></h2>
+        <span class="soft">Jeg får seriøse kjøpere til å stoppe opp.</span></h2>
     </div>
     <div class="svctext">
-      <p class="rv">Skal du bare ha bilder og film slik alle andre har det, finnes det mange som gjør den jobben, og de gjør den billigere enn meg.</p>
-      <p class="rv" style="--d:.08s">Er du eier eller megler med ambisjoner, og vil at den rette kjøperen skal kjenne hvordan boligen faktisk er å bo i, da gjør vi noe annet.</p>
-      <p class="rv" style="--d:.16s">Jeg tar hele produksjonen selv. Stillbilder, film, drone der det gir mening, flere kameraer og lys jeg tar med meg når rommet krever det. Fra rene annonsebilder til en kort dokumentar om boligen.</p>
+      <p class="rv">Skal du bare ha bilder og film som alle andre, finnes det mange som gjør den jobben, og de gjør den billigere enn meg.</p>
+      <p class="rv" style="--d:.08s">Er du eier eller megler og vil at riktig kjøper skal kjenne på hvordan det er å bo der, gjør vi noe annet.</p>
+      <p class="rv" style="--d:.16s">Jeg gjør hele jobben selv: bilder, film, drone der det passer, flere kameraer og eget lys når rommet trenger det. Alt fra bilder til annonsen til en kort dokumentar om boligen.</p>
     </div>
   </div>
   <figure class="svcband rv">
     <img src="/img/case-4-1080.2c80210965.webp" srcset="/img/case-4-640.2c80210965.webp 640w, /img/case-4-1080.2c80210965.webp 1080w" sizes="100vw" width="1080" height="810" alt="Heyerdahls vei 8 B i Oslo sett fra luften, dronefoto" loading="lazy" decoding="async">
   </figure>
   <div class="wrap svcfilter">
-    <p class="eyebrow rv">Samarbeidet</p>
-    <p class="svcbig rv" style="--d:.06s">Bildene og filmen er et verktøy. Målet er ditt.</p>
+    <p class="svcbig rv" style="--d:.06s">Bilder og film er bare verktøyet. Det som teller, er salget.</p>
     <p class="svccounter rv" style="--d:.12s">Hva boligen trenger, finner vi ut på befaringen.</p>
     <div class="btnrow rv" style="--d:.18s"><a class="btn" href="/kontakt/">Book befaring</a></div>
   </div>
@@ -705,20 +762,18 @@ h3{letter-spacing:-.02em}
 <!-- ============ OM ============ -->
 <main class="page" id="p-om">
   <div class="wrap pagehead">
-    <p class="eyebrow">Om meg</p>
-    <h2>Én person, spesialisert på eiendom.</h2>
+    <h2>Én person, og bare boliger.</h2>
   </div>
   <div class="wrap abgrid" style="padding-bottom:clamp(50px,8vw,96px)">
     <div class="portrait"><img src="/img/om-bolig-1280.4fc5e6c769.webp" srcset="/img/om-bolig-828.4fc5e6c769.webp 828w, /img/om-bolig-1280.4fc5e6c769.webp 1280w, /img/om-bolig-1500.4fc5e6c769.webp 1500w" sizes="(max-width: 800px) 100vw, 60vw" width="1280" height="853" alt="Heyerdahls vei 8 B i Oslo, fotografert av ZEJAKOV MEDIA" loading="lazy" decoding="async"></div>
     <div>
-      <p>ZEJAKOV MEDIA er et medieproduksjonsselskap i Oslo, og jeg jobber nesten bare med eiendom. Når du filmer boliger hver uke, lærer du hvor lyset faller i en Frogner-leilighet i mars, og hvor lite tid en megler har.</p>
+      <p>Bak ZEJAKOV MEDIA står én person: meg, Jakov. Jeg jobber nesten bare med eiendom, og når du filmer boliger hver uke, lærer du hvor lyset faller i en Frogner-leilighet i mars, og hvor lite tid en megler har.</p>
       <p>Den som kommer på opptak, er den samme som redigerer og leverer. Du har én person å forholde deg til.</p>
       <p>Jeg holder meg til Oslo og omegn, så jeg rekker å gjøre hver jobb ordentlig.</p>
       <div class="facts">
         <div class="fact"><span>Selskap</span><span>ZEJAKOV ZELJKOVIC</span></div>
         <div class="fact"><span>Organisasjonsnummer</span><span>835 196 542</span></div>
-        <div class="fact"><span>Sted</span><span>Oslo</span></div>
-        <div class="fact"><span>Segment</span><span>Boliger i det øvre sjiktet</span></div>
+        <div class="fact"><span>Område</span><span>Oslo, Bærum, Asker og Nordre Follo</span></div>
       </div>
       <div class="btnrow"><a class="btn" href="/kontakt/">Ta kontakt</a></div>
     </div>
@@ -728,26 +783,24 @@ h3{letter-spacing:-.02em}
 <!-- ============ KONTAKT ============ -->
 <main class="page" id="p-kontakt">
   <div class="wrap pagehead">
-    <p class="eyebrow">Kontakt</p>
     <h2>Fortell meg om boligen.</h2>
-    <p>Send adressen og hva du vil oppnå. Jeg gjør hver jobb selv, så datoen følger når jeg er ledig.</p>
+    <p>Send adressen og det du ønsker deg. Jeg gjør hver jobb selv, så vi finner en dato når jeg har ledig.</p>
   </div>
   <div class="wrap ctgrid" style="padding-bottom:clamp(50px,8vw,96px)">
     <div class="ctlist">
       <div class="ctitem"><span>E-post</span><a href="mailto:post@zejakov.com">post@zejakov.com</a></div>
       <div class="ctitem"><span>Telefon</span><a href="tel:+4797344658">973 44 658</a></div>
       <div class="ctitem"><span>Instagram</span><a href="https://www.instagram.com/zejakovmedia/" target="_blank" rel="noopener noreferrer">@zejakovmedia</a></div>
-      <div class="ctitem"><span>Dekningsområde</span><p>Oslo, Bærum, Asker og Nordre Follo</p></div>
-      <div class="ctitem"><span>Svartid</span><p>Jeg svarer når jeg er ute av opptak.</p></div>
+      <div class="ctitem"><span>Område</span><p>Oslo, Bærum, Asker og Nordre Follo</p></div>
     </div>
     <form class="form" id="form" novalidate>
       <div class="fld"><label for="f-navn">Navn</label><input id="f-navn" name="navn" autocomplete="name"></div>
       <div class="fld"><label for="f-epost">E-post</label><input id="f-epost" name="epost" type="email" autocomplete="email"></div>
       <div class="fld"><label for="f-tlf">Telefon</label><input id="f-tlf" name="telefon" type="tel" autocomplete="tel"></div>
-      <div class="fld"><label for="f-adr">Adresse på boligen</label><input id="f-adr" name="adresse"></div>
+      <div class="fld"><label for="f-adr">Boligens adresse</label><input id="f-adr" name="adresse"></div>
       <div class="fld"><label for="f-melding">Melding</label><textarea id="f-melding" name="melding"></textarea></div>
       <button class="btn" type="submit" style="justify-self:start">Send forespørsel</button>
-      <p class="formnote" id="fnote">Jeg svarer når jeg er ute av opptak.</p>
+      <p class="formnote" id="fnote">Jeg leser alt selv og svarer deg personlig.</p>
     </form>
   </div>
 </main>
@@ -766,7 +819,7 @@ h3{letter-spacing:-.02em}
     </section>
     <section class="rv">
       <h3>Informasjonskapsler</h3>
-      <p>Det er ingen. Siden lagrer heller ingenting annet i nettleseren din, og det finnes verken analyseverktøy eller annonsesporing her. Skriftene ligger på min egen server, så ingen tredjepart får vite at du var innom. Derfor møter du ingen samtykkeboks.</p>
+      <p>Det er ingen. Siden lagrer heller ingenting annet i nettleseren din, og det finnes verken analyseverktøy eller annonsesporing her. Skriftene ligger på min egen server, så ingen tredjepart får vite at du var innom. Derfor slipper du samtykkeboksen.</p>
     </section>
     <section class="rv">
       <h3>Kontaktskjemaet</h3>
@@ -799,6 +852,7 @@ h3{letter-spacing:-.02em}
       <circle cx="256" cy="256" r="256"/><use href="#mk"/></svg>
     <span class="brandname" style="font-size:calc(1.1rem * var(--wm-scale))">ZEJAKOV MEDIA</span>
   </div>
+  <p class="footmark" aria-hidden="true">ZEJAKOV MEDIA</p>
   <div class="wrap footin">
     <span>ZEJAKOV ZELJKOVIC, org. 835 196 542</span>
     <span>Medieproduksjon for eiendom, Oslo</span>
@@ -938,16 +992,16 @@ const IMG=[
 const EDIT=[{"src": "/img/ba-soverom-1-1280.4b0ac45da2.webp", "srcset": "/img/ba-soverom-1-828.4b0ac45da2.webp 828w, /img/ba-soverom-1-1280.4b0ac45da2.webp 1280w, /img/ba-soverom-1-1920.4b0ac45da2.webp 1920w", "w": 1280, "h": 854}, {"src": "/img/ba-kjokken-1-1280.4422c30286.webp", "srcset": "/img/ba-kjokken-1-828.4422c30286.webp 828w, /img/ba-kjokken-1-1280.4422c30286.webp 1280w, /img/ba-kjokken-1-1920.4422c30286.webp 1920w", "w": 1280, "h": 852}];
 const GAL=[
  {img:HERO[3], s:"L", t:"Fasaden mot hagen", r:"Kveldslys"},
- {img:IMG[0],  s:"S", t:"Soverom mot hagen", r:"Solnedgang gjennom glasset"},
- {img:HERO[2], s:"L", t:"Kjøkken og stue", r:"Kveldslys, naturlig"},
- {img:IMG[1],  s:"S", t:"Fra luften", r:"Drone, gyllen time"},
+ {img:IMG[0],  s:"S", t:"Soverom mot hagen", r:"Solnedgang gjennom vinduet"},
+ {img:HERO[2], s:"L", t:"Kjøkken og stue", r:"Naturlig kveldslys"},
+ {img:IMG[1],  s:"S", t:"Fra luften", r:"Drone i kveldssol"},
  {img:HERO[1], s:"L", t:"Terrassen", r:"Solnedgang"},
- {img:IMG[3],  s:"S", t:"Detalj, soverom", r:"Nære utsnitt"},
- {img:EDIT[1], s:"L", t:"Spisestue", r:"Dagslys, redaksjonell"},
- {img:IMG[2],  s:"S", t:"Stue", r:"Tilpasset lyssetting"},
- {img:HERO[0], s:"L", t:"Enebolig, Oslo", r:"Foto og film, august 2026"}
+ {img:IMG[3],  s:"S", t:"Soverom", r:"Detalj"},
+ {img:EDIT[1], s:"L", t:"Spisestue", r:"Dagslys"},
+ {img:IMG[2],  s:"S", t:"Stue", r:"Med eget lys"},
+ {img:HERO[0], s:"L", t:"Enebolig i Oslo", r:"Foto og film, august 2026"}
 ];
-const WORK=GAL.concat([{img:EDIT[0], s:"L", t:"Soverom", r:"Dagslys, redaksjonell"}]);
+const WORK=GAL.concat([{img:EDIT[0], s:"L", t:"Soverom", r:"Dagslys"}]);
 const home=document.getElementById("strip"), all=document.getElementById("cases-all");
 function buildFrame(f, sizes){
   const el=document.createElement("figure");

@@ -29,13 +29,13 @@ PAGES = {
    "/arbeid/"),
  "tjenester": ("tjenester/index.html",
    "Boligfilm, boligfoto og drone i Oslo | ZEJAKOV MEDIA",
-   "Hele produksjonen av én person: stillbilder, film, drone og lys. For eiere "
-   "og meglere som vil vise hvordan boligen faktisk er å bo i.",
+   "Hele jobben gjort av én person: bilder, film, drone og lys. For eiere og "
+   "meglere som vil vise hvordan det er å bo i boligen.",
    "/tjenester/"),
  "om": ("om/index.html",
    "Boligfotograf og filmfotograf i Oslo | ZEJAKOV MEDIA",
-   "Én person, spesialisert på eiendom i Oslo og omegn. Den som filmer er "
-   "den samme som redigerer og leverer.",
+   "Én person som jobber med boliger i Oslo og omegn. Den som filmer, er den "
+   "samme som redigerer og leverer.",
    "/om/"),
  "kontakt": ("kontakt/index.html",
    "Book befaring for boligfilm i Oslo | ZEJAKOV MEDIA",
