@@ -20,7 +20,7 @@ PAGES = {
  "hjem": ("index.html",
    "Boligfilm og boligfoto i Oslo | ZEJAKOV MEDIA",
    "Medieproduksjon for eiendom i Oslo. Boligfilm, boligfoto og drone til visning "
-   "og annonse, alt gjort av én person. Se arbeidet og book befaring.",
+   "og annonse, alt gjort av samme person. Se arbeidet og book befaring.",
    "/"),
  "arbeid": ("arbeid/index.html",
    "Arbeid: boligfilm og boligfoto fra Oslo | ZEJAKOV MEDIA",
@@ -34,13 +34,13 @@ PAGES = {
    "/arbeid/heyerdahls-vei-8b/"),
  "tjenester": ("tjenester/index.html",
    "Boligfilm, boligfoto og drone i Oslo | ZEJAKOV MEDIA",
-   "Hele jobben gjort av én person: bilder, film, drone og lys. For eiere og "
+   "Hele jobben gjort av samme person: bilder, film, drone og lys. For eiere og "
    "meglere som vil vise hvordan det er å bo i boligen.",
    "/tjenester/"),
  "om": ("om/index.html",
    "Boligfotograf og filmfotograf i Oslo | ZEJAKOV MEDIA",
-   "Én person som jobber med boliger i Oslo og omegn. Den som filmer, er den "
-   "samme som redigerer og leverer.",
+   "Foto og film siden 2023, i dag nesten bare boliger i Oslo og omegn. Den "
+   "som filmer, er den samme som klipper og leverer.",
    "/om/"),
  "kontakt": ("kontakt/index.html",
    "Book befaring for boligfilm i Oslo | ZEJAKOV MEDIA",
