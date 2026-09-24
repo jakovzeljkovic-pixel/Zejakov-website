@@ -39,13 +39,13 @@ PAGES = {
    "/tjenester/"),
  "om": ("om/index.html",
    "Boligfotograf og filmfotograf i Oslo | ZEJAKOV MEDIA",
-   "Foto og film siden 2023, i dag nesten bare boliger i Oslo og omegn. Den "
-   "som filmer, er den samme som klipper og leverer.",
+   "Foto og film siden 2023, i dag nesten bare boliger. Holder til i Oslo "
+   "og tar oppdrag over hele verden.",
    "/om/"),
  "kontakt": ("kontakt/index.html",
    "Book befaring for boligfilm i Oslo | ZEJAKOV MEDIA",
    "Fortell meg om boligen, så finner vi en dag for befaring. Boligfilm, "
-   "boligfoto og drone i Oslo, Bærum, Asker og Nordre Follo.",
+   "boligfoto og drone i Oslo, og oppdrag over hele verden.",
    "/kontakt/"),
  "personvern": ("personvern/index.html",
    "Personvern | ZEJAKOV MEDIA",
