@@ -96,7 +96,7 @@
       <h2 class="rv">Heyerdahls vei 8 B</h2>
       <p class="galmeta rv" style="--d:.1s">Siste oppdrag. Enebolig i Oslo,<br>foto og film i august 2026.</p>
     </div>
-    <div class="strip" id="strip" role="list" aria-label="Bilder fra Heyerdahls vei 8 B"></div>
+    <div class="strip" id="strip" role="group" aria-label="Bilder fra Heyerdahls vei 8 B"></div>
     <div class="wrap galfoot">
       <div class="stripbar" aria-hidden="true"><i id="stripfill"></i></div>
       <div class="galnav">
@@ -333,7 +333,7 @@ const GAL=[
 const home=document.getElementById("strip");
 function buildFrame(f, sizes){
   const el=document.createElement("figure");
-  el.className="frame "+f.s; el.setAttribute("role","listitem");
+  el.className="frame "+f.s;
   el.innerHTML=`<div class="fimg"><img src="${f.img.src}" srcset="${f.img.srcset}" sizes="${sizes}" width="${f.img.w}" height="${f.img.h}" alt="${f.t}, Heyerdahls vei 8 B i Oslo" loading="lazy" decoding="async" draggable="false"></div>`+
     `<figcaption><b>${f.t}</b><span>${f.r}</span></figcaption>`;
   return el;

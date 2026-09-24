@@ -272,7 +272,7 @@ const GAL=[
 const home=document.getElementById("strip");
 function buildFrame(f, sizes){
   const el=document.createElement("figure");
-  el.className="frame "+f.s; el.setAttribute("role","listitem");
+  el.className="frame "+f.s;
   el.innerHTML=`<div class="fimg"><img src="${f.img.src}" srcset="${f.img.srcset}" sizes="${sizes}" width="${f.img.w}" height="${f.img.h}" alt="${f.t}, Heyerdahls vei 8 B i Oslo" loading="lazy" decoding="async" draggable="false"></div>`+
     `<figcaption><b>${f.t}</b><span>${f.r}</span></figcaption>`;
   return el;
