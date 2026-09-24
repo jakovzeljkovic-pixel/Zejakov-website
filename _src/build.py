@@ -15,7 +15,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SRC = os.path.join(ROOT, "_src", "site.html")
 SITE = "https://zejakov.com"
 
-# slug -> (output path, <title>, meta description, nav href)
+# slug -> (output path, <title>, meta description, address)
 PAGES = {
  "hjem": ("index.html",
    "Boligfilm og boligfoto i Oslo | ZEJAKOV MEDIA",
@@ -23,10 +23,15 @@ PAGES = {
    "og annonse, alt gjort av én person. Se arbeidet og book befaring.",
    "/"),
  "arbeid": ("arbeid/index.html",
-   "Boligfilm fra Oslo: Heyerdahls vei 8 B | ZEJAKOV MEDIA",
-   "En hel bolig i Oslo, fotografert og filmet i samme besøk: stillbilder, "
-   "film og drone fra Heyerdahls vei 8 B.",
+   "Arbeid: boligfilm og boligfoto fra Oslo | ZEJAKOV MEDIA",
+   "Boliger jeg har fotografert og filmet i Oslo og omegn. Hvert prosjekt "
+   "med film, bilder og drone fra samme oppdrag.",
    "/arbeid/"),
+ "heyerdahls": ("arbeid/heyerdahls-vei-8b/index.html",
+   "Heyerdahls vei 8 B: boligfilm fra Oslo | ZEJAKOV MEDIA",
+   "Enebolig i Oslo med utsikt over byen. Film, bilder og drone fra samme "
+   "oppdrag, august 2026.",
+   "/arbeid/heyerdahls-vei-8b/"),
  "tjenester": ("tjenester/index.html",
    "Boligfilm, boligfoto og drone i Oslo | ZEJAKOV MEDIA",
    "Hele jobben gjort av én person: bilder, film, drone og lys. For eiere og "
@@ -44,17 +49,19 @@ PAGES = {
    "/kontakt/"),
  "personvern": ("personvern/index.html",
    "Personvern | ZEJAKOV MEDIA",
-   "Hva jeg lagrer og hvorfor. Ingen informasjonskapsler, ingen sporing, og "
-   "ingenting lagret i nettleseren din.",
+   "Hva jeg lagrer og hvorfor. Siden setter ingen informasjonskapsler og har "
+   "ingen sporing.",
    "/personvern/"),
 }
-ORDER = ["hjem", "arbeid", "tjenester", "om", "kontakt", "personvern"]
+ORDER = ["hjem", "arbeid", "heyerdahls", "tjenester", "om", "kontakt", "personvern"]
+# a project lights up Arbeid in the menu
+NAV = {"heyerdahls": "arbeid"}
 
 
 def split(src):
     """head + chrome before the pages + each <main> + chrome after them."""
     mains = {}
-    for m in re.finditer(r'<main class="page[^"]*" id="p-([a-z]+)">', src):
+    for m in re.finditer(r'<main class="page[^"]*" id="p-([a-z0-9]+)">', src):
         slug = m.group(1)
         end = src.index("</main>", m.start()) + len("</main>")
         mains[slug] = (m.start(), end, src[m.start():end])
@@ -153,7 +160,8 @@ def main():
             page = page[:i] + "<h1" + page[i + 3:j] + "</h1>" + page[j + len("</h2>"):]
         page = page.replace('<main class="page" id=', '<main class="page live" id=', 1)
 
-        doc = meta(head, title, desc, url) + links(before, slug) + page + links(after, slug)
+        nav = NAV.get(slug, slug)
+        doc = meta(head, title, desc, url) + links(before, nav) + page + links(after, nav)
         out = os.path.join(ROOT, path)
         os.makedirs(os.path.dirname(out) or ".", exist_ok=True)
         open(out, "w", encoding="utf-8").write(doc)
