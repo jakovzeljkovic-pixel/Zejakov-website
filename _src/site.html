@@ -602,7 +602,7 @@ footer{padding-top:clamp(56px,8vw,110px)}
 .playdot{position:absolute;left:50%;top:50%;width:clamp(62px,7vw,86px);height:clamp(62px,7vw,86px);transform:translate(-50%,-50%);
   border-radius:50%;background:#F2EFEA;display:grid;place-items:center;box-shadow:0 10px 40px rgba(0,0,0,.35);transition:transform .5s var(--ease-cine)}
 .playdot svg{width:30%;height:30%;margin-left:7%;fill:#0D0B0A}
-.proj:hover .playdot,.filmbtn:hover .playdot{transform:translate(-50%,-50%) scale(1.07)}
+.filmbtn:hover .playdot{transform:translate(-50%,-50%) scale(1.07)}
 
 /* a project page: title, film, a few lines, the stills */
 .cshead{padding:clamp(84px,11vw,150px) 0 clamp(30px,4vw,48px)}
@@ -622,7 +622,8 @@ footer{padding-top:clamp(56px,8vw,110px)}
 .csfacts b{font-weight:500;color:var(--cream);margin-right:7px}
 .csgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(10px,1.4vw,18px);margin-top:clamp(56px,8vw,110px);align-items:start}
 .cscol{display:grid;gap:clamp(10px,1.4vw,18px)}
-.cscol img{width:100%;height:auto;display:block;border-radius:var(--r);background:var(--field-2)}
+.csgrid .cswide{grid-column:1/-1}
+.cscol img,.cswide{width:100%;height:auto;display:block;border-radius:var(--r);background:var(--field-2)}
 .csend{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:24px 40px;
   padding:clamp(64px,9vw,120px) 0 clamp(80px,11vw,150px)}
 .csend p{margin:0;font-family:var(--hd-font),sans-serif;font-weight:600;font-size:calc(clamp(1.5rem,2.8vw,2.4rem) * var(--hd-scale));
@@ -828,7 +829,7 @@ footer{padding-top:clamp(56px,8vw,110px)}
   </div>
   <div class="wrap projs">
     <a class="proj" href="/arbeid/heyerdahls-vei-8b/">
-      <figure class="projimg"><img src="/img/hero-4-1920.12d14c2b6c.webp" srcset="/img/hero-4-828.12d14c2b6c.webp 828w, /img/hero-4-1280.12d14c2b6c.webp 1280w, /img/hero-4-1920.12d14c2b6c.webp 1920w, /img/hero-4-2200.12d14c2b6c.webp 2200w" sizes="(max-width: 1180px) 100vw, 1100px" width="1920" height="1279" alt="Heyerdahls vei 8 B: fasaden mot hagen i solnedgang" loading="lazy" decoding="async"><span class="playdot" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5.5v13l10.5-6.5z"/></svg></span></figure>
+      <figure class="projimg"><img src="/img/hero-4-1920.12d14c2b6c.webp" srcset="/img/hero-4-828.12d14c2b6c.webp 828w, /img/hero-4-1280.12d14c2b6c.webp 1280w, /img/hero-4-1920.12d14c2b6c.webp 1920w, /img/hero-4-2200.12d14c2b6c.webp 2200w" sizes="(max-width: 1180px) 100vw, 1100px" width="1920" height="1279" alt="Heyerdahls vei 8 B: fasaden mot hagen i solnedgang" loading="lazy" decoding="async"></figure>
       <p class="cskick">Boligfilm <i></i> August 2026</p>
       <h2>Heyerdahls vei 8 B</h2>
       <p class="projlead">Enebolig i Oslo med utsikt over byen. Film, bilder og drone fra samme oppdrag.</p>
@@ -860,15 +861,14 @@ footer{padding-top:clamp(56px,8vw,110px)}
       <img src="/img/case-3-1080.a59caaf8cf.webp" srcset="/img/case-3-640.a59caaf8cf.webp 640w, /img/case-3-1080.a59caaf8cf.webp 1080w" sizes="(max-width: 760px) 100vw, 580px" width="1080" height="720" alt="Soverom mot hagen" loading="lazy" decoding="async">
       <img src="/img/hero-3-1920.2e474ae626.webp" srcset="/img/hero-3-828.2e474ae626.webp 828w, /img/hero-3-1280.2e474ae626.webp 1280w, /img/hero-3-1920.2e474ae626.webp 1920w, /img/hero-3-2200.2e474ae626.webp 2200w" sizes="(max-width: 760px) 100vw, 580px" width="1920" height="1279" alt="Kjøkken og stue i kveldslys" loading="lazy" decoding="async">
       <img src="/img/case-6-1080.14a346be6d.webp" srcset="/img/case-6-640.14a346be6d.webp 640w, /img/case-6-1080.14a346be6d.webp 1080w" sizes="(max-width: 760px) 100vw, 580px" width="1080" height="720" alt="Soverom, detalj" loading="lazy" decoding="async">
-      <img src="/img/ba-kjokken-1-1920.4422c30286.webp" srcset="/img/ba-kjokken-1-828.4422c30286.webp 828w, /img/ba-kjokken-1-1280.4422c30286.webp 1280w, /img/ba-kjokken-1-1920.4422c30286.webp 1920w" sizes="(max-width: 760px) 100vw, 580px" width="1920" height="1278" alt="Spisestue og kjøkken" loading="lazy" decoding="async">
       </div>
       <div class="cscol">
       <img src="/img/case-4-1080.2c80210965.webp" srcset="/img/case-4-640.2c80210965.webp 640w, /img/case-4-1080.2c80210965.webp 1080w" sizes="(max-width: 760px) 100vw, 580px" width="1080" height="810" alt="Huset fra luften i kveldssol" loading="lazy" decoding="async">
       <img src="/img/hero-2-1920.a226a2bf9b.webp" srcset="/img/hero-2-828.a226a2bf9b.webp 828w, /img/hero-2-1280.a226a2bf9b.webp 1280w, /img/hero-2-1920.a226a2bf9b.webp 1920w, /img/hero-2-2200.a226a2bf9b.webp 2200w" sizes="(max-width: 760px) 100vw, 580px" width="1920" height="1279" alt="Terrassen i solnedgang" loading="lazy" decoding="async">
       <img src="/img/case-5-1080.377201c7bf.webp" srcset="/img/case-5-640.377201c7bf.webp 640w, /img/case-5-1080.377201c7bf.webp 1080w" sizes="(max-width: 760px) 100vw, 580px" width="1080" height="720" alt="Stue med eget lys" loading="lazy" decoding="async">
       <img src="/img/ba-soverom-1-1920.4b0ac45da2.webp" srcset="/img/ba-soverom-1-828.4b0ac45da2.webp 828w, /img/ba-soverom-1-1280.4b0ac45da2.webp 1280w, /img/ba-soverom-1-1920.4b0ac45da2.webp 1920w" sizes="(max-width: 760px) 100vw, 580px" width="1920" height="1280" alt="Soverom i dagslys" loading="lazy" decoding="async">
-      <img src="/img/utsikt-1920.81953dbe3e.webp" srcset="/img/utsikt-1100.bd5f6889d3.webp 1100w, /img/utsikt-1920.81953dbe3e.webp 1920w" sizes="(max-width: 760px) 100vw, 580px" width="1920" height="885" alt="Utsikten mot Oslo" loading="lazy" decoding="async">
       </div>
+      <img class="cswide" src="/img/ba-kjokken-1-1920.4422c30286.webp" srcset="/img/ba-kjokken-1-828.4422c30286.webp 828w, /img/ba-kjokken-1-1280.4422c30286.webp 1280w, /img/ba-kjokken-1-1920.4422c30286.webp 1920w" sizes="(max-width: 1180px) 100vw, 1100px" width="1920" height="1278" alt="Spisestue og kjøkken" loading="lazy" decoding="async">
     </div>
     <div class="csend">
       <p>Fortell meg om boligen, så tar vi det derfra.</p>
