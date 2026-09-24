@@ -123,6 +123,79 @@ def _rules(nodes):
     return "".join(out)
 
 
+def _without_not(sel):
+    """Drop :not(...) groups; what they name does not have to exist for the rule to apply."""
+    out, i = [], 0
+    while i < len(sel):
+        if sel.startswith(":not(", i):
+            depth, i = 1, i + 5
+            while i < len(sel) and depth:
+                depth += {"(": 1, ")": -1}.get(sel[i], 0)
+                i += 1
+        else:
+            out.append(sel[i])
+            i += 1
+    return "".join(out)
+
+
+def _split_selectors(sel):
+    parts, depth, cur = [], 0, ""
+    for ch in sel:
+        depth += {"(": 1, ")": -1}.get(ch, 0)
+        if ch == "," and depth == 0:
+            parts.append(cur)
+            cur = ""
+        else:
+            cur += ch
+    return parts + [cur]
+
+
+def _alive(sel, words):
+    bare = re.sub(r"\[[^\]]*\]", "", _without_not(sel))
+    return all(t in words for t in re.findall(r"[.#]([A-Za-z_][A-Za-z0-9_-]*)", bare))
+
+
+def _pruned(nodes, words):
+    out = []
+    for n in nodes:
+        if n.type == "qualified-rule":
+            sels = [s for s in _split_selectors(_selector(n.prelude)) if _alive(s, words)]
+            if sels:
+                out.append("%s{%s}" % (",".join(sels), _declarations(n.content)))
+        elif n.type == "at-rule" and n.content is not None and n.lower_at_keyword in ("media", "supports"):
+            inner = _pruned(tinycss2.parse_rule_list(n.content, skip_comments=True, skip_whitespace=True), words)
+            if inner:
+                out.append("@%s %s{%s}" % (n.lower_at_keyword, _ws(tinycss2.serialize(n.prelude)), inner))
+        else:
+            out.append(_rules([n]))
+    return "".join(out)
+
+
+def prune_style(doc):
+    """A page ships only the rules that can match something on it.
+
+    Every word in the page outside the stylesheet counts, scripts included,
+    so classes that scripts add later survive."""
+    a = doc.index("<style>") + len("<style>")
+    b = doc.index("</style>", a)
+    words = set(re.findall(r"[A-Za-z_][A-Za-z0-9_-]*", doc[:a] + doc[b:]))
+    css = _pruned(tinycss2.parse_stylesheet(doc[a:b], skip_comments=True, skip_whitespace=True), words)
+    used = set(re.findall(r"animation(?:-name)?:[^;}]*", css))
+    def keep(m):
+        return m.group(0) if any(re.search(r"\b%s\b" % re.escape(m.group(1)), u) for u in used) else ""
+    css = re.sub(r"@keyframes ([A-Za-z0-9_-]+)\{(?:[^{}]*\{[^{}]*\})*[^{}]*\}", keep, css)
+    return doc[:a] + css + doc[b:]
+
+
+def hero_preload(src):
+    """The home page's largest picture is a stylesheet background, which the
+    browser finds late. Ask for the right size up front."""
+    small = re.search(r'\.hero\.vhero\{--poster:url\("([^"]+)"\)', src).group(1)
+    large = re.search(r'@media \(min-width:761px\)\{\s*\.hero\.vhero\{--poster:url\("([^"]+)"\)', src).group(1)
+    return ('<link rel="preload" as="image" href="%s" media="(max-width: 760px)" fetchpriority="high">'
+            '<link rel="preload" as="image" href="%s" media="(min-width: 761px)" fetchpriority="high">' % (small, large))
+
+
 def minify_style(head):
     """The stylesheet ships without comments or spacing; the source keeps both."""
     a = head.index("<style>") + len("<style>")
@@ -162,6 +235,9 @@ def main():
 
         nav = NAV.get(slug, slug)
         doc = meta(head, title, desc, url) + links(before, nav) + page + links(after, nav)
+        doc = prune_style(doc)
+        if slug == "hjem":
+            doc = doc.replace("</head>", hero_preload(src) + "</head>", 1)
         out = os.path.join(ROOT, path)
         os.makedirs(os.path.dirname(out) or ".", exist_ok=True)
         open(out, "w", encoding="utf-8").write(doc)
