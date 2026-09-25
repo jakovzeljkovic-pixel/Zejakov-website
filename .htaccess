@@ -1,1 +1,6 @@
 ErrorDocument 404 /404.html
+
+# old Wix addresses still known to Google
+Redirect 301 /portfolio /arbeid/
+Redirect 301 /bio-contact /kontakt/
+RedirectMatch 301 ^/copy-of-.*$ /arbeid/

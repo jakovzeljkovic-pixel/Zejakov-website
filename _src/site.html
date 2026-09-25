@@ -658,6 +658,17 @@ footer{padding-top:clamp(56px,8vw,110px)}
 }
 @media (prefers-reduced-motion:reduce){ .lb[open]{animation:none} }
 
+/* 404: say it plainly, then show the work */
+.nf{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:clamp(32px,5vw,72px);align-items:center;
+  padding-top:clamp(84px,11vw,150px);padding-bottom:clamp(90px,12vw,170px)}
+.nftext h2,.nftext h1{font-size:calc(clamp(2.2rem,5vw,3.9rem) * var(--hd-scale));line-height:1.04;letter-spacing:-.036em;margin:0}
+.nftext p{color:var(--muted);max-width:42ch;margin:18px 0 0}
+.nfimg{display:block;position:relative;overflow:hidden;border-radius:var(--r);color:#F2EFEA;text-decoration:none}
+.nfimg img{width:100%;height:auto;display:block;transition:transform 1.4s var(--ease-cine)}
+.nfimg:hover img{transform:scale(1.03)}
+.nfimg span{position:absolute;left:14px;bottom:12px;font-family:var(--ui-font),sans-serif;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;text-shadow:0 1px 14px rgba(0,0,0,.6)}
+@media (max-width:860px){ .nf{grid-template-columns:1fr;padding-top:clamp(48px,10vw,84px)} }
+
 /* phones: the number is always one tap away */
 .callbar{display:none}
 @media (max-width:760px){
@@ -987,7 +998,7 @@ footer{padding-top:clamp(56px,8vw,110px)}
     </section>
     <section class="rv">
       <h3>Informasjonskapsler</h3>
-      <p>Siden setter ingen. Den lagrer heller ingenting annet i nettleseren din, og det finnes ingen annonsesporing. Jeg teller bare anonymt hvor mange som trykker på telefon, e-post, Instagram og booking, og om besøket kom fra for eksempel et søk eller Instagram. Det skjer uten informasjonskapsler og uten at jeg vet hvem du er. Skriftene ligger på min egen server, så ingen tredjepart får vite at du var innom. Derfor slipper du samtykkeboksen.</p>
+      <p>Siden setter ingen. Den lagrer heller ingenting annet i nettleseren din, og det finnes ingen annonsesporing. Jeg teller bare anonymt hvor mange som besøker sidene og trykker på telefon, e-post, Instagram og booking, og om besøket kom fra for eksempel et søk eller Instagram. Det skjer uten informasjonskapsler og uten at jeg vet hvem du er. Skriftene ligger på min egen server, så ingen tredjepart får vite at du var innom. Derfor slipper du samtykkeboksen.</p>
     </section>
     <section class="rv">
       <h3>Kontaktskjemaet</h3>
@@ -1019,10 +1030,16 @@ footer{padding-top:clamp(56px,8vw,110px)}
 
 <!-- ============ 404 ============ -->
 <main class="page" id="p-ikkefunnet">
-  <div class="wrap pagehead" style="padding-bottom:clamp(90px,14vw,190px)">
-    <h2>Denne siden finnes ikke.</h2>
-    <p>Adressen kan være skrevet feil, eller siden er flyttet.</p>
-    <div class="btnrow"><a class="btn solid" href="/kontakt/">Book befaring</a><a class="btn ghost" href="/arbeid/">Se arbeidet</a><a class="btn ghost" href="/">Til forsiden</a></div>
+  <div class="wrap nf">
+    <div class="nftext">
+      <h2>Denne siden finnes ikke.</h2>
+      <p>Adressen kan være skrevet feil, eller siden er flyttet. Dette huset finnes derimot, og filmen av det også.</p>
+      <div class="btnrow"><a class="btn solid" href="/arbeid/heyerdahls-vei-8b/">Se filmen</a><a class="btn ghost" href="/kontakt/">Book befaring</a><a class="btn ghost" href="/">Til forsiden</a></div>
+    </div>
+    <a class="nfimg" href="/arbeid/heyerdahls-vei-8b/">
+      <img src="/img/hv-fasade-1600.04035650b4.webp" srcset="/img/hv-fasade-640.04035650b4.webp 640w, /img/hv-fasade-828.04035650b4.webp 828w, /img/hv-fasade-1080.04035650b4.webp 1080w, /img/hv-fasade-1600.04035650b4.webp 1600w, /img/hv-fasade-2200.04035650b4.webp 2200w" sizes="(max-width: 860px) calc(100vw - 40px), 640px" width="1600" height="900" alt="Heyerdahls vei 8 B i Oslo, fasaden mot hagen" decoding="async">
+      <span>Heyerdahls vei 8 B, Oslo</span>
+    </a>
   </div>
 </main>
 
@@ -1219,6 +1236,7 @@ setMode(true);
     return o;
   })();
   function track(ev){
+    if (location.hostname !== "zejakov.com" || navigator.webdriver) return;
     try {
       fetch(SB + "/rest/v1/site_events", { method:"POST", keepalive:true, headers:H,
         body: JSON.stringify({ event:ev, page:(location.pathname.replace(/^\/|\/$/g, "") || "hjem").slice(0, 40),
@@ -1226,6 +1244,7 @@ setMode(true);
         .catch(function(){});
     } catch(e){}
   }
+  track(document.getElementById("p-ikkefunnet") ? "page_404" : "page_view");
   document.addEventListener("click", function(e){
     var el = e.target.closest ? e.target.closest("a,button") : null; if (!el) return;
     var href = el.getAttribute("href") || "";

@@ -82,7 +82,7 @@
     </section>
     <section class="rv">
       <h3>Informasjonskapsler</h3>
-      <p>Siden setter ingen. Den lagrer heller ingenting annet i nettleseren din, og det finnes ingen annonsesporing. Jeg teller bare anonymt hvor mange som trykker på telefon, e-post, Instagram og booking, og om besøket kom fra for eksempel et søk eller Instagram. Det skjer uten informasjonskapsler og uten at jeg vet hvem du er. Skriftene ligger på min egen server, så ingen tredjepart får vite at du var innom. Derfor slipper du samtykkeboksen.</p>
+      <p>Siden setter ingen. Den lagrer heller ingenting annet i nettleseren din, og det finnes ingen annonsesporing. Jeg teller bare anonymt hvor mange som besøker sidene og trykker på telefon, e-post, Instagram og booking, og om besøket kom fra for eksempel et søk eller Instagram. Det skjer uten informasjonskapsler og uten at jeg vet hvem du er. Skriftene ligger på min egen server, så ingen tredjepart får vite at du var innom. Derfor slipper du samtykkeboksen.</p>
     </section>
     <section class="rv">
       <h3>Kontaktskjemaet</h3>
@@ -305,6 +305,7 @@ setMode(true);
     return o;
   })();
   function track(ev){
+    if (location.hostname !== "zejakov.com" || navigator.webdriver) return;
     try {
       fetch(SB + "/rest/v1/site_events", { method:"POST", keepalive:true, headers:H,
         body: JSON.stringify({ event:ev, page:(location.pathname.replace(/^\/|\/$/g, "") || "hjem").slice(0, 40),
@@ -312,6 +313,7 @@ setMode(true);
         .catch(function(){});
     } catch(e){}
   }
+  track(document.getElementById("p-ikkefunnet") ? "page_404" : "page_view");
   document.addEventListener("click", function(e){
     var el = e.target.closest ? e.target.closest("a,button") : null; if (!el) return;
     var href = el.getAttribute("href") || "";
