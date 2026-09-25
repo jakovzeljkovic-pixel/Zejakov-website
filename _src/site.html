@@ -658,16 +658,12 @@ footer{padding-top:clamp(56px,8vw,110px)}
 }
 @media (prefers-reduced-motion:reduce){ .lb[open]{animation:none} }
 
-/* 404: say it plainly, then show the work */
-.nf{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:clamp(32px,5vw,72px);align-items:center;
-  padding-top:clamp(84px,11vw,150px);padding-bottom:clamp(90px,12vw,170px)}
-.nftext h2,.nftext h1{font-size:calc(clamp(2.2rem,5vw,3.9rem) * var(--hd-scale));line-height:1.04;letter-spacing:-.036em;margin:0}
-.nftext p{color:var(--muted);max-width:42ch;margin:18px 0 0}
-.nfimg{display:block;position:relative;overflow:hidden;border-radius:var(--r);color:#F2EFEA;text-decoration:none}
-.nfimg img{width:100%;height:auto;display:block;transition:transform 1.4s var(--ease-cine)}
-.nfimg:hover img{transform:scale(1.03)}
-.nfimg span{position:absolute;left:14px;bottom:12px;font-family:var(--ui-font),sans-serif;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;text-shadow:0 1px 14px rgba(0,0,0,.6)}
-@media (max-width:860px){ .nf{grid-template-columns:1fr;padding-top:clamp(48px,10vw,84px)} }
+/* 404: the number, one line, one way back */
+.nf{min-height:62svh;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;padding-block:clamp(90px,12vw,170px)}
+.nf h2,.nf h1{margin:0;font-family:var(--ui-font),sans-serif;font-size:clamp(.95rem,1.4vw,1.1rem);font-weight:400;letter-spacing:0;color:var(--muted);max-width:none}
+.nfnum{display:block;font-family:var(--hd-font),sans-serif;font-weight:600;font-size:calc(clamp(5.5rem,17vw,13rem) * var(--hd-scale));line-height:.9;letter-spacing:-.05em;color:var(--cream);margin-bottom:clamp(14px,2vw,22px)}
+.nflink{margin-top:clamp(22px,3vw,32px);font-family:var(--ui-font),sans-serif;font-size:.92rem;color:var(--cream);text-decoration:none;border-bottom:1px solid var(--brass);padding-bottom:3px}
+.nflink:hover{color:var(--brass)}
 
 /* phones: the number is always one tap away */
 .callbar{display:none}
@@ -1031,15 +1027,8 @@ footer{padding-top:clamp(56px,8vw,110px)}
 <!-- ============ 404 ============ -->
 <main class="page" id="p-ikkefunnet">
   <div class="wrap nf">
-    <div class="nftext">
-      <h2>Denne siden finnes ikke.</h2>
-      <p>Adressen kan være skrevet feil, eller siden er flyttet. Dette huset finnes derimot, og filmen av det også.</p>
-      <div class="btnrow"><a class="btn solid" href="/arbeid/heyerdahls-vei-8b/">Se filmen</a><a class="btn ghost" href="/kontakt/">Book befaring</a><a class="btn ghost" href="/">Til forsiden</a></div>
-    </div>
-    <a class="nfimg" href="/arbeid/heyerdahls-vei-8b/">
-      <img src="/img/hv-fasade-1600.04035650b4.webp" srcset="/img/hv-fasade-640.04035650b4.webp 640w, /img/hv-fasade-828.04035650b4.webp 828w, /img/hv-fasade-1080.04035650b4.webp 1080w, /img/hv-fasade-1600.04035650b4.webp 1600w, /img/hv-fasade-2200.04035650b4.webp 2200w" sizes="(max-width: 860px) calc(100vw - 40px), 640px" width="1600" height="900" alt="Heyerdahls vei 8 B i Oslo, fasaden mot hagen" decoding="async">
-      <span>Heyerdahls vei 8 B, Oslo</span>
-    </a>
+    <h2><span class="nfnum">404</span>Denne siden finnes ikke.</h2>
+    <a class="nflink" href="/">Til forsiden</a>
   </div>
 </main>
 
