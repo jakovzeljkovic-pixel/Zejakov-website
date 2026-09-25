@@ -47,13 +47,19 @@ PAGES = {
    "Fortell meg om boligen, så finner vi en dag for befaring. Boligfilm, "
    "boligfoto og drone i Oslo, og oppdrag over hele verden.",
    "/kontakt/"),
+ "ikkefunnet": ("404.html",
+   "Siden finnes ikke | ZEJAKOV MEDIA",
+   "Denne adressen finnes ikke på zejakov.com.",
+   "/404.html"),
  "personvern": ("personvern/index.html",
    "Personvern | ZEJAKOV MEDIA",
    "Hva jeg lagrer og hvorfor. Siden setter ingen informasjonskapsler og har "
    "ingen sporing.",
    "/personvern/"),
 }
-ORDER = ["hjem", "arbeid", "heyerdahls", "tjenester", "om", "kontakt", "personvern"]
+ORDER = ["hjem", "arbeid", "heyerdahls", "tjenester", "om", "kontakt", "personvern", "ikkefunnet"]
+# served by the host for any missing address; kept out of the sitemap and the index
+HIDDEN = {"ikkefunnet"}
 # a project lights up Arbeid in the menu
 NAV = {"heyerdahls": "arbeid"}
 
@@ -235,6 +241,8 @@ def main():
 
         nav = NAV.get(slug, slug)
         doc = meta(head, title, desc, url) + links(before, nav) + page + links(after, nav)
+        if slug in HIDDEN:
+            doc = re.sub(r'<link rel="canonical" href="[^"]*">', '<meta name="robots" content="noindex">', doc, count=1)
         doc = prune_style(doc)
         if slug == "hjem":
             doc = doc.replace("</head>", hero_preload(src) + "</head>", 1)
@@ -245,14 +253,14 @@ def main():
 
     today = datetime.date.today().isoformat()
     urls = "\n".join('  <url><loc>%s%s</loc><lastmod>%s</lastmod></url>'
-                     % (SITE, PAGES[s][3], today) for s in ORDER)
+                     % (SITE, PAGES[s][3], today) for s in ORDER if s not in HIDDEN)
     open(os.path.join(ROOT, "sitemap.xml"), "w", encoding="utf-8").write(
         '<?xml version="1.0" encoding="UTF-8"?>\n'
         '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n%s\n</urlset>\n' % urls)
 
     for path, n in written:
         print("%-24s %6.1f KB" % (path, n / 1024))
-    print("sitemap.xml              %d urls" % len(ORDER))
+    print("sitemap.xml              %d urls" % len([s for s in ORDER if s not in HIDDEN]))
 
 
 if __name__ == "__main__":

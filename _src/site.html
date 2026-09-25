@@ -691,6 +691,7 @@ footer{padding-top:clamp(56px,8vw,110px)}
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
 <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="ZEJAKOV MEDIA">
 <meta property="og:title" content="ZEJAKOV MEDIA | Boligfilm, boligfoto og drone i Oslo">
@@ -986,7 +987,7 @@ footer{padding-top:clamp(56px,8vw,110px)}
     </section>
     <section class="rv">
       <h3>Informasjonskapsler</h3>
-      <p>Siden setter ingen. Den lagrer heller ingenting annet i nettleseren din, og det finnes verken analyseverktøy eller annonsesporing her. Skriftene ligger på min egen server, så ingen tredjepart får vite at du var innom. Derfor slipper du samtykkeboksen.</p>
+      <p>Siden setter ingen. Den lagrer heller ingenting annet i nettleseren din, og det finnes ingen annonsesporing. Jeg teller bare anonymt hvor mange som trykker på telefon, e-post, Instagram og booking, og om besøket kom fra for eksempel et søk eller Instagram. Det skjer uten informasjonskapsler og uten at jeg vet hvem du er. Skriftene ligger på min egen server, så ingen tredjepart får vite at du var innom. Derfor slipper du samtykkeboksen.</p>
     </section>
     <section class="rv">
       <h3>Kontaktskjemaet</h3>
@@ -1012,7 +1013,16 @@ footer{padding-top:clamp(56px,8vw,110px)}
       <h3>Rettighetene dine</h3>
       <p>Du kan be om innsyn i det som er lagret om deg, få det rettet eller slettet, be om en kopi, og protestere mot at jeg bruker det. Send en e-post, så ordner jeg det. Mener du at jeg gjør noe galt, kan du klage til Datatilsynet.</p>
     </section>
-    <p class="legalupd">Sist oppdatert 24. september 2026.</p>
+    <p class="legalupd">Sist oppdatert 26. september 2026.</p>
+  </div>
+</main>
+
+<!-- ============ 404 ============ -->
+<main class="page" id="p-ikkefunnet">
+  <div class="wrap pagehead" style="padding-bottom:clamp(90px,14vw,190px)">
+    <h2>Denne siden finnes ikke.</h2>
+    <p>Adressen kan være skrevet feil, eller siden er flyttet.</p>
+    <div class="btnrow"><a class="btn solid" href="/kontakt/">Book befaring</a><a class="btn ghost" href="/arbeid/">Se arbeidet</a><a class="btn ghost" href="/">Til forsiden</a></div>
   </div>
 </main>
 
@@ -1026,7 +1036,7 @@ footer{padding-top:clamp(56px,8vw,110px)}
   <p class="footmark" aria-hidden="true">ZEJAKOV MEDIA</p>
   <div class="wrap footin">
     <span>ZEJAKOV ZELJKOVIC, org. 835 196 542</span>
-    <span>Medieproduksjon for eiendom, Oslo</span>
+    <span>Frognerveien 47, 0266 Oslo</span>
     <a href="/personvern/">Personvern</a>
   </div>
 </footer>
@@ -1232,6 +1242,7 @@ setMode(true);
     var v = function(id){ var el = document.getElementById(id); return el ? el.value.trim() : ""; };
     var navn = v("f-navn"), epost = v("f-epost");
     if (!navn || !epost) { if (note) note.textContent = "Fyll inn navn og e-post."; return; }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(epost)) { if (note) note.textContent = "Sjekk e-postadressen, den ser ikke riktig ut."; document.getElementById("f-epost").focus(); return; }
     var btn = form.querySelector("button[type=submit]");
     if (btn) btn.disabled = true;
     if (note) note.textContent = "Sender …";

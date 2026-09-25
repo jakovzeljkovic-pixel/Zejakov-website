@@ -18,6 +18,7 @@
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
 <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="ZEJAKOV MEDIA">
 <meta property="og:title" content="Heyerdahls vei 8 B: boligfilm fra Oslo | ZEJAKOV MEDIA">
@@ -120,7 +121,7 @@
   <p class="footmark" aria-hidden="true">ZEJAKOV MEDIA</p>
   <div class="wrap footin">
     <span>ZEJAKOV ZELJKOVIC, org. 835 196 542</span>
-    <span>Medieproduksjon for eiendom, Oslo</span>
+    <span>Frognerveien 47, 0266 Oslo</span>
     <a href="/personvern/">Personvern</a>
   </div>
 </footer>
@@ -326,6 +327,7 @@ setMode(true);
     var v = function(id){ var el = document.getElementById(id); return el ? el.value.trim() : ""; };
     var navn = v("f-navn"), epost = v("f-epost");
     if (!navn || !epost) { if (note) note.textContent = "Fyll inn navn og e-post."; return; }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(epost)) { if (note) note.textContent = "Sjekk e-postadressen, den ser ikke riktig ut."; document.getElementById("f-epost").focus(); return; }
     var btn = form.querySelector("button[type=submit]");
     if (btn) btn.disabled = true;
     if (note) note.textContent = "Sender …";
