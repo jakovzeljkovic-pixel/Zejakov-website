@@ -669,6 +669,23 @@ footer{padding-top:clamp(56px,8vw,110px)}
 .modebtn{display:inline-flex;align-items:center;justify-content:center;width:36px;height:34px;min-width:36px;padding:0}
 .modeico{width:15px;height:15px;display:block}
 
+/* digital staging: one room, several uses, always labelled */
+.ds{margin-top:clamp(64px,9vw,120px)}
+.ds h2{font-size:calc(clamp(1.8rem,4vw,3rem) * var(--hd-scale));line-height:1.06;letter-spacing:-.034em;margin:0}
+.dslead{color:var(--muted);max-width:60ch;margin:14px 0 0}
+.dsstage{position:relative;aspect-ratio:1264/848;margin-top:clamp(22px,3vw,34px);overflow:hidden;border-radius:var(--r);background:var(--field-2);touch-action:pan-y}
+.dsstage figure{position:absolute;inset:0;margin:0;opacity:0;transition:opacity .5s var(--ease-soft)}
+.dsstage figure.on{opacity:1}
+.dsstage img{width:100%;height:100%;object-fit:cover;display:block}
+.dsbadge{position:absolute;right:12px;bottom:12px;padding:6px 10px;background:rgba(12,10,9,.62);color:#F2EFEA;border-radius:2px;
+  font-family:var(--ui-font),sans-serif;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase}
+.dstabs{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+.dstabs button{all:unset;cursor:pointer;padding:9px 14px;border:1px solid var(--line);border-radius:2px;font-family:var(--ui-font),sans-serif;font-size:.84rem;color:var(--muted);transition:color .2s,border-color .2s,background .2s}
+.dstabs button:hover{color:var(--cream);border-color:var(--cream)}
+.dstabs button[aria-selected="true"]{background:var(--cream);border-color:var(--cream);color:var(--field)}
+.dstabs button:focus-visible{outline:2px solid var(--brass);outline-offset:2px}
+@media (prefers-reduced-motion:reduce){ .dsstage figure{transition:none} }
+
 /* phones: the number is always one tap away */
 .callbar{display:none}
 @media (max-width:760px){
@@ -908,6 +925,14 @@ footer{padding-top:clamp(56px,8vw,110px)}
       </div>
       <img class="cswide" src="/img/hv-spisebord-1600.86394d371f.webp" srcset="/img/hv-spisebord-640.86394d371f.webp 640w, /img/hv-spisebord-828.86394d371f.webp 828w, /img/hv-spisebord-1080.86394d371f.webp 1080w, /img/hv-spisebord-1600.86394d371f.webp 1600w, /img/hv-spisebord-2200.86394d371f.webp 2200w" sizes="(max-width: 1180px) 100vw, 1100px" width="1600" height="1067" alt="Spisebord og kjøkken" loading="lazy" decoding="async">
     </div>
+        <section class="ds">
+      <h2 class="rv">Samme rom, flere muligheter.</h2>
+      <p class="dslead rv">Aktivitetsrommet i kjelleren, tømt og møblert digitalt. De møblerte bildene er illustrasjoner av hvordan rommet kan brukes, ikke slik det står i dag.</p>
+      <div class="dsstage">
+        <figure data-k="for"><img src="/img/ds-for-1264.d2c94925a1.webp" srcset="/img/ds-for-828.d2c94925a1.webp 828w, /img/ds-for-1264.d2c94925a1.webp 1264w" sizes="(max-width: 1180px) 100vw, 1100px" width="1264" height="848" alt="Aktivitetsrommet i Heyerdahls vei 8 B slik det er i dag" loading="lazy" decoding="async"></figure><figure data-k="tomt" class="on"><img src="/img/ds-tomt-1264.27116a9308.webp" srcset="/img/ds-tomt-828.27116a9308.webp 828w, /img/ds-tomt-1264.27116a9308.webp 1264w" sizes="(max-width: 1180px) 100vw, 1100px" width="1264" height="848" alt="Aktivitetsrommet, digitalt tømt" loading="lazy" decoding="async"><span class="dsbadge">Digitalt tømt</span></figure><figure data-k="soverom"><img src="/img/ds-soverom-1264.692f26f8a7.webp" srcset="/img/ds-soverom-828.692f26f8a7.webp 828w, /img/ds-soverom-1264.692f26f8a7.webp 1264w" sizes="(max-width: 1180px) 100vw, 1100px" width="1264" height="848" alt="Aktivitetsrommet digitalt møblert som soverom, illustrasjon" loading="lazy" decoding="async"><span class="dsbadge">Digitalt møblert</span></figure><figure data-k="stue"><img src="/img/ds-stue-1264.c8c742ecfb.webp" srcset="/img/ds-stue-828.c8c742ecfb.webp 828w, /img/ds-stue-1264.c8c742ecfb.webp 1264w" sizes="(max-width: 1180px) 100vw, 1100px" width="1264" height="848" alt="Aktivitetsrommet digitalt møblert som stue, illustrasjon" loading="lazy" decoding="async"><span class="dsbadge">Digitalt møblert</span></figure><figure data-k="kjokken"><img src="/img/ds-kjokken-1264.5f2e8e2864.webp" srcset="/img/ds-kjokken-828.5f2e8e2864.webp 828w, /img/ds-kjokken-1264.5f2e8e2864.webp 1264w" sizes="(max-width: 1180px) 100vw, 1100px" width="1264" height="848" alt="Aktivitetsrommet digitalt møblert som kjøkken, illustrasjon" loading="lazy" decoding="async"><span class="dsbadge">Digitalt møblert</span></figure><figure data-k="spillrom"><img src="/img/ds-spillrom-1264.7c47c17bab.webp" srcset="/img/ds-spillrom-828.7c47c17bab.webp 828w, /img/ds-spillrom-1264.7c47c17bab.webp 1264w" sizes="(max-width: 1180px) 100vw, 1100px" width="1264" height="848" alt="Aktivitetsrommet digitalt møblert som spillrom, illustrasjon" loading="lazy" decoding="async"><span class="dsbadge">Digitalt møblert</span></figure>
+      </div>
+      <div class="dstabs" role="tablist" aria-label="Velg versjon av rommet"><button type="button" role="tab" data-i="0" aria-selected="false">Slik det er</button><button type="button" role="tab" data-i="1" aria-selected="true">Tomt</button><button type="button" role="tab" data-i="2" aria-selected="false">Soverom</button><button type="button" role="tab" data-i="3" aria-selected="false">Stue</button><button type="button" role="tab" data-i="4" aria-selected="false">Kjøkken</button><button type="button" role="tab" data-i="5" aria-selected="false">Spillrom</button></div>
+    </section>
     <div class="csend">
       <p>Fortell meg om boligen, så tar vi det derfra.</p>
       <div class="btnrow"><a class="btn solid" href="/kontakt/">Book befaring</a><a class="btn ghost" href="/arbeid/">Alle prosjekter</a></div>
@@ -1423,6 +1448,26 @@ setMode(true);
   document.addEventListener("keydown", function(e){
     if ((e.key === "Enter" || e.key === " ") && e.target.matches && e.target.matches(".csgrid img")) { e.preventDefault(); e.target.click(); }
   });
+})();
+
+/* ---------------- digital staging: tabs, arrow keys and swipe ---------------- */
+(function(){
+  var sec = document.querySelector(".ds"); if (!sec) return;
+  var figs = sec.querySelectorAll(".dsstage figure"), tabs = sec.querySelectorAll(".dstabs button"), at = 0, sx = null;
+  [].forEach.call(figs, function(f, i){ if (f.classList.contains("on")) at = i; });
+  function show(i){
+    at = (i + figs.length) % figs.length;
+    [].forEach.call(figs, function(f, k){ f.classList.toggle("on", k === at); if (k === at) { var im = f.querySelector("img"); im.loading = "eager"; } });
+    [].forEach.call(tabs, function(b, k){ b.setAttribute("aria-selected", k === at ? "true" : "false"); b.tabIndex = k === at ? 0 : -1; });
+  }
+  [].forEach.call(tabs, function(b){ b.addEventListener("click", function(){ show(+b.getAttribute("data-i")); }); });
+  sec.querySelector(".dstabs").addEventListener("keydown", function(e){
+    if (e.key === "ArrowRight" || e.key === "ArrowLeft") { e.preventDefault(); show(at + (e.key === "ArrowRight" ? 1 : -1)); tabs[at].focus(); }
+  });
+  var stage = sec.querySelector(".dsstage");
+  stage.addEventListener("pointerdown", function(e){ sx = e.clientX; });
+  stage.addEventListener("pointerup", function(e){ if (sx === null) return; var dx = e.clientX - sx; sx = null; if (Math.abs(dx) > 40) show(at + (dx < 0 ? 1 : -1)); else show(at + 1); });
+  show(at);
 })();
 
 /* ---------------- call bar on phones ---------------- */
