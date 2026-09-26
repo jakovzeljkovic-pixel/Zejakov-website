@@ -685,6 +685,12 @@ footer{padding-top:clamp(56px,8vw,110px)}
 .dstabs button:hover{color:var(--cream);border-color:var(--cream)}
 .dstabs button[aria-selected="true"]{background:var(--cream);border-color:var(--cream);color:var(--field)}
 .dstabs button:focus-visible{outline:2px solid var(--brass);outline-offset:2px}
+.dsfit{display:grid;grid-template-columns:1fr 1fr;gap:clamp(18px,4vw,48px);margin-top:clamp(28px,4vw,44px);max-width:880px}
+.dsfit h3{font-family:var(--ui-font),sans-serif;font-size:.78rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin:0 0 10px}
+.dsfit ul{list-style:none;margin:0;padding:0}
+.dsfit li{padding:10px 0;border-top:1px solid var(--line)}
+.dsnote{color:var(--muted);font-size:.9rem;max-width:60ch;margin:22px 0 0}
+@media (max-width:640px){.dsfit{grid-template-columns:1fr}}
 @media (prefers-reduced-motion:reduce){ .dsstage figure{transition:none} }
 
 /* phones: the number is always one tap away */
@@ -839,10 +845,16 @@ footer{padding-top:clamp(56px,8vw,110px)}
     <div class="wrap">
       <div class="ds">
       <h2 class="rv">Samme rom, flere muligheter.</h2>
-      <p class="dslead rv">Aktivitetsrommet i kjelleren på Heyerdahls vei 8 B, tømt og møblert digitalt. De møblerte bildene er illustrasjoner av hvordan rommet kan brukes, ikke slik det står i dag.</p>
+      <p class="dslead rv">Digital møblering. Jeg tømmer rommet på bildet og møblerer det på nytt, gjerne på flere måter, så kjøperen ser hva rommet kan brukes til. Vegger, dører, vinduer og lys står som de er. Eksempelet er aktivitetsrommet i kjelleren på Heyerdahls vei 8 B.</p>
       <div class="dsstage"><figure data-k="tomt" class="on"><img src="/img/ds-tomt-1264.a6d8ef629c.webp" srcset="/img/ds-tomt-828.a6d8ef629c.webp 828w, /img/ds-tomt-1264.a6d8ef629c.webp 1264w" sizes="(max-width: 1180px) 100vw, 1100px" width="1264" height="848" alt="Aktivitetsrommet, digitalt tømt" loading="lazy" decoding="async"><span class="dsbadge">Digitalt tømt</span></figure><figure data-k="soverom"><img src="/img/ds-soverom-1264.8e8fd8ad9b.webp" srcset="/img/ds-soverom-828.8e8fd8ad9b.webp 828w, /img/ds-soverom-1264.8e8fd8ad9b.webp 1264w" sizes="(max-width: 1180px) 100vw, 1100px" width="1264" height="848" alt="Aktivitetsrommet digitalt møblert som soverom, illustrasjon" loading="lazy" decoding="async"><span class="dsbadge">Digitalt møblert</span></figure><figure data-k="stue"><img src="/img/ds-stue-1264.70fc43bc1c.webp" srcset="/img/ds-stue-828.70fc43bc1c.webp 828w, /img/ds-stue-1264.70fc43bc1c.webp 1264w" sizes="(max-width: 1180px) 100vw, 1100px" width="1264" height="848" alt="Aktivitetsrommet digitalt møblert som stue, illustrasjon" loading="lazy" decoding="async"><span class="dsbadge">Digitalt møblert</span></figure><figure data-k="kjokken"><img src="/img/ds-kjokken-1264.54a2fafab3.webp" srcset="/img/ds-kjokken-828.54a2fafab3.webp 828w, /img/ds-kjokken-1264.54a2fafab3.webp 1264w" sizes="(max-width: 1180px) 100vw, 1100px" width="1264" height="848" alt="Aktivitetsrommet digitalt møblert som kjøkken, illustrasjon" loading="lazy" decoding="async"><span class="dsbadge">Digitalt møblert</span></figure><figure data-k="spillrom"><img src="/img/ds-spillrom-1264.3f20760f18.webp" srcset="/img/ds-spillrom-828.3f20760f18.webp 828w, /img/ds-spillrom-1264.3f20760f18.webp 1264w" sizes="(max-width: 1180px) 100vw, 1100px" width="1264" height="848" alt="Aktivitetsrommet digitalt møblert som spillrom, illustrasjon" loading="lazy" decoding="async"><span class="dsbadge">Digitalt møblert</span></figure>
       </div>
       <div class="dstabs" role="tablist" aria-label="Velg versjon av rommet"><button type="button" role="tab" data-i="0" aria-selected="true">Tomt</button><button type="button" role="tab" data-i="1" aria-selected="false">Soverom</button><button type="button" role="tab" data-i="2" aria-selected="false">Stue</button><button type="button" role="tab" data-i="3" aria-selected="false">Kjøkken</button><button type="button" role="tab" data-i="4" aria-selected="false">Spillrom</button></div>
+    
+      <div class="dsfit rv">
+        <div><h3>Passer godt</h3><ul><li>Tomme boliger, der eieren alt har flyttet ut</li><li>Rom uten tydelig bruk, som kjeller, loft eller et ekstra rom</li><li>Når du vil vise flere måter å bruke samme rom på</li></ul></div>
+        <div><h3>Passer ikke</h3><ul><li>Rom som allerede er pent møblert</li><li>Til å skjule slitasje eller feil</li><li>Til å få boligen til å se nyere eller bedre ut enn den er</li></ul></div>
+      </div>
+      <p class="dsnote rv">Bildene merkes som digitalt møblert, slik Forbrukertilsynet krever. Kjøperen skal kjenne igjen rommet på visning.</p>
     </div>
     </div>
   </section>
@@ -938,6 +950,13 @@ footer{padding-top:clamp(56px,8vw,110px)}
       </div>
       <img class="cswide" src="/img/hv-spisebord-1600.86394d371f.webp" srcset="/img/hv-spisebord-640.86394d371f.webp 640w, /img/hv-spisebord-828.86394d371f.webp 828w, /img/hv-spisebord-1080.86394d371f.webp 1080w, /img/hv-spisebord-1600.86394d371f.webp 1600w, /img/hv-spisebord-2200.86394d371f.webp 2200w" sizes="(max-width: 1180px) 100vw, 1100px" width="1600" height="1067" alt="Spisebord og kjøkken" loading="lazy" decoding="async">
     </div>
+    <section class="ds">
+      <h2 class="rv">Samme rom, flere muligheter.</h2>
+      <p class="dslead rv">Aktivitetsrommet i kjelleren, tømt og møblert digitalt. De møblerte bildene er illustrasjoner av hvordan rommet kan brukes, ikke slik det står i dag.</p>
+      <div class="dsstage"><figure data-k="tomt" class="on"><img src="/img/ds-tomt-1264.a6d8ef629c.webp" srcset="/img/ds-tomt-828.a6d8ef629c.webp 828w, /img/ds-tomt-1264.a6d8ef629c.webp 1264w" sizes="(max-width: 1180px) 100vw, 1100px" width="1264" height="848" alt="Aktivitetsrommet, digitalt tømt" loading="lazy" decoding="async"><span class="dsbadge">Digitalt tømt</span></figure><figure data-k="soverom"><img src="/img/ds-soverom-1264.8e8fd8ad9b.webp" srcset="/img/ds-soverom-828.8e8fd8ad9b.webp 828w, /img/ds-soverom-1264.8e8fd8ad9b.webp 1264w" sizes="(max-width: 1180px) 100vw, 1100px" width="1264" height="848" alt="Aktivitetsrommet digitalt møblert som soverom, illustrasjon" loading="lazy" decoding="async"><span class="dsbadge">Digitalt møblert</span></figure><figure data-k="stue"><img src="/img/ds-stue-1264.70fc43bc1c.webp" srcset="/img/ds-stue-828.70fc43bc1c.webp 828w, /img/ds-stue-1264.70fc43bc1c.webp 1264w" sizes="(max-width: 1180px) 100vw, 1100px" width="1264" height="848" alt="Aktivitetsrommet digitalt møblert som stue, illustrasjon" loading="lazy" decoding="async"><span class="dsbadge">Digitalt møblert</span></figure><figure data-k="kjokken"><img src="/img/ds-kjokken-1264.54a2fafab3.webp" srcset="/img/ds-kjokken-828.54a2fafab3.webp 828w, /img/ds-kjokken-1264.54a2fafab3.webp 1264w" sizes="(max-width: 1180px) 100vw, 1100px" width="1264" height="848" alt="Aktivitetsrommet digitalt møblert som kjøkken, illustrasjon" loading="lazy" decoding="async"><span class="dsbadge">Digitalt møblert</span></figure><figure data-k="spillrom"><img src="/img/ds-spillrom-1264.3f20760f18.webp" srcset="/img/ds-spillrom-828.3f20760f18.webp 828w, /img/ds-spillrom-1264.3f20760f18.webp 1264w" sizes="(max-width: 1180px) 100vw, 1100px" width="1264" height="848" alt="Aktivitetsrommet digitalt møblert som spillrom, illustrasjon" loading="lazy" decoding="async"><span class="dsbadge">Digitalt møblert</span></figure>
+      </div>
+      <div class="dstabs" role="tablist" aria-label="Velg versjon av rommet"><button type="button" role="tab" data-i="0" aria-selected="true">Tomt</button><button type="button" role="tab" data-i="1" aria-selected="false">Soverom</button><button type="button" role="tab" data-i="2" aria-selected="false">Stue</button><button type="button" role="tab" data-i="3" aria-selected="false">Kjøkken</button><button type="button" role="tab" data-i="4" aria-selected="false">Spillrom</button></div>
+    </section>
     <div class="csend">
       <p>Fortell meg om boligen, så tar vi det derfra.</p>
       <div class="btnrow"><a class="btn solid" href="/kontakt/">Book befaring</a><a class="btn ghost" href="/arbeid/">Alle prosjekter</a></div>
