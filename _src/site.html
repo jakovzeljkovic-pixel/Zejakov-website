@@ -707,10 +707,21 @@ footer{padding-top:clamp(56px,8vw,110px)}
 @media (max-width:360px){ .callbar a{font-size:.84rem;gap:7px} }
 @media (prefers-reduced-motion:reduce){ .callbar{transition:none} }
 
-:root[data-surface="light"]{
+:root{color-scheme:dark}
+:root[data-surface="light"]{color-scheme:light;
   --field:#E9E2D6;--field-2:#F5F1E8;--field-3:#D8CFBE;--cream:#241E18;--muted:#786E62;
   --brass:#8A5E2B;--line:rgba(36,30,24,.11);--line-2:rgba(36,30,24,.05);--mast-bg:rgba(233,226,214,.9);
 }
+html{scroll-padding-top:88px}
+.skip{position:absolute;left:12px;top:-64px;z-index:100;padding:10px 14px;background:var(--cream);color:var(--field);font-family:var(--ui-font),sans-serif;font-size:.85rem;border-radius:2px;text-decoration:none;transition:top .15s}
+.skip:focus{top:12px}
+.vpause{position:absolute;z-index:4;right:clamp(20px,4vw,44px);bottom:18px;width:40px;height:40px;padding:0;border-radius:50%;border:1px solid rgba(242,239,234,.3);background:rgba(12,10,9,.35);color:#F2EFEA;display:grid;place-items:center;cursor:pointer;transition:border-color .2s}
+.vpause[hidden]{display:none}
+.vpause:hover{border-color:#F2EFEA}
+.vpause:focus-visible{outline:2px solid var(--brass);outline-offset:2px}
+.vpause svg{width:14px;height:14px}
+@media (max-aspect-ratio: 7/5){ .vpause{top:calc(75vw - 54px);bottom:auto;right:14px} }
+@media (max-aspect-ratio: 7/5) and (min-width:700px){ .vpause{top:calc(62.5vw - 54px)} }
 </style>
 
 
@@ -736,6 +747,7 @@ footer{padding-top:clamp(56px,8vw,110px)}
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": ["ProfessionalService", "LocalBusiness"], "@id": "https://zejakov.com/#zejakov", "name": "ZEJAKOV MEDIA", "legalName": "ZEJAKOV ZELJKOVIC", "url": "https://zejakov.com/", "logo": "https://zejakov.com/icon-512.png", "image": "https://zejakov.com/img/og-bolig-1200x630.e4cd35e860.jpg", "description": "Medieproduksjon for eiendom i Oslo. Boligfilm, boligfoto og drone til visning og annonse, alt gjort av samme person. Se arbeidet og book befaring.", "telephone": "+4797344658", "email": "post@zejakov.com", "vatID": "NO835196542", "taxID": "835196542", "knowsLanguage": "nb", "address": {"@type": "PostalAddress", "addressLocality": "Oslo", "addressRegion": "Oslo", "addressCountry": "NO"}, "areaServed": [{"@type": "City", "name": "Oslo"}, {"@type": "City", "name": "Bærum"}, {"@type": "City", "name": "Asker"}, {"@type": "City", "name": "Nordre Follo"}], "serviceType": ["Boligfilm", "Boligfoto", "Dronefoto og dronefilm", "Eiendomsfilm"], "hasOfferCatalog": {"@type": "OfferCatalog", "name": "Medieproduksjon for eiendom", "itemListElement": [{"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Boligfilm", "description": "Film av boligen til visning, annonse og sosiale medier."}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Boligfoto", "description": "Stillbilder til annonsen."}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Drone", "description": "Foto og film fra luften av bolig og område."}}]}, "sameAs": ["https://www.instagram.com/zejakovmedia/"]}</script>
 </head>
 <body>
+<a class="skip" href="#innhold">Hopp til innhold</a>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <symbol id="mk" viewBox="0 0 512 512">
     <path d="M329.318 162.476L142.270 349.524L76.800 349.524L218.916 207.392L91.734 207.845L132.292 162.994"/>
@@ -754,7 +766,7 @@ footer{padding-top:clamp(56px,8vw,110px)}
           <circle cx="256" cy="256" r="256"/><use href="#mk"/>
         </svg>
       </span>
-      <span class="brandname">ZEJAKOV MEDIA</span>
+      <span class="brandname" translate="no">ZEJAKOV MEDIA</span>
     </a>
     <nav class="nav" id="nav">
       <a href="#hjem">Hjem</a>
@@ -792,6 +804,7 @@ footer{padding-top:clamp(56px,8vw,110px)}
       </div>
     </div>
     <div class="vcue hi" aria-hidden="true"><i></i></div>
+    <button class="vpause" id="vpause" type="button" hidden aria-label="Sett filmen på pause"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2.5h2.6v11H4zM9.4 2.5H12v11H9.4z" fill="currentColor"/></svg></button>
   </header>
 <script>(function(){var h=document.currentScript.previousElementSibling;if(!h||matchMedia("(prefers-reduced-motion: reduce)").matches)return;h.classList.add("pre")})();</script>
 
@@ -864,18 +877,18 @@ footer{padding-top:clamp(56px,8vw,110px)}
       </div>
 
       <form id="zv-form" hidden class="revform">
-        <div class="fld"><label for="zv-navn">Navn</label><input id="zv-navn" autocomplete="name"></div>
+        <div class="fld"><label for="zv-navn">Navn</label><input id="zv-navn" name="navn" autocomplete="name"></div>
         <div class="fld">
-          <label>Stjerner</label>
-          <div id="zv-stars" style="display:flex;gap:8px;margin-top:6px">
-            <button type="button" data-v="1" class="zvstar">&#9733;</button><button type="button" data-v="2" class="zvstar">&#9733;</button>
-            <button type="button" data-v="3" class="zvstar">&#9733;</button><button type="button" data-v="4" class="zvstar">&#9733;</button>
-            <button type="button" data-v="5" class="zvstar">&#9733;</button>
+          <label id="zv-stars-l">Stjerner</label>
+          <div id="zv-stars" role="radiogroup" aria-labelledby="zv-stars-l" style="display:flex;gap:8px;margin-top:6px">
+            <button type="button" data-v="1" class="zvstar" role="radio" aria-checked="false" aria-label="1 stjerne">&#9733;</button><button type="button" data-v="2" class="zvstar" role="radio" aria-checked="false" aria-label="2 stjerner">&#9733;</button>
+            <button type="button" data-v="3" class="zvstar" role="radio" aria-checked="false" aria-label="3 stjerner">&#9733;</button><button type="button" data-v="4" class="zvstar" role="radio" aria-checked="false" aria-label="4 stjerner">&#9733;</button>
+            <button type="button" data-v="5" class="zvstar" role="radio" aria-checked="false" aria-label="5 stjerner">&#9733;</button>
           </div>
         </div>
-        <div class="fld"><label for="zv-melding">Din vurdering</label><textarea id="zv-melding" rows="4"></textarea></div>
+        <div class="fld"><label for="zv-melding">Din vurdering</label><textarea id="zv-melding" name="melding" rows="4"></textarea></div>
         <button class="btn" type="submit" style="justify-self:start">Send inn</button>
-        <p id="zv-note"></p>
+        <p id="zv-note" role="status" aria-live="polite"></p>
       </form>
     </div>
   </section>
@@ -915,7 +928,7 @@ footer{padding-top:clamp(56px,8vw,110px)}
       <p class="cslead">Enebolig i Oslo med utsikt over byen. Film, bilder og drone fra samme oppdrag.</p>
     </header>
     <div class="film">
-      <button class="filmbtn" type="button" data-yt="oLSMCHBH2IE" aria-label="Spill av filmen: Heyerdahls vei 8 B"><img src="/img/hv-fasade-1600.04035650b4.webp" srcset="/img/hv-fasade-640.04035650b4.webp 640w, /img/hv-fasade-828.04035650b4.webp 828w, /img/hv-fasade-1080.04035650b4.webp 1080w, /img/hv-fasade-1600.04035650b4.webp 1600w, /img/hv-fasade-2200.04035650b4.webp 2200w" sizes="(max-width: 1180px) 100vw, 1100px" width="1600" height="900" alt="Heyerdahls vei 8 B: fasaden mot hagen" fetchpriority="high" decoding="async"><span class="playdot" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5.5v13l10.5-6.5z"/></svg></span></button>
+      <button class="filmbtn" type="button" data-yt="oLSMCHBH2IE" aria-label="Spill av filmen: Heyerdahls vei 8 B"><img fetchpriority="high" src="/img/hv-fasade-1600.04035650b4.webp" srcset="/img/hv-fasade-640.04035650b4.webp 640w, /img/hv-fasade-828.04035650b4.webp 828w, /img/hv-fasade-1080.04035650b4.webp 1080w, /img/hv-fasade-1600.04035650b4.webp 1600w, /img/hv-fasade-2200.04035650b4.webp 2200w" sizes="(max-width: 1180px) 100vw, 1100px" width="1600" height="900" alt="Heyerdahls vei 8 B: fasaden mot hagen" fetchpriority="high" decoding="async"><span class="playdot" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5.5v13l10.5-6.5z"/></svg></span></button>
     </div>
     <p class="cstext rv">Huset ligger høyt og har utsikt over Oslo. Film, bilder, drone og klipp er gjort av meg.</p>
     <div class="csgrid">
@@ -1014,12 +1027,12 @@ footer{padding-top:clamp(56px,8vw,110px)}
     </div>
     <form class="form" id="form" novalidate>
       <div class="fld"><label for="f-navn">Navn</label><input id="f-navn" name="navn" autocomplete="name"></div>
-      <div class="fld"><label for="f-epost">E-post</label><input id="f-epost" name="epost" type="email" autocomplete="email"></div>
+      <div class="fld"><label for="f-epost">E-post</label><input id="f-epost" name="epost" type="email" autocomplete="email" spellcheck="false"></div>
       <div class="fld"><label for="f-tlf">Telefon</label><input id="f-tlf" name="telefon" type="tel" autocomplete="tel"></div>
-      <div class="fld"><label for="f-adr">Boligens adresse</label><input id="f-adr" name="adresse"></div>
+      <div class="fld"><label for="f-adr">Boligens adresse</label><input id="f-adr" name="adresse" autocomplete="street-address"></div>
       <div class="fld"><label for="f-melding">Melding</label><textarea id="f-melding" name="melding"></textarea></div>
       <button class="btn" type="submit" style="justify-self:start">Send forespørsel</button>
-      <p class="formnote" id="fnote">Du får svar innen 24 timer.</p>
+      <p class="formnote" id="fnote" role="status" aria-live="polite">Du får svar innen 24 timer.</p>
     </form>
   </div>
 </main>
@@ -1208,6 +1221,7 @@ function setMode(dark){
   document.documentElement.dataset.surface = dark ? "dark" : "light";
   modeBtn.innerHTML = dark ? '<svg class="modeico" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5a8.5 8.5 0 1 0 10.7 10.7z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>' : '<svg class="modeico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M12 2.5v2.3M12 19.2v2.3M4.6 4.6l1.6 1.6M17.8 17.8l1.6 1.6M2.5 12h2.3M19.2 12h2.3M4.6 19.4l1.6-1.6M17.8 6.2l1.6-1.6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>';
   modeBtn.setAttribute("aria-label", dark ? "Bytt til lyst tema" : "Bytt til mørkt tema");
+  var tc = document.querySelector('meta[name="theme-color"]'); if (tc) tc.content = dark ? "#14110F" : "#E9E2D6";
   updateMast();
 }
 modeBtn.addEventListener("click",()=>setMode(document.documentElement.dataset.surface==="light"));
@@ -1294,7 +1308,7 @@ setMode(true);
     ev.preventDefault();
     var v = function(id){ var el = document.getElementById(id); return el ? el.value.trim() : ""; };
     var navn = v("f-navn"), epost = v("f-epost");
-    if (!navn || !epost) { if (note) note.textContent = "Fyll inn navn og e-post."; return; }
+    if (!navn || !epost) { if (note) note.textContent = "Fyll inn navn og e-post."; document.getElementById(navn ? "f-epost" : "f-navn").focus(); return; }
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(epost)) { if (note) note.textContent = "Sjekk e-postadressen, den ser ikke riktig ut."; document.getElementById("f-epost").focus(); return; }
     var btn = form.querySelector("button[type=submit]");
     if (btn) btn.disabled = true;
@@ -1348,7 +1362,7 @@ setMode(true);
   if (stars) stars.addEventListener("click", function(e){
     var b = e.target.closest(".zvstar"); if (!b) return;
     rating = parseInt(b.dataset.v, 10);
-    [].forEach.call(stars.children, function(el, i){ el.classList.toggle("on", i < rating); });
+    [].forEach.call(stars.children, function(el, i){ el.classList.toggle("on", i < rating); el.setAttribute("aria-checked", i === rating - 1 ? "true" : "false"); });
   });
   if (open && rform) open.addEventListener("click", function(){
     rform.hidden = !rform.hidden;
@@ -1359,7 +1373,7 @@ setMode(true);
     var navn = (document.getElementById("zv-navn")||{}).value || "";
     var msg  = (document.getElementById("zv-melding")||{}).value || "";
     navn = navn.trim(); msg = msg.trim();
-    if (!navn || !msg || !rating) { rnote.textContent = "Fyll inn navn, stjerner og tekst."; return; }
+    if (!navn || !msg || !rating) { rnote.textContent = "Fyll inn navn, stjerner og tekst."; (!navn ? document.getElementById("zv-navn") : !rating ? stars.querySelector(".zvstar") : document.getElementById("zv-melding")).focus(); return; }
     var btn = rform.querySelector("button[type=submit]");
     if (btn) btn.disabled = true;
     fetch(SB + "/rest/v1/reviews", { method:"POST", headers:H,
@@ -1626,14 +1640,24 @@ setMode(true);
   v.addEventListener("canplay", function(){
     var p = v.play(); if (p && p.catch) p.catch(function(){});
   }, { once:true });
+  var pb = document.getElementById("vpause"), held = false;
+  var ICON_PAUSE = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2.5h2.6v11H4zM9.4 2.5H12v11H9.4z" fill="currentColor"/></svg>',
+      ICON_PLAY  = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 2.5l9 5.5-9 5.5z" fill="currentColor"/></svg>';
+  if (pb) pb.addEventListener("click", function(){
+    held = !v.paused;
+    if (held) v.pause(); else { var p = v.play(); if (p && p.catch) p.catch(function(){}); }
+    pb.innerHTML = held ? ICON_PLAY : ICON_PAUSE;
+    pb.setAttribute("aria-label", held ? "Spill av filmen" : "Sett filmen på pause");
+  });
   v.addEventListener("playing", function(){
+    if (pb) pb.hidden = false;
     v.classList.add("on");
     setTimeout(function(){ stage.classList.add("live"); }, 900);
   }, { once:true });
   /* a tab nobody is looking at is not worth decoding */
   document.addEventListener("visibilitychange", function(){
     if (document.hidden) v.pause();
-    else if (v.classList.contains("on")) { var p = v.play(); if (p && p.catch) p.catch(function(){}); }
+    else if (v.classList.contains("on") && !held) { var p = v.play(); if (p && p.catch) p.catch(function(){}); }
   });
 })();
 </script>

@@ -243,6 +243,8 @@ def main():
         doc = meta(head, title, desc, url) + links(before, nav) + page + links(after, nav)
         if slug in HIDDEN:
             doc = re.sub(r'<link rel="canonical" href="[^"]*">', '<meta name="robots" content="noindex">', doc, count=1)
+        # the skip link lands on this page's own content
+        doc = doc.replace('href="#innhold"', 'href="#p-%s"' % slug, 1)
         doc = prune_style(doc)
         if slug == "hjem":
             doc = doc.replace("</head>", hero_preload(src) + "</head>", 1)
