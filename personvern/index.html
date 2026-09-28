@@ -649,7 +649,7 @@ setMode(true);
      and a 5 MB file on a laptop was holding up the next page on ordinary lines */
   var w = innerWidth;
   if (c.effectiveType === "3g") w = 0;
-  var src = w > 1600 ? "/video/hero-1080.mp4?v=2" : w > 900 ? "/video/hero-720.mp4?v=2" : "/video/hero-480.mp4?v=2";
+  var src = w > 1600 ? "/video/hero-1080.mp4?v=3" : w > 900 ? "/video/hero-720.mp4?v=3" : "/video/hero-480.mp4?v=3";
   function startFilm(){ if (v.getAttribute("src")) return; v.src = src; v.load(); }
   /* the page, its fonts and first images come first; the film follows */
   if (document.readyState === "complete") setTimeout(startFilm, 400);

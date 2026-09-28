@@ -233,7 +233,7 @@ h1{font-size:calc(clamp(2.1rem,5.2vw,3.9rem) * var(--hd-scale));letter-spacing:-
 .js .rv{opacity:0;transform:translate3d(0,22px,0)}
 .js .rv.in{opacity:1;transform:none;
   transition:opacity 1s var(--ease-soft) var(--d,0s),transform 1.25s var(--ease-cine) var(--d,0s)}
-.hero.vhero{--poster:url("/img/hero-poster-960.acaa0991d0.webp");min-height:max(600px,90svh);justify-content:flex-end;background:#0B0A09;color:#F2EFEA}
+.hero.vhero{--poster:url("/img/hero-poster-960.3e33b1bf53.webp");min-height:max(600px,90svh);justify-content:flex-end;background:#0B0A09;color:#F2EFEA}
 .vstage{position:absolute;top:0;left:0;right:0;height:132%;z-index:0;overflow:hidden;
   will-change:transform}
 .vfilm{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 42%;
@@ -264,7 +264,7 @@ h1{font-size:calc(clamp(2.1rem,5.2vw,3.9rem) * var(--hd-scale));letter-spacing:-
 .vhero .btn.ghost{color:#F2EFEA;border-color:rgba(242,239,234,.24);background:rgba(242,239,234,.05)}
 .vhero .btn.ghost:hover{border-color:#F2EFEA}
 @media (min-width:761px){
-  .hero.vhero{--poster:url("/img/hero-poster-1600.581931d192.webp")}
+  .hero.vhero{--poster:url("/img/hero-poster-1600.3e33b1bf53.webp")}
 }
 .vcue{position:absolute;z-index:3;right:clamp(20px,4vw,44px);bottom:clamp(58px,8vw,104px);
   display:flex;align-items:flex-end;height:64px}
@@ -1625,7 +1625,7 @@ setMode(true);
      and a 5 MB file on a laptop was holding up the next page on ordinary lines */
   var w = innerWidth;
   if (c.effectiveType === "3g") w = 0;
-  var src = w > 1600 ? "/video/hero-1080.mp4?v=2" : w > 900 ? "/video/hero-720.mp4?v=2" : "/video/hero-480.mp4?v=2";
+  var src = w > 1600 ? "/video/hero-1080.mp4?v=3" : w > 900 ? "/video/hero-720.mp4?v=3" : "/video/hero-480.mp4?v=3";
   function startFilm(){ if (v.getAttribute("src")) return; v.src = src; v.load(); }
   /* the page, its fonts and first images come first; the film follows */
   if (document.readyState === "complete") setTimeout(startFilm, 400);
