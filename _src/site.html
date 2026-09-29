@@ -722,6 +722,12 @@ html{scroll-padding-top:88px}
 .vpause svg{width:14px;height:14px}
 @media (max-aspect-ratio: 7/5){ .vpause{top:calc(75vw - 54px);bottom:auto;right:14px} }
 @media (max-aspect-ratio: 7/5) and (min-width:700px){ .vpause{top:calc(62.5vw - 54px)} }
+.tid{border-top:1px solid var(--line)}
+.tidgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,3vw,40px);margin-top:clamp(36px,5vw,64px)}
+.tidgrid div{border-top:1px solid var(--line);padding-top:18px}
+.tidgrid h3{font-size:1.05rem;font-weight:600;margin:0 0 8px;color:var(--cream)}
+.tidgrid p{color:var(--muted);margin:0;font-size:.98rem;max-width:32ch}
+@media (max-width:760px){.tidgrid{grid-template-columns:1fr}}
 </style>
 
 
@@ -828,6 +834,21 @@ html{scroll-padding-top:88px}
     <div class="wrap">
       <p class="stmtbig rv">Et hus til 35 millioner <em>skal ikke se ut som et til 5.</em></p>
       <p class="stmtsub rv" style="--d:.12s">Det er ikke mange kjøpere i den prisklassen, og de har allerede sett hundrevis av annonser med sjelløse rom og flatt lys. Jeg lager bilder og film som forteller historien om boligen og viser hvordan det er å leve der. Det er det som får den til å skille seg ut.</p>
+    </div>
+  </section>
+
+  <section class="section tid">
+    <div class="wrap">
+      <div class="lookhead">
+        <h2 class="rv">Ett hus om gangen.</h2>
+        <p class="rv" style="--d:.08s">Mye boligfoto lages i høyt tempo. Fotografen har ofte flere adresser samme dag, og tiden i hver bolig blir kort. Det fungerer når målet er mange boliger, men sjelden når boligen skal skille seg ut.</p>
+        <p class="rv" style="--d:.14s">Jeg tar bare et begrenset antall boliger i måneden. Da får hvert hus den tiden det trenger: jeg venter på riktig lys, finner vinklene som viser hvordan det er å bo der, og redigerer hver bolig for seg.</p>
+      </div>
+      <div class="tidgrid rv" style="--d:.2s">
+        <div><h3>Et begrenset antall boliger</h3><p>Hver måned. Så hvert hus får full oppmerksomhet.</p></div>
+        <div><h3>Ingen stoppeklokke</h3><p>Jeg blir til bildene er riktige. Det står ingen ny adresse og venter.</p></div>
+        <div><h3>Samme person hele veien</h3><p>Den du snakker med, er den som tar bildene, filmer og redigerer.</p></div>
+      </div>
     </div>
   </section>
 
