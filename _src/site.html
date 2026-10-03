@@ -176,6 +176,7 @@ h1{font-size:calc(clamp(1.9rem,4.6vw,3.4rem) * var(--hd-scale));line-height:1.1;
   padding:12px 14px;font:inherit;font-size:.92rem;border-radius:0}
 .fld input:focus,.fld textarea:focus,.fld select:focus{outline:none;border-color:var(--brass)}
 .fld textarea{min-height:104px;resize:vertical}
+.fld textarea::placeholder{color:var(--muted);opacity:1}
 .formnote{color:var(--muted);font-size:.76rem}
 footer{border-top:1px solid var(--line);padding:28px 0 40px;margin-top:clamp(40px,6vw,80px)}
 .footin{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;color:var(--muted);
@@ -1037,8 +1038,8 @@ html{scroll-padding-top:88px}
 <!-- ============ KONTAKT ============ -->
 <main class="page" id="p-kontakt">
   <div class="wrap pagehead">
-    <h2>Fortell meg om boligen.</h2>
-    <p>Send adressen og det du ønsker deg. Jeg gjør hver jobb selv, så vi finner en dato når jeg har ledig.</p>
+    <h2>Hva trenger du hjelp med?</h2>
+    <p>Skriv kort hva du trenger og hva du vil oppnå. Jeg legger opp hver jobb etter det, så ser jeg om jeg kan hjelpe deg.</p>
   </div>
   <div class="wrap ctgrid" style="padding-bottom:clamp(50px,8vw,96px)">
     <div class="ctlist">
@@ -1052,8 +1053,8 @@ html{scroll-padding-top:88px}
       <div class="fld"><label for="f-navn">Navn</label><input id="f-navn" name="navn" autocomplete="name"></div>
       <div class="fld"><label for="f-epost">E-post</label><input id="f-epost" name="epost" type="email" autocomplete="email" spellcheck="false"></div>
       <div class="fld"><label for="f-tlf">Telefon</label><input id="f-tlf" name="telefon" type="tel" autocomplete="tel"></div>
-      <div class="fld"><label for="f-adr">Boligens adresse</label><input id="f-adr" name="adresse" autocomplete="street-address"></div>
-      <div class="fld"><label for="f-melding">Melding</label><textarea id="f-melding" name="melding"></textarea></div>
+      <div class="fld"><label for="f-melding">Hva trenger du hjelp med?</label><textarea id="f-melding" name="melding" placeholder="For eksempel hva som skal selges, og hva du vil at kjøperne skal legge merke til."></textarea></div>
+      <div class="fld"><label for="f-adr">Adresse til boligen, hvis du har den</label><input id="f-adr" name="adresse" autocomplete="street-address"></div>
       <button class="btn" type="submit" style="justify-self:start">Send forespørsel</button>
       <p class="formnote" id="fnote" role="status" aria-live="polite">Du får svar innen 24 timer.</p>
     </form>
