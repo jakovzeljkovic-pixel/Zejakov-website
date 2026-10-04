@@ -729,6 +729,14 @@ html{scroll-padding-top:88px}
 .tidgrid h3{font-size:1.05rem;font-weight:600;margin:0 0 8px;color:var(--cream)}
 .tidgrid p{color:var(--muted);margin:0;font-size:.98rem;max-width:32ch}
 @media (max-width:760px){.tidgrid{grid-template-columns:1fr}}
+.edopts{display:grid;grid-template-columns:1fr 1fr;gap:clamp(18px,3vw,40px)}
+.edopts div{border-top:1px solid var(--line);padding-top:18px}
+.edopts h3{font-size:1.05rem;font-weight:600;margin:0 0 8px;color:var(--cream)}
+.edopts p{color:var(--muted);margin:0;font-size:.98rem}
+.edgrid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(10px,1.4vw,18px);margin-top:clamp(40px,6vw,80px)}
+.edgrid figure{margin:0}
+.edgrid img{width:100%;height:auto;display:block;border-radius:var(--r)}
+@media (max-width:760px){.edopts,.edgrid{grid-template-columns:1fr}}
 </style>
 
 
@@ -1013,6 +1021,21 @@ html{scroll-padding-top:88px}
       <p class="rv" style="--d:.08s">Formen avhenger av boligen. Noen ganger passer stående klipp best, andre ganger en lengre film med kinopreg, og noen ganger en video der megleren viser boligen fram. Det finner vi ut sammen på befaringen.</p>
       <p class="rv" style="--d:.16s">Går en film viralt, er det fint, men det er ikke poenget. Uansett form er det boligen som står i sentrum, ikke antall avspillinger.</p>
     </div>
+  </div>
+  <div class="wrap svcgrid svcfocus">
+    <h2 class="rv">Redaksjonelle bilder.</h2>
+    <div class="svctext">
+      <p class="rv">Vanlige boligbilder viser hvert rom fra hjørnet, så kjøperen får oversikten. Redaksjonelle bilder er tatt som i et interiørmagasin. De går tettere på materialer og lys, og viser hvordan det er å bo der.</p>
+      <div class="edopts rv" style="--d:.08s">
+        <div><h3>Som tillegg</h3><p>Fem eller ti redaksjonelle bilder i tillegg til de vanlige. Annonsen får både oversikten kjøperne leter etter, og bildene som får dem til å stoppe opp.</p></div>
+        <div><h3>I stedet for vanlige bilder</h3><p>Hele settet tas i redaksjonell stil. Det passer når arkitekturen og interiøret er en stor del av det kjøperen betaler for.</p></div>
+      </div>
+      <p class="rv" style="--d:.16s">Hva som passer for din bolig, finner vi ut sammen.</p>
+    </div>
+  </div>
+  <div class="wrap edgrid rv">
+    <figure><img src="/img/hv-detalj-1080.f947eb23ec.webp" srcset="/img/hv-detalj-640.f947eb23ec.webp 640w, /img/hv-detalj-828.f947eb23ec.webp 828w, /img/hv-detalj-1080.f947eb23ec.webp 1080w, /img/hv-detalj-1600.f947eb23ec.webp 1600w" sizes="(max-width: 760px) 100vw, 50vw" width="1080" height="720" alt="Detalj fra stua i enebolig i Oslo, redaksjonelt bilde" loading="lazy" decoding="async"></figure>
+    <figure><img src="/img/hv-sov2detalj-1080.b9485a7c1e.webp" srcset="/img/hv-sov2detalj-640.b9485a7c1e.webp 640w, /img/hv-sov2detalj-828.b9485a7c1e.webp 828w, /img/hv-sov2detalj-1080.b9485a7c1e.webp 1080w, /img/hv-sov2detalj-1600.b9485a7c1e.webp 1600w" sizes="(max-width: 760px) 100vw, 50vw" width="1080" height="720" alt="Nattbord og lampe på soverommet, redaksjonelt bilde" loading="lazy" decoding="async"></figure>
   </div>
   <div class="wrap svcfilter">
     <p class="svcbig rv" style="--d:.06s">Bilder og film er bare verktøyet. Det som teller, er salget.</p>
