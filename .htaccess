@@ -1,6 +1,14 @@
 ErrorDocument 404 /404.html
 
+RewriteEngine On
+
 # old Wix addresses still known to Google
-Redirect 301 /portfolio /arbeid/
-Redirect 301 /bio-contact /kontakt/
-RedirectMatch 301 ^/copy-of-.*$ /arbeid/
+RewriteRule ^portfolio/?$ https://zejakov.com/arbeid/ [R=301,L]
+RewriteRule ^bio-contact/?$ https://zejakov.com/kontakt/ [R=301,L]
+RewriteRule ^copy-of- https://zejakov.com/arbeid/ [R=301,L]
+
+# one address for every page: https://zejakov.com, no www, no index.html
+RewriteCond %{HTTP_HOST} ^www\. [NC]
+RewriteRule ^(.*)$ https://zejakov.com/$1 [R=301,L]
+RewriteCond %{THE_REQUEST} \s/+(.*/)?index\.html[\s?] [NC]
+RewriteRule ^(.*/)?index\.html$ https://zejakov.com/$1 [R=301,L]
