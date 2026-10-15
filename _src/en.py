@@ -24,14 +24,14 @@ PATHS = {
 # slug -> (<title>, meta description)
 META = {
     "hjem": ("Property film and photography in Oslo | ZEJAKOV MEDIA",
-             "Media production for property in Oslo. Film, photography and drone for "
-             "viewings and listings, all done by one person. See the work and book a site visit."),
+             "Media production for property in Oslo. Film, photography and drone footage "
+             "for viewings and listings, all done by one person. See the work and book a site visit."),
     "arbeid": ("Work: property film and photography from Oslo | ZEJAKOV MEDIA",
-               "Homes I have photographed and filmed in and around Oslo. Every project "
-               "with film, photos and drone from the same shoot."),
+               "Homes I have photographed and filmed in and around Oslo. Each project "
+               "includes film, photos and drone footage."),
     "heyerdahls": ("Heyerdahls vei 8 B: property film from Oslo | ZEJAKOV MEDIA",
-                   "A detached house in Oslo with views over the city. Film, photos and "
-                   "drone from a single shoot, August 2026."),
+                   "A detached house in Oslo overlooking the city. Film, photos and drone "
+                   "footage from the same project, August 2026."),
     "tjenester": ("Property film, photography and drone in Oslo | ZEJAKOV MEDIA",
                   "The whole job done by one person: photos, film, drone and lighting. For "
                   "owners and agents who want to show what it is like to live in the home."),
@@ -50,7 +50,7 @@ T = {
     # head
     "Enebolig i Oslo filmet av ZEJAKOV MEDIA": "A detached house in Oslo filmed by ZEJAKOV MEDIA",
     "Medieproduksjon for eiendom i Oslo. Boligfilm, boligfoto og drone til visning og annonse, alt gjort av samme person. Se arbeidet og book befaring.":
-        "Media production for property in Oslo. Film, photography and drone for viewings and listings, all done by one person. See the work and book a site visit.",
+        "Media production for property in Oslo. Film, photography and drone footage for viewings and listings, all done by one person. See the work and book a site visit.",
     "Eiendomsfotograf": "Real estate photography",
     "Boligfoto": "Property photography",
     "Boligfilm": "Property film",
@@ -67,7 +67,7 @@ T = {
     "Tomme eller fulle rom møblert digitalt, merket som digitalt møblert.": "Empty or furnished rooms staged digitally, always labelled as virtually staged.",
     "Korte, stående videoer til sosiale medier.": "Short vertical videos for social media.",
     "Boligfilm av en enebolig i Oslo med utsikt over byen. Film, bilder og drone av ZEJAKOV MEDIA.":
-        "Property film of a detached house in Oslo with views over the city. Film, photos and drone by ZEJAKOV MEDIA.",
+        "Property film of a detached house in Oslo overlooking the city. Film, photos and drone footage by ZEJAKOV MEDIA.",
 
     # masthead, menu, footer
     "Hopp til innhold": "Skip to content",
@@ -195,7 +195,7 @@ T = {
     "Boliger jeg har filmet.": "Homes I've filmed.",
     "Film og bilder fra oppdrag i Oslo og omegn.": "Film and photos from projects in and around Oslo.",
     "Heyerdahls vei 8 B: fasaden mot hagen": "Heyerdahls vei 8 B: the façade facing the garden",
-    "Enebolig i Oslo med utsikt over byen. Film, bilder og drone fra samme oppdrag.": "A detached house in Oslo with views over the city. Film, photos and drone from a single shoot.",
+    "Enebolig i Oslo med utsikt over byen. Film, bilder og drone fra samme oppdrag.": "A detached house in Oslo overlooking the city. Film, photos and drone footage, all from the same project.",
 
     # project page
     "Spill av filmen: Heyerdahls vei 8 B": "Play the film: Heyerdahls vei 8 B",
