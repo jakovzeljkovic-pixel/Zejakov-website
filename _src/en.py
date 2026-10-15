@@ -233,18 +233,19 @@ T = {
         "The format depends on the home. Sometimes vertical clips work best, sometimes a longer, cinematic film, and sometimes a video where the agent shows viewers around. We'll work that out together when we talk.",
     "Går en film viralt, er det fint, men det er ikke poenget. Uansett form er det boligen som står i sentrum, ikke antall avspillinger.":
         "If a film goes viral, great, but that's not the point. Whatever the format, the home is the focus, not the view count.",
-    "Redaksjonelle bilder.": "Editorial photos.",
-    "Vanlige boligbilder viser hvert rom fra hjørnet, så kjøperen får oversikten. Redaksjonelle bilder er tatt som i et interiørmagasin. De går tettere på materialer og lys, og viser hvordan det er å bo der.":
-        "Standard property photos show each room from the corner, so buyers get the overview. Editorial photos are shot like the pictures in an interiors magazine. They get closer to the materials and the light, and show what it's like to live there.",
+    "Arkitekturfoto.": "Architectural photography.",
+    "Vanlige boligbilder viser hvert rom, så kjøperen får oversikten. Arkitekturfoto handler om selve bygget: formene, linjene og materialene, og hva arkitekten ville med dem.":
+        "Standard property photos show every room, so buyers get the overview. Architectural photography is about the building itself: its shapes, lines and materials, and what the architect set out to do with them.",
     "Som tillegg": "As an add-on",
-    "Fem eller ti redaksjonelle bilder i tillegg til de vanlige. Annonsen får både oversikten kjøperne leter etter, og bildene som får dem til å stoppe opp.":
-        "Five or ten editorial photos on top of the standard set. The listing gets both the overview buyers are looking for and the images that make them stop scrolling.",
-    "I stedet for vanlige bilder": "Instead of standard photos",
-    "Hele settet tas i redaksjonell stil. Det passer når arkitekturen og interiøret er en stor del av det kjøperen betaler for.":
-        "The whole set is shot in an editorial style. This suits homes where the architecture and interiors are a big part of what the buyer is paying for.",
+    "Når huset er tegnet med omhu, legger jeg til arkitekturbilder ved siden av de vanlige. Annonsen får både oversikten og bildene som viser hva som gjør huset spesielt.":
+        "When a house has been designed with real care, I add architectural photos alongside the standard set. The listing gets both the overview and the images that show what makes the house special.",
+    "Mer tid og presisjon": "More time, more precision",
+    "Hvert bilde settes opp på stativ, loddrette linjer står rett, og jeg venter til lyset faller riktig på fasaden. Detaljer som en skyggelinje eller et møte mellom to materialer får egne bilder.":
+        "Every shot is set up on a tripod, vertical lines stay straight, and I wait until the light falls right on the façade. Details like a shadow line or the point where two materials meet get photos of their own.",
     "Hva som passer for din bolig, finner vi ut sammen.": "We'll work out together what suits your home.",
-    "Bad med badekar og høyt vindu, redaksjonelt bilde": "Bathroom with a bathtub and a tall window, editorial photo",
-    "Nattbord og lampe på soverommet, redaksjonelt bilde": "Bedside table and lamp in the bedroom, editorial photo",
+    "Fasaden på Heyerdahls vei 8 B, arkitekturfoto": "The façade of Heyerdahls vei 8 B, architectural photo",
+    "Hjørnet av huset med balkong og glassrekkverk, arkitekturfoto": "The corner of the house with its balcony and glass railing, architectural photo",
+    "Inngangspartiet med trekledning og murvegg, arkitekturfoto": "The entrance with timber cladding and a masonry wall, architectural photo",
     "Bilder og film er bare verktøyet. Det som teller, er salget.": "Photos and film are just the tools. What counts is the sale.",
 
     # about
