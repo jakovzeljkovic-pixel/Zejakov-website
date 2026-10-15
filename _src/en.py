@@ -110,8 +110,8 @@ T = {
     "Detalj": "Detail",
 
     # home: statement
-    "Et hus til 35 millioner": "A NOK 35 million home",
-    "skal ikke se ut som et til 5.": "shouldn't look like a 5 million one.",
+    "Et hus til 35 millioner": "A $3.5 million home",
+    "skal ikke se ut som et til 5.": "shouldn't look like a $500,000 one.",
     "Det er ikke mange kjøpere i den prisklassen, og de har allerede sett hundrevis av annonser med sjelløse rom og flatt lys. Jeg lager bilder og film som forteller historien om boligen og viser hvordan det er å leve der. Det er det som får den til å skille seg ut.":
         "There aren't many buyers at that price, and they have already scrolled past hundreds of listings full of lifeless rooms and flat light. I make photos and film that tell the story of the home and show what it's like to live there. That is what makes it stand out.",
 

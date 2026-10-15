@@ -303,6 +303,7 @@ h1{font-size:calc(clamp(2.1rem,5.2vw,3.9rem) * var(--hd-scale));letter-spacing:-
   display:flex;align-items:center;justify-content:center}
 .revslide figure{margin:0;animation:zvin .5s var(--ease-cine)}
 .revstars{color:var(--brass);letter-spacing:.3em;margin:0 0 20px;font-size:.78rem}
+.revtr{color:var(--muted);font-size:.72rem;letter-spacing:.06em;margin:-10px 0 16px}
 .revq{margin:0 0 22px;font-family:var(--hd-font),Georgia,serif;font-weight:400;
   line-height:1.38;letter-spacing:-.018em;color:var(--cream);text-wrap:pretty}
 .revq{max-width:46ch;margin-inline:auto}
@@ -1399,14 +1400,18 @@ setMode(true);
   var nav = document.getElementById("zv-nav"), prev = document.getElementById("zv-prev"),
       next = document.getElementById("zv-next"), cnt = document.getElementById("zv-count");
   var rows = [], at = 0;
+  /* the English pages show the hand-made translation when there is one */
+  var EN = document.documentElement.lang === "en";
+  function words(r){ return EN && r.message_en ? r.message_en : r.message; }
 
   function draw(){
     if (!rows.length) return;
-    var r = rows[at], n = String(r.message||"").length;
+    var r = rows[at], n = String(words(r)||"").length;
     var size = n < 150 ? "s1" : (n < 320 ? "s2" : "s3");
     slide.innerHTML = '<figure>'
       + '<p class="revstars">' + "★".repeat(Math.max(0,Math.min(5, r.rating|0))) + '</p>'
-      + '<blockquote class="revq ' + size + '">“' + esc(r.message) + '”</blockquote>'
+      + '<blockquote class="revq ' + size + '">“' + esc(words(r)) + '”</blockquote>'
+      + (EN && r.message_en ? '<p class="revtr">Translated from Norwegian</p>' : '')
       + '<figcaption class="revby">' + esc(r.name) + '</figcaption></figure>';
     if (cnt) cnt.textContent = (at+1) + " / " + rows.length;
   }
@@ -1414,7 +1419,7 @@ setMode(true);
   if (prev) prev.addEventListener("click", function(){ go(-1); });
   if (next) next.addEventListener("click", function(){ go(1); });
 
-  fetch(SB + "/rest/v1/reviews?select=rating,name,message,created_at&status=eq.approved&order=created_at.desc&limit=20",
+  fetch(SB + "/rest/v1/reviews?select=rating,name,message,message_en,created_at&status=eq.approved&order=created_at.desc&limit=20",
         { headers: { apikey: KEY, Authorization: "Bearer " + KEY } })
     .then(function(r){ return r.ok ? r.json() : []; })
     .then(function(d){
