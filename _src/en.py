@@ -25,7 +25,7 @@ PATHS = {
 META = {
     "hjem": ("Property film and photography in Oslo | ZEJAKOV MEDIA",
              "Media production for property in Oslo. Film, photography and drone footage "
-             "for viewings and listings, all done by one person. See the work and book a site visit."),
+             "for viewings and listings, all done by one person. See the work and book a call."),
     "arbeid": ("Work: property film and photography from Oslo | ZEJAKOV MEDIA",
                "Homes I have photographed and filmed in and around Oslo. Each project "
                "includes film, photos and drone footage."),
@@ -38,8 +38,8 @@ META = {
     "om": ("Property photographer and filmmaker in Oslo | ZEJAKOV MEDIA",
            "Photography and film since 2023, now almost entirely homes. Based in Oslo, "
            "working worldwide."),
-    "kontakt": ("Book a site visit for property film in Oslo | ZEJAKOV MEDIA",
-                "Tell me about the home and we will find a day for a site visit. Property "
+    "kontakt": ("Book a call about property film in Oslo | ZEJAKOV MEDIA",
+                "Tell me about the home and we will set up a call. Property "
                 "film, photography and drone in Oslo, and projects worldwide."),
     "personvern": ("Privacy | ZEJAKOV MEDIA",
                    "What I store and why. The site sets no cookies and has no tracking."),
@@ -50,7 +50,7 @@ T = {
     # head
     "Enebolig i Oslo filmet av ZEJAKOV MEDIA": "A detached house in Oslo filmed by ZEJAKOV MEDIA",
     "Medieproduksjon for eiendom i Oslo. Boligfilm, boligfoto og drone til visning og annonse, alt gjort av samme person. Se arbeidet og book befaring.":
-        "Media production for property in Oslo. Film, photography and drone footage for viewings and listings, all done by one person. See the work and book a site visit.",
+        "Media production for property in Oslo. Film, photography and drone footage for viewings and listings, all done by one person. See the work and book a call.",
     "Eiendomsfotograf": "Real estate photography",
     "Boligfoto": "Property photography",
     "Boligfilm": "Property film",
@@ -76,7 +76,7 @@ T = {
     "Tjenester": "Services",
     "Om meg": "About",
     "Kontakt": "Contact",
-    "Book befaring": "Book a site visit",
+    "Book befaring": "Book a call",
     "Meny": "Menu",
     "Lukk": "Close",
     "Bytt til lyst tema": "Switch to light mode",
@@ -230,7 +230,7 @@ T = {
     "Jeg gjør hele jobben selv: bilder, film og drone, med flere kameraer og eget lys når rommet trenger det.":
         "I do the whole job myself: photos, film and drone, with several cameras and my own lighting when a room needs it.",
     "Formen avhenger av boligen. Noen ganger passer stående klipp best, andre ganger en lengre film med kinopreg, og noen ganger en video der megleren viser boligen fram. Det finner vi ut sammen på befaringen.":
-        "The format depends on the home. Sometimes vertical clips work best, sometimes a longer, cinematic film, and sometimes a video where the agent shows viewers around. We'll work that out together at the site visit.",
+        "The format depends on the home. Sometimes vertical clips work best, sometimes a longer, cinematic film, and sometimes a video where the agent shows viewers around. We'll work that out together when we talk.",
     "Går en film viralt, er det fint, men det er ikke poenget. Uansett form er det boligen som står i sentrum, ikke antall avspillinger.":
         "If a film goes viral, great, but that's not the point. Whatever the format, the home is the focus, not the view count.",
     "Redaksjonelle bilder.": "Editorial photos.",
