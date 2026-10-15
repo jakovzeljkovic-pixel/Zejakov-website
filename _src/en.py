@@ -118,13 +118,13 @@ T = {
     # home: one house at a time
     "Ett hus om gangen.": "One house at a time.",
     "Mange meglerkjeder har faste fotoavtaler der det handler om å rekke flest mulig boliger hver dag. Fotografen har ofte rundt en time i hver bolig før det er videre til neste adresse. Det gir mange annonser, men sjelden en bolig som skiller seg ut.":
-        "Many estate agency chains have fixed photography deals built around getting through as many homes as possible each day. The photographer often has about an hour in each home before moving on to the next address. That makes a lot of listings, but rarely a home that stands out.",
+        "Many estate agency chains have fixed photography deals built around getting through as many homes as possible each day. The photographer often has about an hour in each home before moving on to the next address. You end up with plenty of listings, but rarely a home that stands out.",
     "Jeg jobber motsatt. Jeg tar bare et begrenset antall boliger i måneden, så hvert hus får den tiden og oppmerksomheten det fortjener. Jeg venter på riktig lys, finner vinklene som viser hvordan det er å bo der, og redigerer hver bolig for seg.":
         "I work the other way round. I only take on a limited number of homes each month, so every house gets the time and attention it deserves. I wait for the right light, find the angles that show what it's like to live there, and edit every home individually.",
     "Få boliger i måneden": "A few homes a month",
     "Jeg tar et begrenset antall oppdrag, så hvert hus får full oppmerksomhet.": "I take on a limited number of jobs, so every house gets my full attention.",
-    "Ingen stoppeklokke": "No stopwatch",
-    "Jeg blir til bildene sitter, uten en ny adresse som venter.": "I stay until the shots are right, with no next address waiting.",
+    "Ingen stoppeklokke": "No rush",
+    "Jeg blir til bildene sitter, uten en ny adresse som venter.": "I stay until the shots are right. There's no next address waiting.",
     "Samme person hele veien": "One person, start to finish",
     "Den du snakker med, er den som fotograferer, filmer og redigerer.": "The person you talk to is the one who shoots, films and edits.",
 
@@ -140,11 +140,11 @@ T = {
     "Samme kjøkken og spisestue med standard HDR": "The same kitchen and dining room with standard HDR",
     "Dra i bildet": "Drag the image",
     "Til høyre er slik jeg leverer. Hvert hus redigeres for seg, slik at farger, lys og stemning blir som når du står i rommet. Det gir et mer personlig og redaksjonelt uttrykk, og et riktigere bilde av boligen.":
-        "On the right is how I deliver. Every house is edited on its own, so the colour, light and mood match what you see when you stand in the room. The result feels more personal and editorial, and gives a truer picture of the home.",
+        "On the right is what I deliver. Every house is edited on its own, so the colour, light and mood match what you see when you stand in the room. The result feels more personal and editorial, and gives a truer picture of the home.",
     "I boligfoto er det vanlig å fjerne alle fargestikk, så veggene blir helt hvite. For leiligheter og mindre boliger er det ofte riktig valg, og det leverer jeg gjerne.":
         "In property photography it's common to remove every colour cast so the walls come out pure white. For flats and smaller homes that is often the right call, and I'm happy to deliver it.",
     "I dyrere boliger er lys og materialer valgt med omhu. Det varme lyset fra lampene og det grønne fra hagen er en del av huset, og da er det en feil å vaske det bort. Gjort riktig er det nettopp det som gir bildet liv.":
-        "In more expensive homes, the light and materials were chosen with care. The warm glow of the lamps and the green from the garden are part of the house, so washing them out is a mistake. Done right, that is exactly what brings a photo to life.",
+        "In higher-end homes, the lighting and materials have been chosen with care. The warm glow of the lamps and the green from the garden are part of the house, so washing them out is a mistake. Done right, that is exactly what brings a photo to life.",
 
     # virtual staging (home and project)
     "Samme rom, flere muligheter.": "One room, many possibilities.",
@@ -199,7 +199,7 @@ T = {
 
     # project page
     "Spill av filmen: Heyerdahls vei 8 B": "Play the film: Heyerdahls vei 8 B",
-    "Huset ligger høyt og har utsikt over Oslo. Film, bilder, drone og klipp er gjort av meg.": "The house sits high up with views over Oslo. Filming, photography, drone and editing all by me.",
+    "Huset ligger høyt og har utsikt over Oslo. Film, bilder, drone og klipp er gjort av meg.": "The house sits high above the city, with all of Oslo laid out below. I shot the film, the photos and the drone footage, and did the editing myself.",
     "Fasaden fra hjørnet": "The façade from the corner",
     "Terrassen": "The terrace",
     "Kjøkkenøya og stua": "The kitchen island and living room",
@@ -235,7 +235,7 @@ T = {
         "If a film goes viral, great, but that's not the point. Whatever the format, the home is the focus, not the view count.",
     "Redaksjonelle bilder.": "Editorial photos.",
     "Vanlige boligbilder viser hvert rom fra hjørnet, så kjøperen får oversikten. Redaksjonelle bilder er tatt som i et interiørmagasin. De går tettere på materialer og lys, og viser hvordan det er å bo der.":
-        "Standard property photos show each room from the corner, so buyers get the overview. Editorial photos are shot the way an interiors magazine would shoot them. They get closer to the materials and the light, and show what it's like to live there.",
+        "Standard property photos show each room from the corner, so buyers get the overview. Editorial photos are shot like the pictures in an interiors magazine. They get closer to the materials and the light, and show what it's like to live there.",
     "Som tillegg": "As an add-on",
     "Fem eller ti redaksjonelle bilder i tillegg til de vanlige. Annonsen får både oversikten kjøperne leter etter, og bildene som får dem til å stoppe opp.":
         "Five or ten editorial photos on top of the standard set. The listing gets both the overview buyers are looking for and the images that make them stop scrolling.",
@@ -254,7 +254,7 @@ T = {
     "Jeg har også filmet og vært med på å lage innhold for Izazovi Avanturu, en YouTube-kanal med over 40 millioner avspillinger og egen serie på Prime Video.":
         "I've also filmed and helped create content for Izazovi Avanturu, a YouTube channel with more than 40 million views and its own series on Prime Video.",
     "I dag jobber jeg nesten bare med boliger. Jeg gjør hele jobben selv, fra opptak til klipp og farge, så du forholder deg bare til meg. Jeg holder til i Oslo, men tar oppdrag over hele verden.":
-        "Today I work almost exclusively with homes. I handle the whole job myself, from shooting to editing and colour, so you only ever deal with me. I'm based in Oslo, but I take on projects anywhere in the world.",
+        "Today I work almost exclusively with homes. I handle the whole job myself, from shooting to editing and colour grading, so you only ever deal with me. I'm based in Oslo, but I take on projects anywhere in the world.",
     "Ta kontakt": "Get in touch",
 
     # contact
@@ -267,7 +267,7 @@ T = {
     "Område": "Area",
     "Holder til i Oslo, tar oppdrag over hele verden": "Based in Oslo, working worldwide",
     "For eksempel hva som skal selges, og hva du vil at kjøperne skal legge merke til.": "For example, what's being sold and what you want buyers to notice.",
-    "Adresse til boligen": "Address of the property",
+    "Adresse til boligen": "Property address",
     "Send forespørsel": "Send enquiry",
     "Du får svar innen 24 timer.": "You'll hear back within 24 hours.",
     "Fyll inn navn og e-post.": "Please fill in your name and email.",
