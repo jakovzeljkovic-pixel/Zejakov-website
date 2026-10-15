@@ -11,6 +11,9 @@ import os, re, sys, json, datetime
 
 import tinycss2
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import en
+
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SRC = os.path.join(ROOT, "_src", "site.html")
 SITE = "https://zejakov.com"
@@ -210,14 +213,97 @@ def minify_style(head):
     return head[:a] + _rules(css) + head[b:]
 
 
-def links(chunk, current):
+def links(chunk, current, paths=None):
     """Hash routes become real addresses, and the current one is marked."""
+    paths = paths or {k: v[3] for k, v in PAGES.items()}
     def fix(m):
-        href = PAGES[m.group(1)][3] if m.group(1) in PAGES else "/"
+        href = paths.get(m.group(1), paths["hjem"])
         on = ' class="on"' if m.group(1) == current else ""
         return '<a href="%s"%s' % (href, on)
     chunk = re.sub(r'<a href="#([a-z]+)"(?: class="on")?', fix, chunk)
     return chunk
+
+
+# ---------- languages ----------
+
+NB_PATHS = {k: v[3] for k, v in PAGES.items()}
+
+
+def _segment(key):
+    """a key matches only a whole text node, attribute value or quoted string"""
+    return re.compile(r'(?<=[>"\'])(\s*)' + re.escape(key) + r'(\s*)(?=[<"\'])')
+
+
+SEGMENTS = sorted(en.T.items(), key=lambda kv: -len(kv[0]))
+USED = set()
+
+
+def to_english(doc):
+    a = doc.index("<style>")
+    b = doc.index("</style>", a)
+    head, css, tail = doc[:a], doc[a:b], doc[b:]
+    for part in ("head", "tail"):
+        text = head if part == "head" else tail
+        for nb, eng in SEGMENTS:
+            text, n = _segment(nb).subn(lambda m: m.group(1) + eng + m.group(2), text)
+            if n:
+                USED.add(nb)
+        for nb, eng in en.RAW:
+            if nb in text:
+                USED.add(nb)
+                text = text.replace(nb, eng)
+        if part == "head":
+            head = text
+        else:
+            tail = text
+    # internal addresses point at the English pages
+    def addr(m):
+        for slug, nbp in NB_PATHS.items():
+            if slug in en.PATHS and m.group(1) == nbp:
+                return 'href="%s"' % en.PATHS[slug]
+        return m.group(0)
+    head = re.sub(r'href="(/[^"#?]*)"', addr, head)
+    tail = re.sub(r'href="(/[^"#?]*)"', addr, tail)
+    return head + css + tail
+
+
+NB_WORDS = re.compile(r"[æøåÆØÅ]|\b(og|jeg|det|ikke|som|på|til|med|av|er|du|en|et|der|hva|hvor|bilder|bolig\w*)\b")
+KEEP = ("Heyerdahls vei", "Bærum", "Frognerveien", "Datatilsynet", "Izazovi Avanturu", "Nordre Follo",
+        "Zeljković", "ZEJAKOV", "youtube-nocookie", "Sending …")
+
+
+def leftovers(doc):
+    """Norwegian still visible on an English page: text, alt, aria-label, placeholder, content."""
+    body = re.sub(r"<style>.*?</style>", "", doc, flags=re.S)
+    body = re.sub(r"<script\b[^>]*>.*?</script>", "", body, flags=re.S)
+    bits = re.findall(r">([^<>]+)<", body) + re.findall(r'(?:alt|aria-label|placeholder|title|content)="([^"]+)"', body)
+    out = []
+    for t in bits:
+        t = " ".join(t.split())
+        if not t or t.startswith(("http", "/")) or not NB_WORDS.search(t):
+            continue
+        if any(k in t for k in KEEP) and not re.search(r"\b(og|jeg|ikke|som|på|med|av|er|du)\b", t):
+            continue
+        out.append(t)
+    return out
+
+
+def lang_switch(doc, slug, lang):
+    """NO / EN pill: each points at this same page in that language; the current one is lit"""
+    nb_href = NB_PATHS[slug]
+    en_href = en.PATHS.get(slug, en.PATHS["hjem"])
+    for code, href in (("nb", nb_href), ("en", en_href)):
+        on = ' class="on" aria-current="page"' if code == lang else ""
+        doc = doc.replace('<a href="#lang-%s"' % code, '<a href="%s"%s' % (href, on), 1)
+    return doc
+
+
+def alternates(slug):
+    if slug not in en.PATHS:
+        return ""
+    nb_url, en_url = SITE + NB_PATHS[slug], SITE + en.PATHS[slug]
+    return ('<link rel="alternate" hreflang="nb" href="%s"><link rel="alternate" hreflang="en" href="%s">'
+            '<link rel="alternate" hreflang="x-default" href="%s">' % (nb_url, en_url, nb_url))
 
 
 def main():
@@ -227,9 +313,14 @@ def main():
     head = minify_style(head)
     before, mains, after = split(rest)
 
-    written = []
-    for slug in ORDER:
+    written, problems = [], []
+    jobs = [("nb", s) for s in ORDER] + [("en", s) for s in ORDER if s in en.PATHS]
+    for lang, slug in jobs:
         path, title, desc, href = PAGES[slug]
+        if lang == "en":
+            title, desc = en.META[slug]
+            href = en.PATHS[slug]
+            path = href.strip("/") + "/index.html"
         url = SITE + href
         page = mains[slug][2]
         # the page's own heading is the document heading, once it is a document
@@ -240,7 +331,13 @@ def main():
         page = page.replace('<main class="page" id=', '<main class="page live" id=', 1)
 
         nav = NAV.get(slug, slug)
-        doc = meta(head, title, desc, url) + links(before, nav) + page + links(after, nav)
+        paths = NB_PATHS if lang == "nb" else dict(NB_PATHS, **en.PATHS)
+        doc = meta(head, title, desc, url) + links(before, nav, paths) + page + links(after, nav, paths)
+        if lang == "en":
+            doc = to_english(doc)
+            problems += [(path, t) for t in leftovers(doc)]
+        doc = lang_switch(doc, slug, lang)
+        doc = doc.replace("</head>", alternates(slug) + "</head>", 1)
         if slug in HIDDEN:
             doc = re.sub(r'<link rel="canonical" href="[^"]*">', '<meta name="robots" content="noindex">', doc, count=1)
         # the skip link lands on this page's own content
@@ -254,15 +351,22 @@ def main():
         written.append((path, len(doc)))
 
     today = datetime.date.today().isoformat()
-    urls = "\n".join('  <url><loc>%s%s</loc><lastmod>%s</lastmod></url>'
-                     % (SITE, PAGES[s][3], today) for s in ORDER if s not in HIDDEN)
+    locs = [PAGES[s][3] for s in ORDER if s not in HIDDEN] + [en.PATHS[s] for s in ORDER if s in en.PATHS]
+    urls = "\n".join('  <url><loc>%s%s</loc><lastmod>%s</lastmod></url>' % (SITE, h, today) for h in locs)
     open(os.path.join(ROOT, "sitemap.xml"), "w", encoding="utf-8").write(
         '<?xml version="1.0" encoding="UTF-8"?>\n'
         '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n%s\n</urlset>\n' % urls)
 
     for path, n in written:
         print("%-24s %6.1f KB" % (path, n / 1024))
-    print("sitemap.xml              %d urls" % len([s for s in ORDER if s not in HIDDEN]))
+    print("sitemap.xml              %d urls" % len(locs))
+    unused = [k for k in list(en.T) + [a for a, b in en.RAW] if k not in USED]
+    for k in unused:
+        print("EN: not found in the source any more:", k[:90])
+    for path, t in problems:
+        print("EN: Norwegian left on %s: %s" % (path, t[:110]))
+    if not unused and not problems:
+        print("EN: every piece translated")
 
 
 if __name__ == "__main__":

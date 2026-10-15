@@ -666,6 +666,23 @@ footer{padding-top:clamp(56px,8vw,110px)}
 .nflink{margin-top:clamp(22px,3vw,32px);font-family:var(--ui-font),sans-serif;font-size:.92rem;color:var(--cream);text-decoration:none;border-bottom:1px solid var(--brass);padding-bottom:3px}
 .nflink:hover{color:var(--brass)}
 
+/* language: NO / EN, flag and code; the current one is lit */
+.lang{display:inline-flex;align-items:stretch;height:34px;border:1px solid var(--line);border-radius:2px;overflow:hidden;flex:none}
+.lang a{display:inline-flex;align-items:center;gap:6px;padding:0 9px;color:var(--muted);text-decoration:none;
+  font-family:var(--ui-font),sans-serif;font-size:.62rem;letter-spacing:.12em;transition:color .3s ease,background-color .3s ease}
+.lang a+a{border-left:1px solid var(--line)}
+.lang a:hover,.lang a:focus-visible{color:var(--cream)}
+.lang a.on{color:var(--cream);background:rgba(240,235,227,.08)}
+.lang .flag{width:18px;height:12px;display:block;flex:none;border-radius:1px}
+.mast.onhero .lang{border-color:rgba(242,239,234,.26)}
+.mast.onhero .lang a{color:#B9C6CD}
+.mast.onhero .lang a+a{border-left-color:rgba(242,239,234,.26)}
+.mast.onhero .lang a.on,.mast.onhero .lang a:hover{color:#F2EFEA}
+.menu-open .lang a{color:var(--muted)}
+.menu-open .lang a.on{color:var(--cream)}
+@media (max-width:420px){ .lang a{padding:0 7px;gap:5px} }
+@media (max-width:360px){ .lang a span{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)} .lang a{position:relative} }
+
 /* light/dark button: drawn icons, so every device shows the same thing */
 .modebtn{display:inline-flex;align-items:center;justify-content:center;width:36px;height:34px;min-width:36px;padding:0}
 .modeico{width:15px;height:15px;display:block}
@@ -759,7 +776,7 @@ html{scroll-padding-top:88px}
 <meta property="og:image:alt" content="Enebolig i Oslo filmet av ZEJAKOV MEDIA">
 <meta property="og:locale" content="nb_NO">
 <meta name="twitter:card" content="summary_large_image">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": ["ProfessionalService", "LocalBusiness"], "@id": "https://zejakov.com/#zejakov", "name": "ZEJAKOV MEDIA", "legalName": "ZEJAKOV ZELJKOVIC", "url": "https://zejakov.com/", "logo": "https://zejakov.com/icon-512.png", "image": "https://zejakov.com/img/og-bolig-1200x630.e4cd35e860.jpg", "description": "Medieproduksjon for eiendom i Oslo. Boligfilm, boligfoto og drone til visning og annonse, alt gjort av samme person. Se arbeidet og book befaring.", "telephone": "+4797344658", "email": "post@zejakov.com", "vatID": "NO835196542", "taxID": "835196542", "knowsLanguage": "nb", "address": {"@type": "PostalAddress", "addressLocality": "Oslo", "addressRegion": "Oslo", "addressCountry": "NO"}, "areaServed": [{"@type": "City", "name": "Oslo"}, {"@type": "City", "name": "Bærum"}, {"@type": "City", "name": "Asker"}, {"@type": "City", "name": "Nordre Follo"}], "serviceType": ["Eiendomsfotograf", "Boligfoto", "Boligfilm", "Dronefoto og dronefilm", "Kveldsfoto", "Digital møblering", "Reels og video til sosiale medier", "Videografi for eiendom"], "hasOfferCatalog": {"@type": "OfferCatalog", "name": "Medieproduksjon for eiendom", "itemListElement": [{"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Boligfilm", "description": "Film av boligen til visning, annonse og sosiale medier."}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Boligfoto", "description": "Stillbilder til annonsen."}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Drone", "description": "Foto og film fra luften av bolig og område."}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Kveldsfoto", "description": "Bilder av boligen i kveldslys."}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Digital møblering", "description": "Tomme eller fulle rom møblert digitalt, merket som digitalt møblert."}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Reels", "description": "Korte, stående videoer til sosiale medier."}}]}, "sameAs": ["https://g.page/r/CSevD5CDRPvREBM", "https://www.instagram.com/zejakovmedia/", "https://www.youtube.com/@ZejakovMedia"], "hasMap": "https://g.page/r/CSevD5CDRPvREBM"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": ["ProfessionalService", "LocalBusiness"], "@id": "https://zejakov.com/#zejakov", "name": "ZEJAKOV MEDIA", "legalName": "ZEJAKOV ZELJKOVIC", "url": "https://zejakov.com/", "logo": "https://zejakov.com/icon-512.png", "image": "https://zejakov.com/img/og-bolig-1200x630.e4cd35e860.jpg", "description": "Medieproduksjon for eiendom i Oslo. Boligfilm, boligfoto og drone til visning og annonse, alt gjort av samme person. Se arbeidet og book befaring.", "telephone": "+4797344658", "email": "post@zejakov.com", "vatID": "NO835196542", "taxID": "835196542", "knowsLanguage": ["nb", "en"], "address": {"@type": "PostalAddress", "addressLocality": "Oslo", "addressRegion": "Oslo", "addressCountry": "NO"}, "areaServed": [{"@type": "City", "name": "Oslo"}, {"@type": "City", "name": "Bærum"}, {"@type": "City", "name": "Asker"}, {"@type": "City", "name": "Nordre Follo"}], "serviceType": ["Eiendomsfotograf", "Boligfoto", "Boligfilm", "Dronefoto og dronefilm", "Kveldsfoto", "Digital møblering", "Reels og video til sosiale medier", "Videografi for eiendom"], "hasOfferCatalog": {"@type": "OfferCatalog", "name": "Medieproduksjon for eiendom", "itemListElement": [{"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Boligfilm", "description": "Film av boligen til visning, annonse og sosiale medier."}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Boligfoto", "description": "Stillbilder til annonsen."}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Drone", "description": "Foto og film fra luften av bolig og område."}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Kveldsfoto", "description": "Bilder av boligen i kveldslys."}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Digital møblering", "description": "Tomme eller fulle rom møblert digitalt, merket som digitalt møblert."}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Reels", "description": "Korte, stående videoer til sosiale medier."}}]}, "sameAs": ["https://g.page/r/CSevD5CDRPvREBM", "https://www.instagram.com/zejakovmedia/", "https://www.youtube.com/@ZejakovMedia"], "hasMap": "https://g.page/r/CSevD5CDRPvREBM"}</script>
 </head>
 <body>
 <a class="skip" href="#innhold">Hopp til innhold</a>
@@ -768,6 +785,8 @@ html{scroll-padding-top:88px}
     <path d="M329.318 162.476L142.270 349.524L76.800 349.524L218.916 207.392L91.734 207.845L132.292 162.994"/>
     <path d="M182.699 349.508L369.730 162.476L435.200 162.476L293.084 304.592L420.282 304.139L379.724 349.006"/>
   </symbol>
+  <symbol id="flag-no" viewBox="0 0 22 16" preserveAspectRatio="none"><path fill="#BA0C2F" d="M0 0h22v16H0z"/><path fill="#fff" d="M6 0h4v16H6zM0 6h22v4H0z"/><path fill="#00205B" d="M7 0h2v16H7zM0 7h22v2H0z"/></symbol>
+  <symbol id="flag-gb" viewBox="0 0 60 30" preserveAspectRatio="xMidYMid slice"><clipPath id="flag-gb-t"><path d="M30 15h30v15zv15H0zH0V0zV0h30z"/></clipPath><path fill="#012169" d="M0 0h60v30H0z"/><path stroke="#fff" stroke-width="6" d="M0 0l60 30m0-30L0 30"/><path stroke="#C8102E" stroke-width="4" clip-path="url(#flag-gb-t)" d="M0 0l60 30m0-30L0 30"/><path stroke="#fff" stroke-width="10" d="M30 0v30M0 15h60"/><path stroke="#C8102E" stroke-width="6" d="M30 0v30M0 15h60"/></symbol>
 </svg>
 
 <div class="mast" id="mast">
@@ -791,6 +810,10 @@ html{scroll-padding-top:88px}
       <a href="#kontakt">Kontakt</a>
     </nav>
     <div class="mtools">
+      <div class="lang" role="group" aria-label="Språk">
+        <a href="#lang-nb" hreflang="nb" lang="nb"><svg class="flag" aria-hidden="true"><use href="#flag-no"/></svg><span>NO</span></a>
+        <a href="#lang-en" hreflang="en" lang="en"><svg class="flag" aria-hidden="true"><use href="#flag-gb"/></svg><span>EN</span></a>
+      </div>
       <a class="btn solid navcta" href="/kontakt/">Book befaring</a>
       <button id="menubtn" class="mt menubtn" type="button" aria-controls="nav" aria-expanded="false">Meny</button>
       <button id="mode" class="mt modebtn" type="button" aria-label="Bytt til lyst tema"><svg class="modeico" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5a8.5 8.5 0 1 0 10.7 10.7z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></button>
@@ -1346,7 +1369,7 @@ setMode(true);
     if (/^tel:/.test(href)) track("click_phone");
     else if (/^mailto:/.test(href)) track("click_email");
     else if (/instagram\.com/.test(href)) track("click_instagram");
-    else if ((el.classList.contains("btn") || el.classList.contains("cbook")) && /\/kontakt\/$/.test(href)) track("cta_book");
+    else if ((el.classList.contains("btn") || el.classList.contains("cbook")) && /\/(kontakt|en\/contact)\/$/.test(href)) track("cta_book");
   }, true);
 
   /* ---------- kontaktskjema ---------- */
