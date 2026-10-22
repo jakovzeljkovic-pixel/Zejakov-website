@@ -92,10 +92,13 @@ a{color:inherit}
 .ov-bg{position:fixed;inset:0;z-index:22;background:rgba(10,9,8,.72);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);opacity:0;pointer-events:none;transition:opacity .35s}
 .ov{position:fixed;inset:0;z-index:23;display:grid;place-items:center;pointer-events:none;opacity:0;transition:opacity .35s}
 .ov-open .ov-bg,.ov-open .ov{opacity:1;pointer-events:auto}
-.ov .stage{width:min(860px,92vw);perspective:1400px}
-.ov .tilt{transform:rotateX(52deg) rotateZ(-8deg) scale(.92);transform-style:preserve-3d;transition:transform .7s var(--ease)}
-.ov-open .ov .tilt{transform:rotateX(46deg) rotateZ(-6deg) scale(1)}
-.ov .floor{fill:rgba(255,255,255,.035);stroke:rgba(255,255,255,.08)}
+.ov .stage{width:min(980px,94vw);max-height:78vh}
+.ov .tilt{transform:scale(.97);transition:transform .5s var(--ease)}
+.ov-open .ov .tilt{transform:none}
+.ov svg{max-height:78vh}
+.plan-wall{fill:none;stroke:rgba(244,242,238,.85);stroke-linejoin:round}
+.plan-floor{fill:#24211e;stroke:none}
+.minimap .plan-floor{fill:#2a2622}
 .ov .plan-path{stroke-width:2.2;stroke:rgba(215,130,47,.55);stroke-dasharray:2 7}
 .ov .pin{cursor:pointer}
 .ov .pin image{clip-path:circle(50%)}
@@ -105,7 +108,7 @@ a{color:inherit}
 .ov .head{position:absolute;top:max(22px,env(safe-area-inset-top));left:0;right:0;text-align:center;font-size:15px;font-weight:500}
 .ov .head span{display:block;font-size:12.5px;color:var(--muted);font-weight:400;margin-top:4px}
 .ov .x{position:absolute;top:max(14px,env(safe-area-inset-top));right:max(14px,env(safe-area-inset-right))}
-@media (max-width:640px){.minimap{display:none}.ov .tilt{transform:rotateX(38deg) scale(.95)}.ov-open .ov .tilt{transform:rotateX(34deg)}}
+@media (max-width:640px){.minimap{display:none}}
 .sheet-bg{position:fixed;inset:0;z-index:20;background:rgba(8,7,6,.35);opacity:0;pointer-events:none;transition:opacity .3s}
 .sheet{position:fixed;z-index:21;top:12px;right:12px;bottom:12px;width:360px;border-radius:var(--r);padding:28px 24px 22px;display:flex;flex-direction:column;
   transform:translateX(calc(100% + 24px));transition:transform .45s var(--ease);background:rgba(22,21,20,.8);overflow:auto}
@@ -154,9 +157,9 @@ a{color:inherit}
 <div class="bar"></div>
 <div class="cover"><img src="assets/merke.svg" alt=""></div>
 <div class="floor-cursor" id="fc"><span></span></div>
-<div class="minimap glass" id="minimap" role="button" aria-label="Vis oversikt"><div class="cap">Oversikt<i class="ph ph-arrows-out-simple"></i></div><svg id="mini"></svg></div>
+<div class="minimap glass" id="minimap" role="button" aria-label="Vis oversikt"><div class="cap">Plan<i class="ph ph-arrows-out-simple"></i></div><svg id="mini"></svg></div>
 <div id="ovRoot"><div class="ov-bg" id="ovBg"></div><div class="ov" role="dialog" aria-modal="true" aria-label="Oversikt over butikken">
-  <div class="head">Oversikt<span>Trykk på et sted for å gå dit</span></div>
+  <div class="head">Plan<span>Trykk på et sted for å gå dit</span></div>
   <button class="ibtn glass x" id="ovClose" aria-label="Lukk"><i class="ph ph-x"></i></button>
   <div class="stage"><div class="tilt"><svg id="big"></svg></div></div></div></div>
 <div class="toast glass" id="toast" role="status" aria-live="polite"></div>
@@ -201,18 +204,19 @@ a{color:inherit}
 
 <script>
 // Link yaw/pitch: where the next tripod spot sits on the floor in this panorama.
-// Pairs inngang/lounge, galleri/bildevegg, bildevegg/vegg and prover>paneler are measured from shared
-// features (level-camera pose search); the rest are read from doorways visible in both panoramas.
+// Directions: inngang/lounge, prover/paneler, galleri/bildevegg, bildevegg/vegg measured from shared features
+// (level-camera pose search). Distances: from overlaying the floor outlines (walls) seen from both spots.
+// Rings into and out of Galleri (down a short stair) sit at the door threshold.
 const TOUR = {
   first: 'inngang',
   scenes: {
-    inngang:      { title: 'Inngang',     yaw: 15,   pitch: -4, links: [ { to: 'lounge', yaw: 15.5, pitch: -28 } ] },
-    lounge:       { title: 'Utstilling',  yaw: -20,  pitch: -4, links: [ { to: 'inngang', yaw: -164, pitch: -28 }, { to: 'prover', yaw: 118, pitch: -26 } ] },
-    prover:       { title: 'Gulvprøver',  yaw: -30,  pitch: -4, links: [ { to: 'lounge', yaw: -76, pitch: -24 }, { to: 'paneler', yaw: 8, pitch: -30 }, { to: 'galleri_mork', yaw: 42, pitch: -28 } ] },
-    paneler:      { title: 'Prøvestativ', yaw: 80,   pitch: -4, links: [ { to: 'prover', yaw: 58, pitch: -32 }, { to: 'galleri_mork', yaw: 32, pitch: -28 } ] },
-    galleri_mork: { title: 'Galleri',     yaw: 60,   pitch: -4, links: [ { to: 'prover', yaw: -76, pitch: -32 }, { to: 'paneler', yaw: -59, pitch: -34 }, { to: 'bildevegg', yaw: 99.5, pitch: -31 } ] },
-    bildevegg:    { title: 'Prøvevegg',   yaw: -100, pitch: -4, links: [ { to: 'galleri_mork', yaw: -146, pitch: -31 }, { to: 'vegg', yaw: 108, pitch: -36 } ] },
-    vegg:         { title: 'Plankevegg',  yaw: 40,   pitch: -4, links: [ { to: 'bildevegg', yaw: -66.5, pitch: -36 } ] }
+    inngang:      { title: 'Inngang',     yaw: 15,   pitch: -4, links: [ { to: 'lounge', yaw: 14.5, pitch: -24 } ] },
+    lounge:       { title: 'Utstilling',  yaw: -20,  pitch: -4, links: [ { to: 'inngang', yaw: -165, pitch: -24 }, { to: 'prover', yaw: 118, pitch: -26 } ] },
+    prover:       { title: 'Gulvprøver',  yaw: -30,  pitch: -4, links: [ { to: 'lounge', yaw: -78, pitch: -14 }, { to: 'paneler', yaw: 0, pitch: -17.5 }, { to: 'galleri_mork', yaw: 42, pitch: -28 } ] },
+    paneler:      { title: 'Prøvestativ', yaw: 80,   pitch: -4, links: [ { to: 'prover', yaw: 46, pitch: -17.5 }, { to: 'galleri_mork', yaw: 32, pitch: -28 } ] },
+    galleri_mork: { title: 'Galleri',     yaw: 60,   pitch: -4, links: [ { to: 'prover', yaw: -76, pitch: -32 }, { to: 'paneler', yaw: -59, pitch: -34 }, { to: 'bildevegg', yaw: 100, pitch: -24 } ] },
+    bildevegg:    { title: 'Prøvevegg',   yaw: -100, pitch: -4, links: [ { to: 'galleri_mork', yaw: -146, pitch: -24 }, { to: 'vegg', yaw: 108, pitch: -34 } ] },
+    vegg:         { title: 'Plankevegg',  yaw: 40,   pitch: -4, links: [ { to: 'bildevegg', yaw: -66.5, pitch: -34 } ] }
   }
 };
 // heading kept across a step: yaw in B = yaw in A + offset, offset from the two mutual link yaws
@@ -221,7 +225,7 @@ for (const [a, s] of Object.entries(TOUR.scenes)) for (const l of s.links) {
   const back = TOUR.scenes[l.to].links.find(x => x.to === a);
   l.offset = back ? norm(back.yaw - l.yaw - 180) : null;
 }
-const MEASURED = { 'inngang>lounge': 0.5, 'lounge>inngang': -0.5, 'galleri_mork>bildevegg': -64, 'bildevegg>galleri_mork': 63, 'bildevegg>vegg': 5, 'vegg>bildevegg': -5 };
+const MEASURED = { 'inngang>lounge': 0.5, 'lounge>inngang': -0.5, 'prover>paneler': -132, 'paneler>prover': 132, 'galleri_mork>bildevegg': -64, 'bildevegg>galleri_mork': 63, 'bildevegg>vegg': 5, 'vegg>bildevegg': -5 };
 for (const [a, s] of Object.entries(TOUR.scenes)) for (const l of s.links) if ((a + '>' + l.to) in MEASURED) l.offset = MEASURED[a + '>' + l.to];
 
 const ids = Object.keys(TOUR.scenes);
@@ -369,10 +373,11 @@ panoEl.addEventListener('mouseup', e => {
 });
 
 
-/* ---------- plan from above ---------- */
-// distance to the next spot from the ring pitch (camera height = 1); Galleri sits down a short stair, so its
-// rings sit at the door threshold and the true step is longer
-const DIST = { 'prover>galleri_mork': 3.2, 'paneler>galleri_mork': 3.0 };
+/* ---------- 2D plan ---------- */
+// Spot positions come from the same yaw/pitch that place the floor rings (distance = 1/tan|pitch|, in camera
+// heights). Walls: for every spot, where its floor meets a wall in each direction (outline.json); drawn as one
+// merged floor area whose outer edge is the wall line.
+const DIST = { 'prover>galleri_mork': 2.8, 'paneler>galleri_mork': 2.6, 'lounge>prover': 3.4 };
 const plan = (() => {
   const pos = { [TOUR.first]: [0, 0] }, rot = { [TOUR.first]: 0 }, edges = [], q = [TOUR.first];
   while (q.length) {
@@ -388,43 +393,63 @@ const plan = (() => {
       q.push(l.to);
     }
   }
-  const xs = ids.map(i => pos[i][0]), ys = ids.map(i => pos[i][1]);
-  return { pos, rot, edges, box: [Math.min(...xs), Math.min(...ys), Math.max(...xs), Math.max(...ys)] };
+  return { pos, rot, edges };
 })();
 const SVGNS = 'http://www.w3.org/2000/svg';
 const el = (t, a, p) => { const e = document.createElementNS(SVGNS, t); for (const k in a) e.setAttribute(k, a[k]); p && p.appendChild(e); return e; };
-function drawPlan(svg, big) {
-  const [x0, y0, x1, y1] = plan.box, pad = big ? 1.1 : .9, W = x1 - x0 + 2 * pad, H = y1 - y0 + 2 * pad;
-  const S = big ? 100 : 40;
-  svg.setAttribute('viewBox', `${(x0 - pad) * S} ${(y0 - pad) * S} ${W * S} ${H * S}`);
+function polys(OL) {
+  const out = {};
+  for (const id of ids) {
+    const [px, py] = plan.pos[id], r0 = plan.rot[id];
+    out[id] = (OL[id] || []).map(([yaw, r]) => { const g = (yaw + r0) * Math.PI / 180; return [px + r * Math.sin(g), py - r * Math.cos(g)]; });
+  }
+  return out;
+}
+function drawPlan(svg, big, P_) {
+  const all = Object.values(P_).flat().concat(ids.map(i => plan.pos[i]));
+  const xs = all.map(p => p[0]), ys = all.map(p => p[1]);
+  const pad = .4, x0 = Math.min(...xs) - pad, y0 = Math.min(...ys) - pad, W = Math.max(...xs) - x0 + pad, H = Math.max(...ys) - y0 + pad;
+  const S = 100;
+  svg.setAttribute('viewBox', `${x0 * S} ${y0 * S} ${W * S} ${H * S}`);
   svg.innerHTML = '';
   const defs = el('defs', {}, svg), gr = el('radialGradient', { id: big ? 'coneB' : 'coneG' }, defs);
-  el('stop', { offset: '0', 'stop-color': '#D7822F', 'stop-opacity': '.75' }, gr); el('stop', { offset: '1', 'stop-color': '#D7822F', 'stop-opacity': '0' }, gr);
-  if (big) el('rect', { class: 'floor', x: (x0 - pad) * S, y: (y0 - pad) * S, width: W * S, height: H * S, rx: 24 }, svg);
+  el('stop', { offset: '0', 'stop-color': '#D7822F', 'stop-opacity': '.8' }, gr); el('stop', { offset: '1', 'stop-color': '#D7822F', 'stop-opacity': '0' }, gr);
+  const d = pts => 'M' + pts.map(p => (p[0] * S).toFixed(1) + ',' + (p[1] * S).toFixed(1)).join('L') + 'Z';
+  const sw = big ? 7 : 12;
+  const walls = el('g', {}, svg), floors = el('g', {}, svg);
+  for (const id of ids) if (P_[id].length) {
+    el('path', { class: 'plan-wall', d: d(P_[id]), 'stroke-width': sw * 2 }, walls);
+    el('path', { class: 'plan-floor', d: d(P_[id]) }, floors);
+  }
   const P = id => plan.pos[id].map(v => v * S);
-  for (const [a, b] of plan.edges) { const [ax, ay] = P(a), [bx, by] = P(b); el('path', { class: 'plan-path', d: `M${ax},${ay}L${bx},${by}` }, svg); }
+  for (const [a, b] of plan.edges) { const [ax, ay] = P(a), [bx, by] = P(b); el('path', { class: 'plan-path', d: `M${ax},${ay}L${bx},${by}`, 'stroke-width': big ? 4 : 6 }, svg); }
   const cone = el('path', { class: 'plan-cone', fill: `url(#${big ? 'coneB' : 'coneG'})` }, svg);
   for (const id of ids) {
     const [x, y] = P(id);
     if (big) {
-      const g = el('g', { class: 'pin', 'data-id': id }, svg), r = 34;
+      const g = el('g', { class: 'pin', 'data-id': id }, svg), r = 30;
       el('image', { href: `assets/thumb_${id}.jpg`, x: x - r, y: y - r, width: 2 * r, height: 2 * r, preserveAspectRatio: 'xMidYMid slice' }, g);
       el('circle', { cx: x, cy: y, r }, g);
-      el('text', { x, y: y + r + 20 }, g).textContent = TOUR.scenes[id].title;
+      el('text', { x, y: y + r + 22 }, g).textContent = TOUR.scenes[id].title;
       g.addEventListener('click', () => { setOv(false); go(id); });
     } else {
-      const c = el('circle', { class: 'plan-dot', cx: x, cy: y, r: 5, 'data-id': id }, svg);
+      const c = el('circle', { class: 'plan-dot', cx: x, cy: y, r: 13, 'data-id': id, 'stroke-width': 4 }, svg);
       el('title', {}, c).textContent = TOUR.scenes[id].title;
       c.addEventListener('click', e => { e.stopPropagation(); go(id); });
     }
   }
-  return { cone, P, S, big };
+  return { cone, P, big };
 }
-const mini = drawPlan(document.getElementById('mini'), false), bigPlan = drawPlan(document.getElementById('big'), true);
+let mini = null, bigPlan = null;
+fetch('outline.json').then(r => r.json()).catch(() => ({})).then(OL => {
+  const P_ = polys(OL);
+  mini = drawPlan(document.getElementById('mini'), false, P_);
+  bigPlan = drawPlan(document.getElementById('big'), true, P_);
+});
 function syncPlan() {
-  const id = viewer.getScene(); if (!id) return;
+  const id = viewer.getScene(); if (!id || !mini) return;
   for (const p of [mini, bigPlan]) {
-    const [cx, cy] = p.P(id), R = p.big ? 120 : 46;
+    const [cx, cy] = p.P(id), R = p.big ? 150 : 170;
     const g = (viewer.getYaw() + plan.rot[id]) * Math.PI / 180, h = viewer.getHfov() / 2 * Math.PI / 180;
     const pt = a => [cx + R * Math.sin(a), cy - R * Math.cos(a)];
     const [ax, ay] = pt(g - h), [bx, by] = pt(g + h);
