@@ -81,7 +81,7 @@ a{color:inherit}
 @media (hover:none){.floor-cursor{display:none}}
 
 /* plan: positions come from the same link yaws/pitches that place the floor rings */
-.minimap{position:fixed;right:max(16px,env(safe-area-inset-right));bottom:calc(max(18px,env(safe-area-inset-bottom)) + 74px);z-index:5;width:150px;padding:10px;border-radius:var(--r);cursor:pointer}
+.minimap{position:fixed;right:max(16px,env(safe-area-inset-right));bottom:calc(max(18px,env(safe-area-inset-bottom)) + 74px);z-index:5;width:230px;padding:10px;border-radius:var(--r);cursor:pointer}
 .minimap svg,.ov svg{display:block;width:100%;height:auto;overflow:visible}
 .plan-path{fill:none;stroke:rgba(244,242,238,.28);stroke-width:1.4;stroke-linecap:round}
 .plan-dot{fill:var(--glass-solid);stroke:var(--text);stroke-width:1.6;cursor:pointer;transition:r .2s}
@@ -412,10 +412,20 @@ function drawPlan(svg, big) {
   if (plan.spiral) {   // spiral stair: box, quarter circle core, radial treads
     const [a, b, c, d] = plan.spiral.map(v => v * S), g = el('g', { class: 'plan-stair' }, svg);
     el('rect', { x: a, y: b, width: c - a, height: d - b }, g);
-    const cx = c, cy = (b + d) / 2, R = Math.min(c - a, (d - b) / 2) * .95, r0 = R * .22;
-    el('path', { d: `M${cx},${cy - R}A${R},${R} 0 0 0 ${cx},${cy + R}` }, g);
-    for (let k = 0; k <= 8; k++) { const t = Math.PI / 2 + Math.PI * k / 8;
-      el('path', { d: `M${cx + r0 * Math.cos(t)},${cy - r0 * Math.sin(t)}L${cx + R * Math.cos(t)},${cy - R * Math.sin(t)}` }, g); }
+    // spiral stair: core on the open side of its box, treads radiating out all the way to the walls
+    const top = plan.spiral_side === 'top';
+    const cx = top ? (a + c) / 2 : c, cy = top ? b : (b + d) / 2, r0 = Math.min(c - a, d - b) * .12, t0 = top ? Math.PI : Math.PI / 2;
+    const hit = t => {   // where a ray from the core leaves the box
+      const dx = Math.cos(t), dy = -Math.sin(t); let m = 1e9;
+      if (dx > 1e-6) m = Math.min(m, (c - cx) / dx); if (dx < -1e-6) m = Math.min(m, (a - cx) / dx);
+      if (dy > 1e-6) m = Math.min(m, (d - cy) / dy); if (dy < -1e-6) m = Math.min(m, (b - cy) / dy);
+      return [cx + m * dx, cy + m * dy];
+    };
+    const N = 11;
+    for (let k = 0; k <= N; k++) { const t = t0 + Math.PI * k / N, [ex, ey] = hit(t);
+      el('path', { d: `M${cx + r0 * Math.cos(t)},${cy - r0 * Math.sin(t)}L${ex},${ey}` }, g); }
+    const q1 = [cx + r0 * Math.cos(t0), cy - r0 * Math.sin(t0)], q2 = [cx - r0 * Math.cos(t0), cy + r0 * Math.sin(t0)];
+    el('path', { d: `M${q1[0]},${q1[1]}A${r0},${r0} 0 0 0 ${q2[0]},${q2[1]}` }, g);
   }
   el('path', { d: outline, class: 'plan-wall', 'stroke-width': ww, 'stroke-linejoin': 'miter' }, svg);
   for (const w of plan.inner || []) el('path', { class: 'plan-wall', d: `M${sc(w[0])},${sc(w[1])}L${sc(w[2])},${sc(w[3])}`, 'stroke-width': ww * .8, 'stroke-linecap': 'square' }, svg);
