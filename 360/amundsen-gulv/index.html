@@ -195,8 +195,8 @@ const scenes = {};
 for (const [id, s] of Object.entries(TOUR.scenes)) {
   scenes[id] = {
     type: 'multires', yaw: s.yaw, pitch: s.pitch, hfov: hfov0(),
-    multiRes: { basePath: 'tiles/' + id, path: '/%l/%s%y_%x', fallbackPath: '/fallback/%s',
-                extension: 'jpg', tileResolution: 512, maxLevel: 3, cubeResolution: 2560 },
+    multiRes: { basePath: 'pano/' + id, path: '/%l/%s%y_%x', fallbackPath: '/fallback/%s',
+                extension: 'jpg', tileResolution: 512, maxLevel: 4, cubeResolution: 2560 },
     hotSpots: s.links.map(l => ({ yaw: l.yaw, pitch: RING_PITCH, cssClass: 'hs', createTooltipFunc: navSpot, createTooltipArgs: l }))
   };
 }
