@@ -65,16 +65,20 @@ a{color:inherit}
 .room[aria-current=true]::after{box-shadow:inset 0 0 0 2px var(--text)}
 
 .hs-nav{width:84px;height:84px;margin:-42px 0 0 -42px;cursor:pointer;perspective:220px}
-.hs-nav .ring{position:absolute;inset:10px;border-radius:50%;transform:rotateX(64deg);border:2.5px solid rgba(255,255,255,.95);
+.hs-nav .ring{position:absolute;inset:10px;border-radius:50%;transform:rotateX(64deg) scale(var(--k,1));border:2.5px solid rgba(255,255,255,.95);
   background:rgba(255,255,255,.16);box-shadow:0 0 0 1px rgba(0,0,0,.12),0 0 24px rgba(0,0,0,.18);transition:background .25s,transform .35s var(--ease)}
 .hs-nav .ring::after{content:"";position:absolute;inset:24px;border-radius:50%;background:rgba(255,255,255,.95)}
-.hs-nav:hover .ring{background:rgba(255,255,255,.34);transform:rotateX(64deg) scale(1.1)}
+.hs-nav:hover .ring{background:rgba(255,255,255,.34);transform:rotateX(64deg) scale(calc(var(--k,1) * 1.12))}
 .hs-nav .lbl{position:absolute;left:50%;bottom:62px;transform:translate(-50%,6px);display:flex;align-items:center;gap:6px;white-space:nowrap;
   font:500 12.5px Montserrat,sans-serif;color:var(--text);padding:7px 12px 7px 10px;border-radius:999px;background:rgba(22,21,20,.66);
   -webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);opacity:0;transition:opacity .25s,transform .3s var(--ease);pointer-events:none}
 .hs-nav .lbl i{font-size:14px}
 .hs-nav:hover .lbl,.touch .hs-nav .lbl{opacity:1;transform:translate(-50%,0)}
 
+.floor-cursor{position:fixed;left:0;top:0;width:70px;height:70px;margin:-35px 0 0 -35px;pointer-events:none;z-index:3;perspective:200px;opacity:0;transition:opacity .2s}
+.floor-cursor span{position:absolute;inset:0;border-radius:50%;border:2px solid rgba(255,255,255,.85);background:rgba(255,255,255,.12);transform:rotateX(66deg) scale(var(--k,1))}
+.floor-cursor.on{opacity:1}
+@media (hover:none){.floor-cursor{display:none}}
 .sheet-bg{position:fixed;inset:0;z-index:20;background:rgba(8,7,6,.35);opacity:0;pointer-events:none;transition:opacity .3s}
 .sheet{position:fixed;z-index:21;top:12px;right:12px;bottom:12px;width:360px;border-radius:var(--r);padding:28px 24px 22px;display:flex;flex-direction:column;
   transform:translateX(calc(100% + 24px));transition:transform .45s var(--ease);background:rgba(22,21,20,.8);overflow:auto}
@@ -122,6 +126,7 @@ a{color:inherit}
 <div class="scrim-top"></div><div class="scrim-bot"></div>
 <div class="bar"></div>
 <div class="cover"><img src="assets/merke.svg" alt=""></div>
+<div class="floor-cursor" id="fc"><span></span></div>
 <div class="toast glass" id="toast" role="status" aria-live="polite"></div>
 
 <header class="top">
@@ -162,19 +167,29 @@ a{color:inherit}
 </div>
 
 <script>
+// Link yaw/pitch: where the next tripod spot sits on the floor in this panorama.
+// Pairs inngang/lounge, galleri/bildevegg, bildevegg/vegg and prover>paneler are measured from shared
+// features (level-camera pose search); the rest are read from doorways visible in both panoramas.
 const TOUR = {
   first: 'inngang',
   scenes: {
-    inngang:      { title: 'Inngang',      yaw: 30,   pitch: -6, links: [ { to: 'lounge', yaw: 22 } ] },
-    lounge:       { title: 'Utstilling',   yaw: -20,  pitch: -6, links: [ { to: 'inngang', yaw: 165 }, { to: 'prover', yaw: 122 } ] },
-    prover:       { title: 'Gulvprøver',   yaw: -30,  pitch: -6, links: [ { to: 'lounge', yaw: -100 }, { to: 'paneler', yaw: -15 } ] },
-    paneler:      { title: 'Prøvestativ',  yaw: -60,  pitch: -6, links: [ { to: 'prover', yaw: 128 }, { to: 'galleri_mork', yaw: 18 } ] },
-    galleri_mork: { title: 'Galleri',      yaw: 60,   pitch: -6, links: [ { to: 'paneler', yaw: -100 }, { to: 'bildevegg', yaw: 65 } ] },
-    bildevegg:    { title: 'Prøvevegg',    yaw: -100, pitch: -6, links: [ { to: 'galleri_mork', yaw: -165 }, { to: 'vegg', yaw: 75 } ] },
-    vegg:         { title: 'Plankevegg',   yaw: 40,   pitch: -6, links: [ { to: 'bildevegg', yaw: -105 } ] }
+    inngang:      { title: 'Inngang',     yaw: 15,   pitch: -4, links: [ { to: 'lounge', yaw: 15.5, pitch: -28 } ] },
+    lounge:       { title: 'Utstilling',  yaw: -20,  pitch: -4, links: [ { to: 'inngang', yaw: -164, pitch: -28 }, { to: 'prover', yaw: 118, pitch: -26 } ] },
+    prover:       { title: 'Gulvprøver',  yaw: -30,  pitch: -4, links: [ { to: 'lounge', yaw: -76, pitch: -24 }, { to: 'paneler', yaw: 8, pitch: -30 }, { to: 'galleri_mork', yaw: 42, pitch: -28 } ] },
+    paneler:      { title: 'Prøvestativ', yaw: 80,   pitch: -4, links: [ { to: 'prover', yaw: 58, pitch: -32 }, { to: 'galleri_mork', yaw: 32, pitch: -28 } ] },
+    galleri_mork: { title: 'Galleri',     yaw: 60,   pitch: -4, links: [ { to: 'prover', yaw: -76, pitch: -32 }, { to: 'paneler', yaw: -59, pitch: -34 }, { to: 'bildevegg', yaw: 99.5, pitch: -31 } ] },
+    bildevegg:    { title: 'Prøvevegg',   yaw: -100, pitch: -4, links: [ { to: 'galleri_mork', yaw: -146, pitch: -31 }, { to: 'vegg', yaw: 108, pitch: -36 } ] },
+    vegg:         { title: 'Plankevegg',  yaw: 40,   pitch: -4, links: [ { to: 'bildevegg', yaw: -66.5, pitch: -36 } ] }
   }
 };
-const RING_PITCH = -27;
+// heading kept across a step: yaw in B = yaw in A + offset, offset from the two mutual link yaws
+const norm = a => ((a + 540) % 360) - 180;
+for (const [a, s] of Object.entries(TOUR.scenes)) for (const l of s.links) {
+  const back = TOUR.scenes[l.to].links.find(x => x.to === a);
+  l.offset = back ? norm(back.yaw - l.yaw - 180) : null;
+}
+const MEASURED = { 'inngang>lounge': 0.5, 'lounge>inngang': -0.5, 'galleri_mork>bildevegg': -64, 'bildevegg>galleri_mork': 63, 'bildevegg>vegg': 5, 'vegg>bildevegg': -5 };
+for (const [a, s] of Object.entries(TOUR.scenes)) for (const l of s.links) if ((a + '>' + l.to) in MEASURED) l.offset = MEASURED[a + '>' + l.to];
 
 const ids = Object.keys(TOUR.scenes);
 const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -183,6 +198,7 @@ const hfov0 = () => innerWidth < 640 ? 88 : 100;
 
 function navSpot(div, l) {
   div.classList.add('hs-nav');
+  div.style.setProperty('--k', Math.min(1.15, Math.max(.6, Math.abs(l.pitch) / 20)).toFixed(2));
   div.innerHTML = '<span class="ring"></span><span class="lbl"><i class="ph ph-arrow-up-right"></i><b></b></span>';
   div.querySelector('b').textContent = TOUR.scenes[l.to].title;
   div.setAttribute('role', 'button'); div.setAttribute('tabindex', '0');
@@ -197,7 +213,7 @@ for (const [id, s] of Object.entries(TOUR.scenes)) {
     type: 'multires', yaw: s.yaw, pitch: s.pitch, hfov: hfov0(),
     multiRes: { basePath: 'pano/' + id, path: '/%l/%s%y_%x', fallbackPath: '/fallback/%s',
                 extension: 'jpg', tileResolution: 512, maxLevel: 4, cubeResolution: 2560 },
-    hotSpots: s.links.map(l => ({ yaw: l.yaw, pitch: RING_PITCH, cssClass: 'hs', createTooltipFunc: navSpot, createTooltipArgs: l }))
+    hotSpots: s.links.map(l => ({ yaw: l.yaw, pitch: l.pitch, cssClass: 'hs', createTooltipFunc: navSpot, createTooltipArgs: l }))
   };
 }
 const start = location.hash.slice(1) in TOUR.scenes ? location.hash.slice(1) : TOUR.first;
@@ -210,10 +226,21 @@ const viewer = pannellum.viewer('pano', {
 let busy = false;
 function walk(l) {
   if (busy) return; busy = true;
-  const s = TOUR.scenes[l.to];
-  const into = () => viewer.loadScene(l.to, s.pitch, s.yaw, hfov0());
+  const s = TOUR.scenes[l.to], H = hfov0();
+  const arrive = l.offset == null ? s.yaw : norm(viewer.getYaw() + l.offset);
+  const into = () => {
+    viewer.loadScene(l.to, -2, arrive, reduce ? H : H - 22);
+    if (!reduce) viewer.on('load', function ease() { viewer.off('load', ease); viewer.setHfov(H, 700); });
+  };
   if (reduce) return into();
-  viewer.lookAt(-6, l.yaw, Math.max(viewer.getHfov() - 30, 55), 520, into);
+  pushIn();
+  viewer.lookAt(Math.max(l.pitch + 12, -6), l.yaw, Math.max(viewer.getHfov() - 34, 50), 480, into);
+}
+function pushIn() {
+  const c = document.querySelector('#pano .pnlm-render-container');
+  if (!c) return;
+  c.animate([{ transform: 'scale(1)', filter: 'blur(0)' }, { transform: 'scale(1.06)', filter: 'blur(1.5px)' }],
+            { duration: 520, easing: 'cubic-bezier(.4,0,.2,1)' });
 }
 function go(id) {
   if (busy || viewer.getScene() === id) return; busy = true;
@@ -282,6 +309,31 @@ function setSheet(on) { root.classList.toggle('open', on); if (on) document.getE
 document.getElementById('infoBtn').onclick = () => setSheet(true);
 document.getElementById('closeSheet').onclick = () => setSheet(false);
 document.getElementById('sheetBg').onclick = () => setSheet(false);
+
+
+/* Street View style: a ring follows the pointer on the floor; a click on the floor steps toward the nearest spot in that direction */
+const fc = document.getElementById('fc'), panoEl = document.getElementById('pano');
+let down = null;
+function nearestLink(yaw) {
+  const s = TOUR.scenes[viewer.getScene()]; let best = null;
+  for (const l of s.links) { const d = Math.abs(norm(l.yaw - yaw)); if (d < 32 && (!best || d < best.d)) best = { l, d }; }
+  return best && best.l;
+}
+panoEl.addEventListener('mousemove', e => {
+  if (busy || e.buttons) { fc.classList.remove('on'); return; }
+  const [p, y] = viewer.mouseEventToCoords(e);
+  const onFloor = p < -10 && !e.target.closest('.hs-nav');
+  fc.classList.toggle('on', onFloor);
+  if (onFloor) { fc.style.transform = `translate(${e.clientX}px,${e.clientY}px)`; fc.style.setProperty('--k', Math.min(1.3, Math.max(.45, Math.abs(p) / 28)).toFixed(2));
+                 panoEl.style.cursor = nearestLink(y) ? 'pointer' : ''; }
+});
+panoEl.addEventListener('mouseleave', () => fc.classList.remove('on'));
+panoEl.addEventListener('mousedown', e => { down = [e.clientX, e.clientY]; });
+panoEl.addEventListener('mouseup', e => {
+  if (!down || Math.hypot(e.clientX - down[0], e.clientY - down[1]) > 4 || e.target.closest('.hs-nav')) return;
+  const [p, y] = viewer.mouseEventToCoords(e);
+  if (p < -10) { const l = nearestLink(y); if (l) walk(l); }
+});
 
 const hint = document.getElementById('hint');
 const hideHint = () => { hint.style.opacity = 0; setTimeout(() => hint.remove(), 700); };
