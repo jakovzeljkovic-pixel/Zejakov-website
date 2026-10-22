@@ -79,6 +79,33 @@ a{color:inherit}
 .floor-cursor span{position:absolute;inset:0;border-radius:50%;border:2px solid rgba(255,255,255,.85);background:rgba(255,255,255,.12);transform:rotateX(66deg) scale(var(--k,1))}
 .floor-cursor.on{opacity:1}
 @media (hover:none){.floor-cursor{display:none}}
+
+/* plan: positions come from the same link yaws/pitches that place the floor rings */
+.minimap{position:fixed;right:max(16px,env(safe-area-inset-right));bottom:calc(max(18px,env(safe-area-inset-bottom)) + 74px);z-index:5;width:210px;padding:10px;border-radius:var(--r);cursor:pointer}
+.minimap svg,.ov svg{display:block;width:100%;height:auto;overflow:visible}
+.plan-path{fill:none;stroke:rgba(244,242,238,.28);stroke-width:1.4;stroke-linecap:round}
+.plan-dot{fill:var(--glass-solid);stroke:var(--text);stroke-width:1.6;cursor:pointer;transition:r .2s}
+.plan-dot.on{fill:var(--accent);stroke:var(--accent)}
+.plan-cone{fill:url(#coneG)}
+.minimap .cap{display:flex;justify-content:space-between;align-items:center;font-size:11px;color:var(--muted);margin:0 2px 6px}
+.minimap .cap i{font-size:14px}
+.ov-bg{position:fixed;inset:0;z-index:22;background:rgba(10,9,8,.72);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);opacity:0;pointer-events:none;transition:opacity .35s}
+.ov{position:fixed;inset:0;z-index:23;display:grid;place-items:center;pointer-events:none;opacity:0;transition:opacity .35s}
+.ov-open .ov-bg,.ov-open .ov{opacity:1;pointer-events:auto}
+.ov .stage{width:min(860px,92vw);perspective:1400px}
+.ov .tilt{transform:rotateX(52deg) rotateZ(-8deg) scale(.92);transform-style:preserve-3d;transition:transform .7s var(--ease)}
+.ov-open .ov .tilt{transform:rotateX(46deg) rotateZ(-6deg) scale(1)}
+.ov .floor{fill:rgba(255,255,255,.035);stroke:rgba(255,255,255,.08)}
+.ov .plan-path{stroke-width:2.2;stroke:rgba(215,130,47,.55);stroke-dasharray:2 7}
+.ov .pin{cursor:pointer}
+.ov .pin image{clip-path:circle(50%)}
+.ov .pin circle{fill:none;stroke:rgba(255,255,255,.9);stroke-width:2.4}
+.ov .pin.on circle{stroke:var(--accent);stroke-width:3.4}
+.ov .pin text{fill:var(--text);font:500 13px Montserrat,sans-serif;text-anchor:middle;paint-order:stroke;stroke:rgba(10,9,8,.8);stroke-width:4px}
+.ov .head{position:absolute;top:max(22px,env(safe-area-inset-top));left:0;right:0;text-align:center;font-size:15px;font-weight:500}
+.ov .head span{display:block;font-size:12.5px;color:var(--muted);font-weight:400;margin-top:4px}
+.ov .x{position:absolute;top:max(14px,env(safe-area-inset-top));right:max(14px,env(safe-area-inset-right))}
+@media (max-width:640px){.minimap{display:none}.ov .tilt{transform:rotateX(38deg) scale(.95)}.ov-open .ov .tilt{transform:rotateX(34deg)}}
 .sheet-bg{position:fixed;inset:0;z-index:20;background:rgba(8,7,6,.35);opacity:0;pointer-events:none;transition:opacity .3s}
 .sheet{position:fixed;z-index:21;top:12px;right:12px;bottom:12px;width:360px;border-radius:var(--r);padding:28px 24px 22px;display:flex;flex-direction:column;
   transform:translateX(calc(100% + 24px));transition:transform .45s var(--ease);background:rgba(22,21,20,.8);overflow:auto}
@@ -127,6 +154,11 @@ a{color:inherit}
 <div class="bar"></div>
 <div class="cover"><img src="assets/merke.svg" alt=""></div>
 <div class="floor-cursor" id="fc"><span></span></div>
+<div class="minimap glass" id="minimap" role="button" aria-label="Vis oversikt"><div class="cap">Oversikt<i class="ph ph-arrows-out-simple"></i></div><svg id="mini"></svg></div>
+<div id="ovRoot"><div class="ov-bg" id="ovBg"></div><div class="ov" role="dialog" aria-modal="true" aria-label="Oversikt over butikken">
+  <div class="head">Oversikt<span>Trykk på et sted for å gå dit</span></div>
+  <button class="ibtn glass x" id="ovClose" aria-label="Lukk"><i class="ph ph-x"></i></button>
+  <div class="stage"><div class="tilt"><svg id="big"></svg></div></div></div></div>
 <div class="toast glass" id="toast" role="status" aria-live="polite"></div>
 
 <header class="top">
@@ -137,6 +169,7 @@ a{color:inherit}
   <div class="tools">
     <button class="ibtn glass" id="gyroBtn" aria-label="Styr med telefonen" aria-pressed="false" hidden><i class="ph ph-device-mobile-camera"></i></button>
     <button class="ibtn glass" id="rotBtn" aria-label="Roter rommet" aria-pressed="false"><i class="ph ph-arrows-clockwise"></i></button>
+    <button class="ibtn glass" id="ovBtn" aria-label="Oversikt"><i class="ph ph-map-trifold"></i></button>
     <button class="ibtn glass" id="shareBtn" aria-label="Del"><i class="ph ph-share-network"></i></button>
     <button class="ibtn glass" id="fsBtn" aria-label="Fullskjerm"><i class="ph ph-corners-out"></i></button>
     <button class="ibtn glass" id="infoBtn" aria-label="Om butikken"><i class="ph ph-info"></i></button>
@@ -334,6 +367,80 @@ panoEl.addEventListener('mouseup', e => {
   const [p, y] = viewer.mouseEventToCoords(e);
   if (p < -10) { const l = nearestLink(y); if (l) walk(l); }
 });
+
+
+/* ---------- plan from above ---------- */
+// distance to the next spot from the ring pitch (camera height = 1); Galleri sits down a short stair, so its
+// rings sit at the door threshold and the true step is longer
+const DIST = { 'prover>galleri_mork': 3.2, 'paneler>galleri_mork': 3.0 };
+const plan = (() => {
+  const pos = { [TOUR.first]: [0, 0] }, rot = { [TOUR.first]: 0 }, edges = [], q = [TOUR.first];
+  while (q.length) {
+    const a = q.shift();
+    for (const l of TOUR.scenes[a].links) {
+      const key = a + '>' + l.to, back = l.to + '>' + a;
+      if (!edges.some(e => e.join() === [l.to, a].join())) edges.push([a, l.to]);
+      if (l.to in pos) continue;
+      const d = DIST[key] || DIST[back] || 1 / Math.tan(Math.abs(l.pitch) * Math.PI / 180);
+      const g = (l.yaw + rot[a]) * Math.PI / 180;
+      pos[l.to] = [pos[a][0] + d * Math.sin(g), pos[a][1] - d * Math.cos(g)];
+      rot[l.to] = rot[a] - (l.offset || 0);
+      q.push(l.to);
+    }
+  }
+  const xs = ids.map(i => pos[i][0]), ys = ids.map(i => pos[i][1]);
+  return { pos, rot, edges, box: [Math.min(...xs), Math.min(...ys), Math.max(...xs), Math.max(...ys)] };
+})();
+const SVGNS = 'http://www.w3.org/2000/svg';
+const el = (t, a, p) => { const e = document.createElementNS(SVGNS, t); for (const k in a) e.setAttribute(k, a[k]); p && p.appendChild(e); return e; };
+function drawPlan(svg, big) {
+  const [x0, y0, x1, y1] = plan.box, pad = big ? 1.1 : .9, W = x1 - x0 + 2 * pad, H = y1 - y0 + 2 * pad;
+  const S = big ? 100 : 40;
+  svg.setAttribute('viewBox', `${(x0 - pad) * S} ${(y0 - pad) * S} ${W * S} ${H * S}`);
+  svg.innerHTML = '';
+  const defs = el('defs', {}, svg), gr = el('radialGradient', { id: big ? 'coneB' : 'coneG' }, defs);
+  el('stop', { offset: '0', 'stop-color': '#D7822F', 'stop-opacity': '.75' }, gr); el('stop', { offset: '1', 'stop-color': '#D7822F', 'stop-opacity': '0' }, gr);
+  if (big) el('rect', { class: 'floor', x: (x0 - pad) * S, y: (y0 - pad) * S, width: W * S, height: H * S, rx: 24 }, svg);
+  const P = id => plan.pos[id].map(v => v * S);
+  for (const [a, b] of plan.edges) { const [ax, ay] = P(a), [bx, by] = P(b); el('path', { class: 'plan-path', d: `M${ax},${ay}L${bx},${by}` }, svg); }
+  const cone = el('path', { class: 'plan-cone', fill: `url(#${big ? 'coneB' : 'coneG'})` }, svg);
+  for (const id of ids) {
+    const [x, y] = P(id);
+    if (big) {
+      const g = el('g', { class: 'pin', 'data-id': id }, svg), r = 34;
+      el('image', { href: `assets/thumb_${id}.jpg`, x: x - r, y: y - r, width: 2 * r, height: 2 * r, preserveAspectRatio: 'xMidYMid slice' }, g);
+      el('circle', { cx: x, cy: y, r }, g);
+      el('text', { x, y: y + r + 20 }, g).textContent = TOUR.scenes[id].title;
+      g.addEventListener('click', () => { setOv(false); go(id); });
+    } else {
+      const c = el('circle', { class: 'plan-dot', cx: x, cy: y, r: 5, 'data-id': id }, svg);
+      el('title', {}, c).textContent = TOUR.scenes[id].title;
+      c.addEventListener('click', e => { e.stopPropagation(); go(id); });
+    }
+  }
+  return { cone, P, S, big };
+}
+const mini = drawPlan(document.getElementById('mini'), false), bigPlan = drawPlan(document.getElementById('big'), true);
+function syncPlan() {
+  const id = viewer.getScene(); if (!id) return;
+  for (const p of [mini, bigPlan]) {
+    const [cx, cy] = p.P(id), R = p.big ? 120 : 46;
+    const g = (viewer.getYaw() + plan.rot[id]) * Math.PI / 180, h = viewer.getHfov() / 2 * Math.PI / 180;
+    const pt = a => [cx + R * Math.sin(a), cy - R * Math.cos(a)];
+    const [ax, ay] = pt(g - h), [bx, by] = pt(g + h);
+    p.cone.setAttribute('d', `M${cx},${cy}L${ax},${ay}A${R},${R} 0 0 1 ${bx},${by}Z`);
+  }
+  document.querySelectorAll('.plan-dot').forEach(d => d.classList.toggle('on', d.dataset.id === id));
+  document.querySelectorAll('.ov .pin').forEach(d => d.classList.toggle('on', d.dataset.id === id));
+}
+(function loop() { if (viewer.isLoaded()) syncPlan(); requestAnimationFrame(loop); })();
+const ovRoot = document.getElementById('ovRoot');
+function setOv(on) { ovRoot.classList.toggle('ov-open', on); }
+document.getElementById('minimap').onclick = () => setOv(true);
+document.getElementById('ovBtn').onclick = () => setOv(true);
+document.getElementById('ovClose').onclick = () => setOv(false);
+document.getElementById('ovBg').onclick = () => setOv(false);
+addEventListener('keydown', e => { if (e.key === 'Escape') setOv(false); });
 
 const hint = document.getElementById('hint');
 const hideHint = () => { hint.style.opacity = 0; setTimeout(() => hint.remove(), 700); };
