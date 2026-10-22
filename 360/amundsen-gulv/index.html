@@ -96,9 +96,8 @@ a{color:inherit}
 .ov .tilt{transform:scale(.97);transition:transform .5s var(--ease)}
 .ov-open .ov .tilt{transform:none}
 .ov svg{max-height:78vh}
-.plan-wall{fill:none;stroke:rgba(244,242,238,.85);stroke-linejoin:round}
-.plan-floor{fill:#24211e;stroke:none}
-.minimap .plan-floor{fill:#2a2622}
+.plan-wall{fill:none;stroke:#EDE8E1}
+.plan-floor{fill:#2b2723;stroke:none}
 .ov .plan-path{stroke-width:2.2;stroke:rgba(215,130,47,.55);stroke-dasharray:2 7}
 .ov .pin{cursor:pointer}
 .ov .pin image{clip-path:circle(50%)}
@@ -374,56 +373,38 @@ panoEl.addEventListener('mouseup', e => {
 
 
 /* ---------- 2D plan ---------- */
-// Spot positions come from the same yaw/pitch that place the floor rings (distance = 1/tan|pitch|, in camera
-// heights). Walls: for every spot, where its floor meets a wall in each direction (outline.json); drawn as one
-// merged floor area whose outer edge is the wall line.
-const DIST = { 'prover>galleri_mork': 2.8, 'paneler>galleri_mork': 2.6, 'lounge>prover': 3.4 };
-const plan = (() => {
-  const pos = { [TOUR.first]: [0, 0] }, rot = { [TOUR.first]: 0 }, edges = [], q = [TOUR.first];
-  while (q.length) {
-    const a = q.shift();
-    for (const l of TOUR.scenes[a].links) {
-      const key = a + '>' + l.to, back = l.to + '>' + a;
-      if (!edges.some(e => e.join() === [l.to, a].join())) edges.push([a, l.to]);
-      if (l.to in pos) continue;
-      const d = DIST[key] || DIST[back] || 1 / Math.tan(Math.abs(l.pitch) * Math.PI / 180);
-      const g = (l.yaw + rot[a]) * Math.PI / 180;
-      pos[l.to] = [pos[a][0] + d * Math.sin(g), pos[a][1] - d * Math.cos(g)];
-      rot[l.to] = rot[a] - (l.offset || 0);
-      q.push(l.to);
-    }
-  }
-  return { pos, rot, edges };
-})();
+// plan.json (tools/make_plan.py): walls traced from where each panorama's floor meets its walls, merged,
+// squared to the axes and snapped to a grid so it reads as a drawn plan. Spot positions and headings come
+// from the same link values as the floor rings. Indicative, not a measured drawing.
 const SVGNS = 'http://www.w3.org/2000/svg';
 const el = (t, a, p) => { const e = document.createElementNS(SVGNS, t); for (const k in a) e.setAttribute(k, a[k]); p && p.appendChild(e); return e; };
-function polys(OL) {
-  const out = {};
-  for (const id of ids) {
-    const [px, py] = plan.pos[id], r0 = plan.rot[id];
-    out[id] = (OL[id] || []).map(([yaw, r]) => { const g = (yaw + r0) * Math.PI / 180; return [px + r * Math.sin(g), py - r * Math.cos(g)]; });
-  }
-  return out;
-}
-function drawPlan(svg, big, P_) {
-  const all = Object.values(P_).flat().concat(ids.map(i => plan.pos[i]));
-  const xs = all.map(p => p[0]), ys = all.map(p => p[1]);
-  const pad = .4, x0 = Math.min(...xs) - pad, y0 = Math.min(...ys) - pad, W = Math.max(...xs) - x0 + pad, H = Math.max(...ys) - y0 + pad;
-  const S = 100;
+let plan = null, mini = null, bigPlan = null;
+const edges = [];
+for (const [a, s] of Object.entries(TOUR.scenes)) for (const l of s.links) if (!edges.some(e => e[0] === l.to && e[1] === a)) edges.push([a, l.to]);
+function drawPlan(svg, big) {
+  const S = 100, pts = plan.rooms.flatMap(r => [[r.r[0], r.r[1]], [r.r[2], r.r[3]]]).concat(ids.map(i => plan.pos[i]));
+  const xs = pts.map(p => p[0]), ys = pts.map(p => p[1]), pad = .5;
+  const x0 = Math.min(...xs) - pad, y0 = Math.min(...ys) - pad, W = Math.max(...xs) - x0 + pad, H = Math.max(...ys) - y0 + pad;
   svg.setAttribute('viewBox', `${x0 * S} ${y0 * S} ${W * S} ${H * S}`);
   svg.innerHTML = '';
-  const defs = el('defs', {}, svg), gr = el('radialGradient', { id: big ? 'coneB' : 'coneG' }, defs);
-  el('stop', { offset: '0', 'stop-color': '#D7822F', 'stop-opacity': '.8' }, gr); el('stop', { offset: '1', 'stop-color': '#D7822F', 'stop-opacity': '0' }, gr);
-  const d = pts => 'M' + pts.map(p => (p[0] * S).toFixed(1) + ',' + (p[1] * S).toFixed(1)).join('L') + 'Z';
-  const sw = big ? 7 : 12;
-  const walls = el('g', {}, svg), floors = el('g', {}, svg);
-  for (const id of ids) if (P_[id].length) {
-    el('path', { class: 'plan-wall', d: d(P_[id]), 'stroke-width': sw * 2 }, walls);
-    el('path', { class: 'plan-floor', d: d(P_[id]) }, floors);
+  const defs = el('defs', {}, svg), gid = big ? 'gB' : 'gM';
+  const gr = el('radialGradient', { id: gid }, defs);
+  el('stop', { offset: '0', 'stop-color': '#D7822F', 'stop-opacity': '.85' }, gr); el('stop', { offset: '1', 'stop-color': '#D7822F', 'stop-opacity': '0' }, gr);
+  const pat = el('pattern', { id: gid + 'p', width: S / 2, height: S / 2, patternUnits: 'userSpaceOnUse' }, defs);
+  el('path', { d: `M${S / 2} 0H0V${S / 2}`, fill: 'none', stroke: 'rgba(244,242,238,.05)', 'stroke-width': 2 }, pat);
+  const ww = big ? 10 : 16, door = .9 * S;
+  for (const r of plan.rooms) {
+    const [a, b, c, d] = r.r.map(v => v * S), at = { x: a, y: b, width: c - a, height: d - b };
+    el('rect', { ...at, class: 'plan-floor' }, svg); el('rect', { ...at, fill: `url(#${gid}p)` }, svg);
+  }
+  for (const r of plan.rooms) { const [a, b, c, d] = r.r.map(v => v * S); el('rect', { x: a, y: b, width: c - a, height: d - b, class: 'plan-wall', 'stroke-width': ww }, svg); }
+  for (const dr of plan.doors) {   // openings: floor colour over the wall
+    const [x, y] = dr.at.map(v => v * S);
+    el('path', { d: dr.dir === 'v' ? `M${x},${y - door / 2}V${y + door / 2}` : `M${x - door / 2},${y}H${x + door / 2}`, stroke: '#2b2723', 'stroke-width': ww + 4 }, svg);
   }
   const P = id => plan.pos[id].map(v => v * S);
-  for (const [a, b] of plan.edges) { const [ax, ay] = P(a), [bx, by] = P(b); el('path', { class: 'plan-path', d: `M${ax},${ay}L${bx},${by}`, 'stroke-width': big ? 4 : 6 }, svg); }
-  const cone = el('path', { class: 'plan-cone', fill: `url(#${big ? 'coneB' : 'coneG'})` }, svg);
+  for (const [a, b] of edges) { const [ax, ay] = P(a), [bx, by] = P(b); el('path', { class: 'plan-path', d: `M${ax},${ay}L${bx},${by}`, 'stroke-width': big ? 4 : 7 }, svg); }
+  const cone = el('path', { fill: `url(#${gid})` }, svg);
   for (const id of ids) {
     const [x, y] = P(id);
     if (big) {
@@ -433,21 +414,20 @@ function drawPlan(svg, big, P_) {
       el('text', { x, y: y + r + 22 }, g).textContent = TOUR.scenes[id].title;
       g.addEventListener('click', () => { setOv(false); go(id); });
     } else {
-      const c = el('circle', { class: 'plan-dot', cx: x, cy: y, r: 13, 'data-id': id, 'stroke-width': 4 }, svg);
+      const c = el('circle', { class: 'plan-dot', cx: x, cy: y, r: 15, 'data-id': id, 'stroke-width': 5 }, svg);
       el('title', {}, c).textContent = TOUR.scenes[id].title;
       c.addEventListener('click', e => { e.stopPropagation(); go(id); });
     }
   }
   return { cone, P, big };
 }
-let mini = null, bigPlan = null;
-fetch('outline.json').then(r => r.json()).catch(() => ({})).then(OL => {
-  const P_ = polys(OL);
-  mini = drawPlan(document.getElementById('mini'), false, P_);
-  bigPlan = drawPlan(document.getElementById('big'), true, P_);
-});
+fetch('plan.json').then(r => r.json()).then(j => {
+  plan = j;
+  mini = drawPlan(document.getElementById('mini'), false);
+  bigPlan = drawPlan(document.getElementById('big'), true);
+}).catch(() => document.getElementById('minimap').remove());
 function syncPlan() {
-  const id = viewer.getScene(); if (!id || !mini) return;
+  const id = viewer.getScene(); if (!id || !mini || !plan) return;
   for (const p of [mini, bigPlan]) {
     const [cx, cy] = p.P(id), R = p.big ? 150 : 170;
     const g = (viewer.getYaw() + plan.rot[id]) * Math.PI / 180, h = viewer.getHfov() / 2 * Math.PI / 180;
