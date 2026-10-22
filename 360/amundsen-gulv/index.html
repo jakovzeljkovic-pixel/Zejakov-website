@@ -98,6 +98,8 @@ a{color:inherit}
 .ov svg{max-height:78vh}
 .plan-wall{fill:none;stroke:#EDE8E1}
 .plan-floor{fill:#2b2723;stroke:none}
+.plan-stair rect{fill:#34302b;stroke:rgba(237,232,225,.55);stroke-width:3}
+.plan-stair path{stroke:rgba(237,232,225,.4);stroke-width:2.5}
 .ov .plan-path{stroke-width:2.2;stroke:rgba(215,130,47,.55);stroke-dasharray:2 7}
 .ov .pin{cursor:pointer}
 .ov .pin image{clip-path:circle(50%)}
@@ -398,6 +400,16 @@ function drawPlan(svg, big) {
     el('rect', { ...at, class: 'plan-floor' }, svg); el('rect', { ...at, fill: `url(#${gid}p)` }, svg);
   }
   for (const r of plan.rooms) { const [a, b, c, d] = r.r.map(v => v * S); el('rect', { x: a, y: b, width: c - a, height: d - b, class: 'plan-wall', 'stroke-width': ww }, svg); }
+  for (const st of plan.stairs || []) {   // stair: outline + treads
+    const [a, b, c, d] = st.r.map(v => v * S), g = el('g', { class: 'plan-stair' }, svg);
+    el('rect', { x: a, y: b, width: c - a, height: d - b }, g);
+    const n = Math.max(4, Math.round((st.steps === 'h' ? d - b : c - a) / 22));
+    for (let k = 1; k < n; k++) {
+      if (st.steps === 'h') { const y = b + (d - b) * k / n; el('path', { d: `M${a},${y}H${c}` }, g); }
+      else { const x = a + (c - a) * k / n; el('path', { d: `M${x},${b}V${d}` }, g); }
+    }
+  }
+  for (const w of plan.inner || []) el('path', { class: 'plan-wall', d: `M${w[0] * S},${w[1] * S}L${w[2] * S},${w[3] * S}`, 'stroke-width': ww * .7 }, svg);
   for (const dr of plan.doors) {   // openings: floor colour over the wall
     const [x, y] = dr.at.map(v => v * S);
     el('path', { d: dr.dir === 'v' ? `M${x},${y - door / 2}V${y + door / 2}` : `M${x - door / 2},${y}H${x + door / 2}`, stroke: '#2b2723', 'stroke-width': ww + 4 }, svg);
