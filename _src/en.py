@@ -88,7 +88,7 @@ T = {
 
     # home: hero
     "Hver bolig har en historie.": "Every home has a story.",
-    "La oss fortelle den.": "Let's tell it.",
+    "La oss fortelle den.": "Let's share it.",
     "Holder det med en vanlig annonse, er dette feil firma for deg.": "If a standard listing is all you need, I'm not the right fit.",
     "Se arbeidet": "See the work",
     "Sett filmen på pause": "Pause the film",
