@@ -84,6 +84,10 @@ T = {
     "Språk": "Language",
     "ZEJAKOV ZELJKOVIC, org. 835 196 542": "ZEJAKOV ZELJKOVIC, org. no. 835 196 542",
     "Personvern": "Privacy",
+    "Sosiale medier": "Social media",
+    "Google-omtaler": "Google reviews",
+    "Jeg bruker opplysningene bare til å svare deg. Mer om dette på": "I only use your details to reply to you. More on the",
+    "personvernsiden": "privacy page",
     "Ring 973 44 658": "Call 973 44 658",
 
     # home: hero
