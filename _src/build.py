@@ -23,11 +23,11 @@ PAGES = {
  "hjem": ("index.html",
    "Boligfilm og boligfoto i Oslo | ZEJAKOV MEDIA",
    "Medieproduksjon for eiendom i Oslo. Boligfilm, boligfoto og drone til visning "
-   "og annonse, alt gjort av samme person. Se arbeidet og book befaring.",
+   "og annonse, alt fra én leverandør. Se arbeidet og book befaring.",
    "/"),
  "arbeid": ("arbeid/index.html",
    "Arbeid: boligfilm og boligfoto fra Oslo | ZEJAKOV MEDIA",
-   "Boliger jeg har fotografert og filmet i Oslo og omegn. Hvert prosjekt "
+   "Boliger vi har fotografert og filmet i Oslo og omegn. Hvert prosjekt "
    "med film, bilder og drone fra samme oppdrag.",
    "/arbeid/"),
  "heyerdahls": ("arbeid/heyerdahls-vei-8b/index.html",
@@ -37,8 +37,8 @@ PAGES = {
    "/arbeid/heyerdahls-vei-8b/"),
  "tjenester": ("tjenester/index.html",
    "Boligfilm, boligfoto og drone i Oslo | ZEJAKOV MEDIA",
-   "Hele jobben gjort av samme person: bilder, film, drone og lys. For eiere og "
-   "meglere som vil vise hvordan det er å bo i boligen.",
+   "Film der eieren forteller, bilder med drone og kveldsstemning, 360-visning og "
+   "arkitekturfoto. To pakker for eiere og meglere i Oslo og omegn.",
    "/tjenester/"),
  "om": ("om/index.html",
    "Boligfotograf og filmfotograf i Oslo | ZEJAKOV MEDIA",
@@ -47,7 +47,7 @@ PAGES = {
    "/om/"),
  "kontakt": ("kontakt/index.html",
    "Book befaring for boligfilm i Oslo | ZEJAKOV MEDIA",
-   "Fortell meg om boligen, så finner vi en dag for befaring. Boligfilm, "
+   "Fortell oss om boligen, så finner vi en dag for befaring. Boligfilm, "
    "boligfoto og drone i Oslo, og oppdrag over hele verden.",
    "/kontakt/"),
  "ikkefunnet": ("404.html",
@@ -56,7 +56,7 @@ PAGES = {
    "/404.html"),
  "personvern": ("personvern/index.html",
    "Personvern | ZEJAKOV MEDIA",
-   "Hva jeg lagrer og hvorfor. Siden setter ingen informasjonskapsler og har "
+   "Hva vi lagrer og hvorfor. Siden setter ingen informasjonskapsler og har "
    "ingen sporing.",
    "/personvern/"),
 }
@@ -260,10 +260,10 @@ def to_english(doc):
     def addr(m):
         for slug, nbp in NB_PATHS.items():
             if slug in en.PATHS and m.group(1) == nbp:
-                return 'href="%s"' % en.PATHS[slug]
+                return 'href="%s%s"' % (en.PATHS[slug], m.group(2) or "")
         return m.group(0)
-    head = re.sub(r'href="(/[^"#?]*)"', addr, head)
-    tail = re.sub(r'href="(/[^"#?]*)"', addr, tail)
+    head = re.sub(r'href="(/[^"#?]*)([?#][^"]*)?"', addr, head)
+    tail = re.sub(r'href="(/[^"#?]*)([?#][^"]*)?"', addr, tail)
     return head + css + tail
 
 

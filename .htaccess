@@ -6,6 +6,8 @@ RewriteEngine On
 RewriteRule ^portfolio/?$ https://zejakov.com/arbeid/ [R=301,L]
 RewriteRule ^bio-contact/?$ https://zejakov.com/kontakt/ [R=301,L]
 RewriteRule ^copy-of- https://zejakov.com/arbeid/ [R=301,L]
+# the agent page became Tjenester (4 Nov 2026)
+RewriteRule ^megler/?$ https://zejakov.com/tjenester/ [R=301,L]
 
 # one address for every page: https://zejakov.com, no www, no index.html
 RewriteCond %{HTTP_HOST} ^www\. [NC]
