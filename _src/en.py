@@ -396,6 +396,8 @@ T = {
     "Hvor sender vi tilbudet?": "Where should we send the quote?",
     "Tilbake": "Back",
 
+    "Enebolig i Oslo med utsikt over byen. Eieren forteller om livet i huset, med bilder og drone fra samme oppdrag.":
+        "A detached house in Oslo overlooking the city. The owner talks about life in the house, with photos and drone footage from the same project.",
     # privacy
     "Hva vi lagrer, og hvorfor.": "What we store, and why.",
     "Bare det du selv sender oss, og bare så lenge jobben krever det.": "Only what you send us yourself, and only for as long as the job requires.",
